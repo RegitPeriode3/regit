@@ -56,7 +56,7 @@
 
       </section>
 
-  </main><!-- End #main -->
+  </main>
 
 </body>
 
