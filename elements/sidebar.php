@@ -12,7 +12,7 @@
 
     <li class="nav-item">
       <a class="nav-link collapsed">
-        <i class="bi bi-person"></i>
+      <i class="bi bi-archive"></i>
         <span>facturatie</span>
       </a>
     </li>
@@ -21,14 +21,14 @@
 
     <li class="nav-item">
       <a class="nav-link collapsed">
-        <i class="bi bi-person"></i>
+      <i class="bi bi-file-earmark-person"></i>
         <span>klant beheer</span>
       </a>
     </li>
 
     <li class="nav-item">
       <a class="nav-link collapsed">
-        <i class="bi bi-person"></i>
+      <i class="bi bi-person-gear"></i>
         <span>gebruiker beheer</span>
       </a>
     </li>
