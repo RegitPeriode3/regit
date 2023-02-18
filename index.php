@@ -30,6 +30,9 @@
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/main.css" rel="stylesheet">
 
+    <!-- jquery --->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 
 <body>
@@ -57,8 +60,9 @@
     <script src="assets/vendor/tinymce/tinymce.min.js"></script>
     <script src="assets/vendor/php-email-form/validate.js"></script>
 
-    <!-- Template Main JS File -->
+    <!-- Main JS File's -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/template.js"></script>
 
 </body>
 

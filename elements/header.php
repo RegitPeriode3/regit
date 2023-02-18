@@ -12,7 +12,7 @@
 <nav class="header-nav ms-auto">
   <ul class="d-flex align-items-center">
 
-    <li class="nav-item dropdown pe-3">
+    <li class=" dropdown pe-3">
 
       <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
         <img src="assets/img/profile-img.png" alt="Profile" class="rounded-circle">
@@ -20,18 +20,9 @@
       </a><!-- End Profile Iamge Icon -->
 
       <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-        <li>
-          <a class="dropdown-item d-flex align-items-center">
-            <i class="bi bi-person"></i>
-            <span>Mijn account</span>
-          </a>
-        </li>
-        <li>
-          <hr class="dropdown-divider">
-        </li>
 
-        <li>
-          <a class="dropdown-item d-flex align-items-center">
+        <li class="nav-item">
+          <a href="#" class="dropdown-item d-flex align-items-center" data-target="Settings">
             <i class="bi bi-gear"></i>
             <span>Instellingen</span>
           </a>
@@ -40,7 +31,7 @@
           <hr class="dropdown-divider">
         </li>
 
-        <li>
+        <li class="nav-item">
           <a class="dropdown-item d-flex align-items-center" >
             <i class="bi bi-box-arrow-right"></i>
             <span>Uitloggen</span>

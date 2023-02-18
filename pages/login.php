@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-
 <body>
 
   <main style="background-image: url(assets/img/pexels-lukas-317355.jpg); background-size: cover; background-repeat: no-repeat;">
@@ -59,5 +57,3 @@
   </main>
 
 </body>
-
-</html>
