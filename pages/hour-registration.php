@@ -1,165 +1,109 @@
 <!-- hour registration -->
 <div id="HourRegistration" class="content">
 
-<div class="pagetitle">
-  <h1>Uren registratie</h1>
-</div><!-- End Page Title -->
+  <div class="pagetitle">
+    <h1>Uren registratie</h1>
+  </div><!-- End Page Title -->
 
-<section class="section">
-  <div class="row">
-    <div class="col-lg-6">
+  <section class="section">
+    <div class="row">
+      <!-- hour registration form -->
+      <div class="col-lg-4">
 
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">General Form Elements</h5>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Uren invoeren</h5>
 
-          <!-- General Form Elements -->
-          <form>
-            <div class="row mb-3">
-              <label for="inputText" class="col-sm-2 col-form-label">Text</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control">
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-              <div class="col-sm-10">
-                <input type="email" class="form-control">
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-              <div class="col-sm-10">
-                <input type="password" class="form-control">
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label for="inputNumber" class="col-sm-2 col-form-label">Number</label>
-              <div class="col-sm-10">
-                <input type="number" class="form-control">
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
-              <div class="col-sm-10">
-                <input class="form-control" type="file" id="formFile">
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label for="inputDate" class="col-sm-2 col-form-label">Date</label>
-              <div class="col-sm-10">
+            <form class="row g-3">
+              <div class="col-md-12">
+                <label class="form-label">Datum</label>
                 <input type="date" class="form-control">
               </div>
-            </div>
-            <div class="row mb-3">
-              <label for="inputTime" class="col-sm-2 col-form-label">Time</label>
-              <div class="col-sm-10">
+              <div class="col-md-6">
+                <label class="form-label">Van</label>
                 <input type="time" class="form-control">
               </div>
-            </div>
-
-            <div class="row mb-3">
-              <label for="inputColor" class="col-sm-2 col-form-label">Color Picker</label>
-              <div class="col-sm-10">
-                <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#4154f1" title="Choose your color">
+              <div class="col-md-6">
+                <label class="form-label">Tot</label>
+                <input type="time" class="form-control">
               </div>
-            </div>
-            <div class="row mb-3">
-              <label for="inputPassword" class="col-sm-2 col-form-label">Textarea</label>
-              <div class="col-sm-10">
-                <textarea class="form-control" style="height: 100px"></textarea>
+              <div class="col-md-12">
+                <label class="form-label">Totaal aantal uren:  0</label>
               </div>
-            </div>
-            <fieldset class="row mb-3">
-              <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
-              <div class="col-sm-10">
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                  <label class="form-check-label" for="gridRadios1">
-                    First radio
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                  <label class="form-check-label" for="gridRadios2">
-                    Second radio
-                  </label>
-                </div>
-                <div class="form-check disabled">
-                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios" value="option" disabled>
-                  <label class="form-check-label" for="gridRadios3">
-                    Third disabled radio
-                  </label>
-                </div>
+              <div class="col-12">
+                <label class="form-label">Activiteit</label>
+                <input type="text" class="form-control">
               </div>
-            </fieldset>
-            <div class="row mb-3">
-              <legend class="col-form-label col-sm-2 pt-0">Checkboxes</legend>
-              <div class="col-sm-10">
-
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="gridCheck1">
-                  <label class="form-check-label" for="gridCheck1">
-                    Example checkbox
-                  </label>
-                </div>
-
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="gridCheck2" checked>
-                  <label class="form-check-label" for="gridCheck2">
-                    Example checkbox 2
-                  </label>
-                </div>
-
+              <div class="col-12">
+                <label class="form-label">Omschrijving</label>
+                <textarea class="form-control"></textarea>
               </div>
-            </div>
 
-            <div class="row mb-3">
-              <label class="col-sm-2 col-form-label">Disabled</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" value="Read only / Disabled" disabled>
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
               </div>
-            </div>
+            </form>
 
-            <div class="row mb-3">
-              <label class="col-sm-2 col-form-label">Select</label>
-              <div class="col-sm-10">
-                <select class="form-select" aria-label="Default select example">
-                  <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <label class="col-sm-2 col-form-label">Multi Select</label>
-              <div class="col-sm-10">
-                <select class="form-select" multiple aria-label="multiple select example">
-                  <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <label class="col-sm-2 col-form-label">Submit Button</label>
-              <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary">Submit Form</button>
-              </div>
-            </div>
-
-          </form><!-- End General Form Elements -->
-
+          </div>
         </div>
-      </div>
+      </div><!-- End hour registration form -->
+
+      <!-- hour registration table -->
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Gemaakte uren</h5>
+
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Datum</th>
+                  <th scope="col">Van</th>
+                  <th scope="col">Tot</th>
+                  <th scope="col">Aantal uren</th>
+                  <th scope="col">Activiteit</th>
+                  <th scope="col">Omschrijving</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>2-19-2023</td>
+                  <td>8:00</td>
+                  <td>14:00</td>
+                  <td>6</td>
+                  <td> - </td>
+                  <td> - </td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>2-19-2023</td>
+                  <td>8:00</td>
+                  <td>14:00</td>
+                  <td>6</td>
+                  <td> - </td>
+                  <td> - </td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>2-19-2023</td>
+                  <td>8:00</td>
+                  <td>14:00</td>
+                  <td>6</td>
+                  <td> - </td>
+                  <td> - </td>
+                </tr>
+
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div><!-- End table -->
 
     </div>
-
-  </div>
-</section>
+  </section>
 
 </div><!-- End hour registration -->
