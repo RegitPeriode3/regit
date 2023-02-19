@@ -31,6 +31,15 @@
                 <label class="form-label">Totaal aantal uren:  0</label>
               </div>
               <div class="col-12">
+                <label class="form-label">Project</label>
+                <select class="form-select" aria-label="Default select example">
+                      <option selected>-</option>
+                      <option value="1">-</option>
+                      <option value="2">-</option>
+                      <option value="3">-</option>
+                    </select>
+              </div>
+              <div class="col-12">
                 <label class="form-label">Activiteit</label>
                 <input type="text" class="form-control">
               </div>
@@ -63,6 +72,7 @@
                   <th scope="col">Van</th>
                   <th scope="col">Tot</th>
                   <th scope="col">Aantal uren</th>
+                  <th scope="col">Project</th>
                   <th scope="col">Activiteit</th>
                   <th scope="col">Omschrijving</th>
                 </tr>
@@ -76,6 +86,7 @@
                   <td>6</td>
                   <td> - </td>
                   <td> - </td>
+                  <td> - </td>
                 </tr>
                 <tr>
                   <th scope="row">2</th>
@@ -85,6 +96,7 @@
                   <td>6</td>
                   <td> - </td>
                   <td> - </td>
+                  <td> - </td>
                 </tr>
                 <tr>
                   <th scope="row">3</th>
@@ -92,6 +104,7 @@
                   <td>8:00</td>
                   <td>14:00</td>
                   <td>6</td>
+                  <td> - </td>
                   <td> - </td>
                   <td> - </td>
                 </tr>
