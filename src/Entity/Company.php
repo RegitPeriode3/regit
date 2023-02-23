@@ -19,7 +19,7 @@ class Company
     private ?string $AccountNr = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $InvoiceAdress = null;
+    private ?string $InvoiceAddress = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Name = null;
@@ -28,7 +28,7 @@ class Company
     private ?string $Country = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $Adress = null;
+    private ?string $Address = null;
 
     #[ORM\Column(length: 20, nullable: true)]
     private ?string $PhoneNr = null;
@@ -45,16 +45,16 @@ class Company
     #[ORM\Column(nullable: true)]
     private ?bool $Deleted = null;
 
-    #[ORM\OneToMany(mappedBy: 'Company', targetEntity: Action::class)]
-    private Collection $actions;
-
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Configuration $Configuration = null;
 
+    #[ORM\OneToMany(mappedBy: 'Company', targetEntity: Employee::class)]
+    private Collection $employees;
+
     public function __construct()
     {
-        $this->actions = new ArrayCollection();
+        $this->employees = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -74,14 +74,14 @@ class Company
         return $this;
     }
 
-    public function getInvoiceAdress(): ?string
+    public function getInvoiceAddress(): ?string
     {
-        return $this->InvoiceAdress;
+        return $this->InvoiceAddress;
     }
 
-    public function setInvoiceAdress(?string $InvoiceAdress): self
+    public function setInvoiceAddress(?string $InvoiceAddress): self
     {
-        $this->InvoiceAdress = $InvoiceAdress;
+        $this->InvoiceAddress = $InvoiceAddress;
 
         return $this;
     }
@@ -110,14 +110,14 @@ class Company
         return $this;
     }
 
-    public function getAdress(): ?string
+    public function getAddress(): ?string
     {
-        return $this->Adress;
+        return $this->Address;
     }
 
-    public function setAdress(?string $Adress): self
+    public function setAddress(?string $Address): self
     {
-        $this->Adress = $Adress;
+        $this->Address = $Address;
 
         return $this;
     }
@@ -182,36 +182,6 @@ class Company
         return $this;
     }
 
-    /**
-     * @return Collection<int, Action>
-     */
-    public function getActions(): Collection
-    {
-        return $this->actions;
-    }
-
-    public function addAction(Action $action): self
-    {
-        if (!$this->actions->contains($action)) {
-            $this->actions->add($action);
-            $action->setCompany($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAction(Action $action): self
-    {
-        if ($this->actions->removeElement($action)) {
-            // set the owning side to null (unless already changed)
-            if ($action->getCompany() === $this) {
-                $action->setCompany(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getConfiguration(): ?Configuration
     {
         return $this->Configuration;
@@ -220,6 +190,36 @@ class Company
     public function setConfiguration(Configuration $Configuration): self
     {
         $this->Configuration = $Configuration;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Employee>
+     */
+    public function getEmployees(): Collection
+    {
+        return $this->employees;
+    }
+
+    public function addEmployee(Employee $employee): self
+    {
+        if (!$this->employees->contains($employee)) {
+            $this->employees->add($employee);
+            $employee->setCompany($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEmployee(Employee $employee): self
+    {
+        if ($this->employees->removeElement($employee)) {
+            // set the owning side to null (unless already changed)
+            if ($employee->getCompany() === $this) {
+                $employee->setCompany(null);
+            }
+        }
 
         return $this;
     }

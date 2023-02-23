@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\ActionRepository;
+use App\Repository\HourRegistrationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ActionRepository::class)]
-class Action
+#[ORM\Entity(repositoryClass: HourRegistrationRepository::class)]
+class HourRegistration
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -20,29 +20,25 @@ class Action
     #[ORM\Column(length: 500, nullable: true)]
     private ?string $Description = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?float $HourlyCost = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?float $Time = null;
-
-    #[ORM\ManyToOne(inversedBy: 'actions')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?User $User = null;
 
     #[ORM\Column(nullable: true)]
     private ?bool $Deleted = null;
 
-    #[ORM\ManyToOne(inversedBy: 'actions')]
+    #[ORM\ManyToOne(inversedBy: 'hourRegistrations')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Activity $Activitiy = null;
+    private ?Employee $Employee = null;
 
-    #[ORM\ManyToOne(inversedBy: 'actions')]
+    #[ORM\ManyToOne(inversedBy: 'hourRegistrations')]
     private ?Invoice $Invoice = null;
 
-    #[ORM\ManyToOne(inversedBy: 'actions')]
+    #[ORM\ManyToOne(inversedBy: 'hourRegistrations')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Company $Company = null;
+    private ?Activity $Activity = null;
 
     public function getId(): ?int
     {
@@ -78,7 +74,7 @@ class Action
         return $this->HourlyCost;
     }
 
-    public function setHourlyCost(?float $HourlyCost): self
+    public function setHourlyCost(float $HourlyCost): self
     {
         $this->HourlyCost = $HourlyCost;
 
@@ -90,21 +86,9 @@ class Action
         return $this->Time;
     }
 
-    public function setTime(float $Time): self
+    public function setTime(?float $Time): self
     {
         $this->Time = $Time;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->User;
-    }
-
-    public function setUser(?User $User): self
-    {
-        $this->User = $User;
 
         return $this;
     }
@@ -121,14 +105,14 @@ class Action
         return $this;
     }
 
-    public function getActivitiy(): ?Activity
+    public function getEmployee(): ?Employee
     {
-        return $this->Activitiy;
+        return $this->Employee;
     }
 
-    public function setActivitiy(?Activity $Activitiy): self
+    public function setEmployee(?Employee $Employee): self
     {
-        $this->Activitiy = $Activitiy;
+        $this->Employee = $Employee;
 
         return $this;
     }
@@ -145,14 +129,14 @@ class Action
         return $this;
     }
 
-    public function getCompany(): ?Company
+    public function getActivity(): ?Activity
     {
-        return $this->Company;
+        return $this->Activity;
     }
 
-    public function setCompany(?Company $Company): self
+    public function setActivity(?Activity $Activity): self
     {
-        $this->Company = $Company;
+        $this->Activity = $Activity;
 
         return $this;
     }

@@ -43,7 +43,7 @@ class User
     private ?string $Zipcode = null;
 
     #[ORM\Column(length: 70, nullable: true)]
-    private ?string $Adress = null;
+    private ?string $Address = null;
 
     #[ORM\Column(nullable: true)]
     private ?bool $Active = true;
@@ -55,12 +55,12 @@ class User
     #[ORM\JoinColumn(nullable: false)]
     private ?Clearence $Clearence = null;
 
-    #[ORM\OneToMany(mappedBy: 'User', targetEntity: Action::class)]
-    private Collection $actions;
+    #[ORM\OneToMany(mappedBy: 'User', targetEntity: Employee::class)]
+    private Collection $employees;
 
     public function __construct()
     {
-        $this->actions = new ArrayCollection();
+        $this->employees = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -176,14 +176,14 @@ class User
         return $this;
     }
 
-    public function getAdress(): ?string
+    public function getAddress(): ?string
     {
-        return $this->Adress;
+        return $this->Address;
     }
 
-    public function setAdress(?string $Adress): self
+    public function setAddress(?string $Address): self
     {
-        $this->Adress = $Adress;
+        $this->Address = $Address;
 
         return $this;
     }
@@ -225,29 +225,29 @@ class User
     }
 
     /**
-     * @return Collection<int, Action>
+     * @return Collection<int, Employee>
      */
-    public function getActions(): Collection
+    public function getEmployees(): Collection
     {
-        return $this->actions;
+        return $this->employees;
     }
 
-    public function addAction(Action $action): self
+    public function addEmployee(Employee $employee): self
     {
-        if (!$this->actions->contains($action)) {
-            $this->actions->add($action);
-            $action->setUser($this);
+        if (!$this->employees->contains($employee)) {
+            $this->employees->add($employee);
+            $employee->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeAction(Action $action): self
+    public function removeEmployee(Employee $employee): self
     {
-        if ($this->actions->removeElement($action)) {
+        if ($this->employees->removeElement($employee)) {
             // set the owning side to null (unless already changed)
-            if ($action->getUser() === $this) {
-                $action->setUser(null);
+            if ($employee->getUser() === $this) {
+                $employee->setUser(null);
             }
         }
 

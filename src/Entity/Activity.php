@@ -24,12 +24,12 @@ class Activity
     #[ORM\Column(nullable: true)]
     private ?bool $Deleted = null;
 
-    #[ORM\OneToMany(mappedBy: 'Activitiy', targetEntity: Action::class)]
-    private Collection $actions;
+    #[ORM\OneToMany(mappedBy: 'Activity', targetEntity: HourRegistration::class)]
+    private Collection $hourRegistrations;
 
     public function __construct()
     {
-        $this->actions = new ArrayCollection();
+        $this->hourRegistrations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -74,29 +74,29 @@ class Activity
     }
 
     /**
-     * @return Collection<int, Action>
+     * @return Collection<int, HourRegistration>
      */
-    public function getActions(): Collection
+    public function getHourRegistrations(): Collection
     {
-        return $this->actions;
+        return $this->hourRegistrations;
     }
 
-    public function addAction(Action $action): self
+    public function addHourRegistration(HourRegistration $hourRegistration): self
     {
-        if (!$this->actions->contains($action)) {
-            $this->actions->add($action);
-            $action->setActivitiy($this);
+        if (!$this->hourRegistrations->contains($hourRegistration)) {
+            $this->hourRegistrations->add($hourRegistration);
+            $hourRegistration->setActivity($this);
         }
 
         return $this;
     }
 
-    public function removeAction(Action $action): self
+    public function removeHourRegistration(HourRegistration $hourRegistration): self
     {
-        if ($this->actions->removeElement($action)) {
+        if ($this->hourRegistrations->removeElement($hourRegistration)) {
             // set the owning side to null (unless already changed)
-            if ($action->getActivitiy() === $this) {
-                $action->setActivitiy(null);
+            if ($hourRegistration->getActivity() === $this) {
+                $hourRegistration->setActivity(null);
             }
         }
 
