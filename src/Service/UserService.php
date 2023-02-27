@@ -4,12 +4,15 @@ namespace App\Service;
 
 use App\Repository\ClearenceRepository;
 use App\Repository\UserRepository;
+use http\Env\Response;
+use Symfony\Bridge\Doctrine\ManagerRegistry;
 
 class UserService
 {
     public function __construct(
         private readonly UserRepository $userRepository,
-        private readonly ClearenceRepository $clearenceRepository
+        private readonly ClearenceRepository $clearenceRepository,
+        private readonly ManagerRegistry $doctrine
     ) {
     }
 
@@ -21,7 +24,15 @@ class UserService
         foreach ($users as $user) {
             $allUsers[] = [
                 'id' => $user->getId(),
-                'userName' => $user->getUserName()
+                'displayName' => $user->getDisplayName(),
+                'userName' => $user->getUserName(),
+                'password' => $user->getPassword(),
+                'email' => $user->getEmail(),
+                'phoneNr' => $user->getPhoneNr(),
+                'country' => $user->getCountry(),
+                'location' => $user->getLocation(),
+                'zipcode' => $user->getZipcode(),
+                'address' => $user->getAddress()
             ];
         }
         return $allUsers;
@@ -33,8 +44,15 @@ class UserService
         if (!empty($user)) {
             return [
                 'id' => $user->getId(),
+                'displayName' => $user->getDisplayName(),
                 'userName' => $user->getUserName(),
-                'country' => $user->getCountry()
+                'password' => $user->getPassword(),
+                'email' => $user->getEmail(),
+                'phoneNr' => $user->getPhoneNr(),
+                'country' => $user->getCountry(),
+                'location' => $user->getLocation(),
+                'zipcode' => $user->getZipcode(),
+                'address' => $user->getAddress()
             ];
         }
         return [];
@@ -51,5 +69,28 @@ class UserService
             ];
         }
         return $allAdmins;
+    }
+
+    public function CreateUser($displayName, $UserName, $password, $email, $phoneNr, $country, $location, $zipcode, $address, $active, $deleted,$clearence): Response
+    {
+        $entityManager = $this->doctrine->getManager();
+        $user = new User();
+
+        $user->setDisplayName($displayName);
+        $user->setUserName($UserName);
+        $user->setPassword($password);
+        $user->setEmail($email);
+        $user->setPhoneNr($phoneNr);
+        $user->setCountry($country);
+        $user->setLocation($location);
+        $user->setZipcode($zipcode);
+        $user->setAddress($address);
+        $user->setActive($active);
+        $user->setDeleted($deleted);
+        $user->setClearence($clearence);
+
+        $entityManager->persist($user);
+        $entityManager->flush();
+        return new Response('Nieuwe Gerbruiker opgeslagen');
     }
 }
