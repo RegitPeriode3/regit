@@ -1,0 +1,33 @@
+/* general */
+html {
+    font-size: small;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+
+.list-scroll {
+    overflow-y: scroll;
+    max-height: 70vh;
+}
+
+
+/* user management */
+.user-management-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #012970;
+    font-family: "Poppins", sans-serif;
+    padding-left: 20px;
+}
+
+.user-management-form {
+    padding-left: 50px;
+    padding-top: 30px;
+    padding-right: 50px;
+}
