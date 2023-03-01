@@ -45,7 +45,7 @@
         include "elements/main.php";
         include "elements/footer.php";
     // } else {
-    //     include "pages/login.php";
+    //     include "pages/login.html.twig";
     // }
     ?>
 
