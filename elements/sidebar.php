@@ -27,7 +27,7 @@
     </li>
 
     <li class="nav-item">
-      <a href="#" class="nav-link collapsed" data-target="UserManagement">
+      <a href="#" class="nav-link collapsed" id="UserManagementNav" data-target="UserManagement">
         <i class="bi bi-person-gear"></i>
         <span>gebruiker beheer</span>
       </a>

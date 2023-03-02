@@ -14,24 +14,8 @@
           <input type="text" class="form-control" placeholder="filter.." onkeyup="FilterNextUlParent($(this));">
         </div>
 
-        <ul class="list-group clientlist-scroll">
-          <li class="list-group-item active" aria-current="true">An active item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A fourth item</li>
-          <li class="list-group-item disabled">A fifth item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A fourth item</li>
-          <li class="list-group-item disabled">A fifth item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A fourth item</li>
-          <li class="list-group-item disabled">A fifth item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A fourth item</li>
-          <li class="list-group-item disabled">A fifth item</li>
+        <ul class="list-group clientlist-scroll" id="UserManageList">
+
         </ul>
         <div class="col-12">
           <button type="button" data-bs-toggle="modal" data-bs-target="#newUserModal" class="btn btn-primary client-btn"><i class="bi bi-plus"></i> nieuwe gebruiker</button>
@@ -73,7 +57,7 @@
                     <hr>
 
                     <div class="col-md-6">
-                      <label class="form-label">waargavennaam</label>
+                      <label class="form-label">weergavennaam</label>
                       <input type="text" class="form-control">
                     </div>
                     <div class="col-md-4">
@@ -129,22 +113,22 @@
         <form class="row col-12 g-3 user-management-form">
           <div class="col-md-4">
             <label class="form-label">Voornaam</label>
-            <input type="text" class="form-control">
+            <input type="text" name="displayName" class="form-control">
           </div>
           <div class="col-md-4">
             <label class="form-label">Tussenvoegsels</label>
-            <input type="text" class="form-control">
+            <input type="text" name="" class="form-control">
           </div>
           <div class="col-md-4">
             <label class="form-label">Achternaam</label>
-            <input type="text" class="form-control">
+            <input type="text" name="" class="form-control">
           </div>
 
           <hr>
 
           <div class="col-md-6">
-            <label class="form-label">waargavennaam</label>
-            <input type="text" class="form-control">
+            <label class="form-label">weergavennaam</label>
+            <input type="text" name="displayName" class="form-control">
           </div>
           <div class="col-md-4">
             <label class="form-label">Rechten</label>
@@ -155,33 +139,33 @@
           </div>
           <div class="col-md-6">
             <label class="form-label">gebruikersnaam</label>
-            <input type="text" class="form-control">
+            <input type="text" name="userName" class="form-control">
           </div>
           <div class="col-md-6">
             <label class="form-label">wachtwoord</label>
-            <input type="password" class="form-control">
+            <input type="password" name="password" class="form-control">
           </div>
 
           <hr>
           <div class="col-md-6">
             <label class="form-label">E-mail adres</label>
-            <input type="text" class="form-control">
+            <input type="text" name="email" class="form-control">
           </div>
           <div class="col-md-6">
             <label class="form-label">Telefoon nummer</label>
-            <input type="text" class="form-control">
+            <input type="text" name="phoneNr" class="form-control">
           </div>
           <div class="col-md-4">
             <label class="form-label">Land</label>
-            <input type="text" class="form-control">
+            <input type="text" name="country" class="form-control">
           </div>
           <div class="col-md-5">
             <label class="form-label">Adress</label>
-            <input type="text" class="form-control">
+            <input type="text" name="address" class="form-control">
           </div>
           <div class="col-md-3">
             <label class="form-label">Postcode</label>
-            <input type="text" class="form-control">
+            <input type="text" name="zipcode" class="form-control">
           </div>
           <hr>
           <div class="col-12 row">

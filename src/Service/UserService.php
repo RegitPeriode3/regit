@@ -12,7 +12,7 @@ class UserService
     public function __construct(
         private readonly UserRepository $userRepository,
         private readonly ClearenceRepository $clearenceRepository,
-        private readonly ManagerRegistry $doctrine
+//        private readonly ManagerRegistry $doctrine
     ) {
     }
 
