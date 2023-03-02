@@ -186,10 +186,10 @@
           <hr>
           <div class="col-12 row">
             <div class="col-6 mb-3">
-              <button type="submit" class="btn btn-primary float-right">Aanpassingen opslaan</button>
+              <button type="button" id="SaveUserChanges" onclick="EditUser();" class="btn btn-primary float-right">Aanpassingen opslaan</button>
             </div>
             <div class="col-6">
-              <button type="submit" class="btn btn-danger float-left">Geslecteerde gebruiker verwijderen</button>
+              <button type="button" class="btn btn-danger float-left">Geslecteerde gebruiker verwijderen</button>
             </div>
           </div>
         </form><!-- End Form -->

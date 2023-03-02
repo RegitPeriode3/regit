@@ -60,8 +60,12 @@
     <script src="assets/vendor/tinymce/tinymce.min.js"></script>
     <script src="assets/vendor/php-email-form/validate.js"></script>
 
+    <!-- jQuery Includes -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
     <!-- Main JS File's -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/UserManagement.js"></script>
     <script src="assets/js/template.js"></script>
 
 </body>

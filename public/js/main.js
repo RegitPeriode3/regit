@@ -2,7 +2,7 @@
 $(document).ready(function() {
     // hide all divs except the first one on page load
     // $('.content').not(':first').hide();
-
+    // console.log('test');
      $('.content').hide();
 
     // add click event to navigation links
