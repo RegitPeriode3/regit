@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -31,19 +32,8 @@ class UserController extends AbstractController
     #[Route('/Create', name: 'CreateUser', methods: ['POST'])]
     public function CreateUser(UserService $userService, Request $request): Response
     {
-        $displayName = $request->request->get('displayName');
-        $UserName = $request->request->get('UserName');
-        $password = $request->request->get('password');
-        $email = $request->request->get('email');
-        $phoneNr = $request->request->get('phoneNr');
-        $country = $request->request->get('country');
-        $location = $request->request->get('location');
-        $zipcode = $request->request->get('zipcode');
-        $address = $request->request->get('address');
-        $active = $request->request->get('active');
-        $deleted = $request->request->get('deleted');
-        $clearence = $request->request->get('clearence');
-
-        return $this->json($userService->CreateUser($displayName,$UserName,$password,$email, $phoneNr, $country, $location, $zipcode, $address, $active, $deleted, $clearence));
+        $parameters = json_decode($request->getContent(), true);
+        return $this->json($userService->CreateUser($parameters));
+        //return $this->json($userService->CreateUser($displayName,$UserName,$password,$email, $phoneNr, $country, $location, $zipcode, $address, $active, $deleted, $clearence));
     }
 }

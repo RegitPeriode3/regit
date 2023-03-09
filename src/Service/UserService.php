@@ -2,17 +2,21 @@
 
 namespace App\Service;
 
+use App\Entity\User;
 use App\Repository\ClearenceRepository;
 use App\Repository\UserRepository;
-use http\Env\Response;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\Types\True_;
 use Symfony\Bridge\Doctrine\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserService
 {
     public function __construct(
         private readonly UserRepository $userRepository,
         private readonly ClearenceRepository $clearenceRepository,
-//        private readonly ManagerRegistry $doctrine
+        private readonly EntityManagerInterface $em
     ) {
     }
 
@@ -71,26 +75,29 @@ class UserService
         return $allAdmins;
     }
 
-    public function CreateUser($displayName, $UserName, $password, $email, $phoneNr, $country, $location, $zipcode, $address, $active, $deleted,$clearence): Response
+    //public function CreateUser($displayName, $UserName, $password, $email, $phoneNr, $country, $location, $zipcode, $address, $active, $deleted,$clearence): Response
+    public function  CreateUser($parameters)
     {
-        $entityManager = $this->doctrine->getManager();
+        //$em = $this->doctrine->getManager();
+        $Clearance = $this->clearenceRepository->findOneBy(['id'=>$parameters['clearence']]);
         $user = new User();
+        //dd($parameters);
+        $user->setDisplayName($parameters['displayName']);
+        $user->setUserName($parameters['UserName']);
+        $user->setPassword($parameters['password']);
+        $user->setEmployeeID($parameters['EmployeeId']);
+        $user->setEmail($parameters['email']);
+        $user->setPhoneNr($parameters['phoneNr']);
+        $user->setCountry($parameters['country']);
+        $user->setLocation($parameters['location']);
+        $user->setZipcode($parameters['zipcode']);
+        $user->setAddress($parameters['address']);
+        $user->setActive(True);
+        $user->setDeleted(False);
+        $user->setClearence($Clearance);
 
-        $user->setDisplayName($displayName);
-        $user->setUserName($UserName);
-        $user->setPassword($password);
-        $user->setEmail($email);
-        $user->setPhoneNr($phoneNr);
-        $user->setCountry($country);
-        $user->setLocation($location);
-        $user->setZipcode($zipcode);
-        $user->setAddress($address);
-        $user->setActive($active);
-        $user->setDeleted($deleted);
-        $user->setClearence($clearence);
-
-        $entityManager->persist($user);
-        $entityManager->flush();
+        $this->em->persist($user);
+        $this->em->flush();
         return new Response('Nieuwe Gerbruiker opgeslagen');
     }
 }

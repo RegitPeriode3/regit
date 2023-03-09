@@ -52,6 +52,30 @@ function showUserInfo($el){
     });
 }
 
-function EditUser(){
-    console.log('saved');
+function CreateUser(){
+    var test = axios({
+        method: 'post',
+        url: 'http://localhost/regit/public/user/Create',
+        headers: {},
+        data: {
+            displayName: "Thomas",
+            UserName: "Thomas",
+            password: "test123",
+            email: "test@test.nl",
+            phoneNr: "1234567890",
+            country: "land",
+            location: "dorp",
+            zipcode: "4747ak",
+            address: "straat",
+            active: true,
+            deleted: false,
+            clearence: "1"
+        }
+    }).then(function (response) {
+        console.log(response);
+    })
+    .catch(function (error) {
+        console.error(error.response.data);
+    });
+    console.log(test);
 }

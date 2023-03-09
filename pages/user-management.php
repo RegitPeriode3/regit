@@ -102,7 +102,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuleer</button>
-                  <button type="button" class="btn btn-primary">invoeren</button>
+                  <button type="button" class="btn btn-primary" onclick="CreateUser();">invoeren</button>
                 </div>
               </div>
             </div>
@@ -170,7 +170,7 @@
           <hr>
           <div class="col-12 row">
             <div class="col-6 mb-3">
-              <button type="button" id="SaveUserChanges" onclick="EditUser();" class="btn btn-primary float-right">Aanpassingen opslaan</button>
+              <button type="button" id="SaveUserChanges" onclick="" class="btn btn-primary float-right">Aanpassingen opslaan</button>
             </div>
             <div class="col-6">
               <button type="button" class="btn btn-danger float-left">Geslecteerde gebruiker verwijderen</button>
