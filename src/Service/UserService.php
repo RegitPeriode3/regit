@@ -78,10 +78,10 @@ class UserService
     //public function CreateUser($displayName, $UserName, $password, $email, $phoneNr, $country, $location, $zipcode, $address, $active, $deleted,$clearence): Response
     public function  CreateUser($parameters)
     {
-        //$em = $this->doctrine->getManager();
         $Clearance = $this->clearenceRepository->findOneBy(['id'=>$parameters['clearence']]);
         $user = new User();
-        //dd($parameters);
+
+        $parameters['EmployeeId'] = 1;
         $user->setDisplayName($parameters['displayName']);
         $user->setUserName($parameters['UserName']);
         $user->setPassword($parameters['password']);
@@ -89,7 +89,7 @@ class UserService
         $user->setEmail($parameters['email']);
         $user->setPhoneNr($parameters['phoneNr']);
         $user->setCountry($parameters['country']);
-        $user->setLocation($parameters['location']);
+        //$user->setLocation($parameters['location']);
         $user->setZipcode($parameters['zipcode']);
         $user->setAddress($parameters['address']);
         $user->setActive(True);

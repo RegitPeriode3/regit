@@ -58,24 +58,17 @@ function CreateUser(){
         url: 'http://localhost/regit/public/user/Create',
         headers: {},
         data: {
-            displayName: "Thomas",
-            UserName: "Thomas",
-            password: "test123",
-            email: "test@test.nl",
-            phoneNr: "1234567890",
-            country: "land",
-            location: "dorp",
-            zipcode: "4747ak",
-            address: "straat",
-            active: true,
-            deleted: false,
-            clearence: "1"
-        }
-    }).then(function (response) {
-        console.log(response);
-    })
-    .catch(function (error) {
-        console.error(error.response.data);
+            displayName: $('#NewUserFirstname').val(),
+            UserName: $('#NewUserUsername').val(),
+            password: $('#NewUserPassword').val(),
+            email: $('#NewUserMail').val(),
+            phoneNr: $('#NewUserPhoneNr').val(),
+            country: $('#NewUserCountry').val(),
+            //location: 'Stad', //Dit is in principe voor dorp/stad maar die word blijkbaar niet opgevraagd
+            zipcode: $('#NewUserZipcode').val(),
+            address: $('#NewUserAddress').val(),
+            clearence: $('#NewUserClearance').val()
+        },
     });
     console.log(test);
 }
