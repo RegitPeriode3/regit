@@ -63,7 +63,6 @@
                     <div class="col-md-4">
                       <label class="form-label">Rechten</label>
                       <select class="form-select" id="NewUserClearance">
-                        <option selected value="0">Choose...</option>
                         <option value="1">Gebruiker</option>
                         <option value="2">Admin</option>
                       </select>
