@@ -41,7 +41,12 @@
               </div>
               <div class="col-12">
                 <label class="form-label">Activiteit</label>
-                <input type="text" class="form-control">
+                  <select class="form-select" aria-label="Default select example">
+                      <option selected>-</option>
+                      <option value="1">-</option>
+                      <option value="2">-</option>
+                      <option value="3">-</option>
+                  </select>
               </div>
               <div class="col-12">
                 <label class="form-label">Omschrijving</label>
