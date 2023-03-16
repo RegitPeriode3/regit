@@ -46,13 +46,13 @@ class Company
     private ?bool $Deleted = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Configuration $Configuration = null;
 
     #[ORM\OneToMany(mappedBy: 'Company', targetEntity: Employee::class)]
     private Collection $employees;
 
-    #[ORM\OneToMany(mappedBy: 'Company', targetEntity: Project::class)]
+    #[ORM\OneToMany(mappedBy: 'company', targetEntity: Project::class)]
     private Collection $projects;
 
     public function __construct()

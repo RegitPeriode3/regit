@@ -21,18 +21,28 @@
               </div>
               <div class="col-md-6">
                 <label class="form-label">Van</label>
-                <input type="time" class="form-control">
+                <input type="time" class="form-control" id="WorkedFrom">
               </div>
               <div class="col-md-6">
                 <label class="form-label">Tot</label>
-                <input type="time" class="form-control">
+                <input type="time" class="form-control" id="WorkedTill" onchange="HoursWorked();">
               </div>
               <div class="col-md-12">
-                <label class="form-label">Totaal aantal uren:  0</label>
+                <label class="form-label">Totaal aantal uren: </label>
+                  <label class="form-label" id="hoursAmt">0</label>
               </div>
+                <div class="col-12">
+                    <label class="form-label">Bedrijf</label>
+                    <select class="form-select" id="hourRegCompanies" onchange="SetProjects($(this).val())" aria-label="Default select example">
+                        <option selected>-</option>
+                        <option value="1">-</option>
+                        <option value="2">-</option>
+                        <option value="3">-</option>
+                    </select>
+                </div>
               <div class="col-12">
                 <label class="form-label">Project</label>
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" id="hourRegProjects" aria-label="Default select example">
                       <option selected>-</option>
                       <option value="1">-</option>
                       <option value="2">-</option>
