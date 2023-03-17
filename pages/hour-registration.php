@@ -51,7 +51,7 @@
               </div>
               <div class="col-12">
                 <label class="form-label">Activiteit</label>
-                  <select class="form-select" aria-label="Default select example">
+                  <select class="form-select" id="hourRegActivity" aria-label="Default select example">
                       <option selected>-</option>
                       <option value="1">-</option>
                       <option value="2">-</option>

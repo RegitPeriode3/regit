@@ -20,7 +20,6 @@ class HourRegistrationService
         private readonly HourRegistrationRepository $hourRegistrationRepository,
         private readonly EmployeeRepository $employeeRepository,
         private readonly UserRepository $userRepository,
-        private readonly ProjectRepository $projectRepository,
         private readonly CompanyRepository $companyRepository,
         private readonly ActivityRepository $activityRepository,
         private readonly EntityManagerInterface $em
@@ -42,15 +41,18 @@ class HourRegistrationService
     //haalt de companies op waar een user aan gekoppeld is
     public function GetCompanyPerUser($id):array
     {
-        $user = $this->userRepository->findOneBy(['id' => $id]);//haalt de user op
+        $user = $this->userRepository->findOneBy(['id' => $id, 'Active' => true, 'Deleted' => false]);//haalt de user op
         $userEmployees = $user->getEmployees();//haalt alle employees op van deze user
         $userCompanies = [];
-        foreach ($userEmployees as $userEmployee){
-            $currentUserEmployee = $userEmployee->getCompany();//maakt current company object
-            //vult array met company info
-            $userCompanies[] = ["companyId" => $currentUserEmployee->getId(),
-                "companyName"=> $currentUserEmployee->getName()
-            ] ;
+        foreach ($userEmployees as $userEmployee) {
+            if(!$userEmployee->isDeleted()){//kijkt of de employee op verwijderd staat
+                $currentUserEmployee = $userEmployee->getCompany();//maakt current company object
+                //vult array met company info
+                $userCompanies[] = [
+                    "companyId" => $currentUserEmployee->getId(),
+                    "companyName" => $currentUserEmployee->getName()
+                ];
+            }
         }
         return $userCompanies;
     }
@@ -58,16 +60,38 @@ class HourRegistrationService
     //haalt de Project op van deze companies
     public function GetProjectPerCompany($id):array
     {
-        $company = $this->companyRepository->findOneBy(['id' => $id]);//haalt de company op
+        $company = $this->companyRepository->findOneBy(['id' => $id, 'Deleted' => false]);//haalt de company op
 
         $companyProjects = $company->getProjects();
         $project = [];
         foreach ($companyProjects as $companyProject){
             //vult array met company info
-            $project[] = ["projectId" => $companyProject->getId(),
-                "projectName"=> $companyProject->getName()
-            ] ;
+            if(!$companyProject->isDeleted()){
+                $project[] = ["projectId" => $companyProject->getId(),
+                    "projectName"=> $companyProject->getName()
+                ] ;
+            }
         }
         return $project;
+    }
+
+    //haalt de activiteiten op
+    public function GetActivities():array
+    {
+        $activityList = $this->activityRepository->findAll();
+        //$company = $this->companyRepository->findOneBy(['id' => $id, 'Deleted' => false]);//haalt de company op
+
+        //$companyProjects = $company->getProjects();
+        $activity = [];
+        foreach ($activityList as $currentActivity){
+            //vult array met company info
+            if(!$currentActivity->isDeleted()){
+
+                $activity[] = ["activityId" => $currentActivity->getId(),
+                    "activityName"=> $currentActivity->getActivity()
+                ] ;
+            }
+        }
+        return $activity;
     }
 }

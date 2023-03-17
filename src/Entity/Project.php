@@ -24,6 +24,9 @@ class Project
     #[ORM\ManyToOne(inversedBy: 'projects')]
     private ?Company $company = null;
 
+    #[ORM\Column]
+    private ?bool $Deleted = null;
+
     public function __construct()
     {
     }
@@ -65,6 +68,18 @@ class Project
     public function setCompany(?Company $company): self
     {
         $this->company = $company;
+
+        return $this;
+    }
+
+    public function isDeleted(): ?bool
+    {
+        return $this->Deleted;
+    }
+
+    public function setDeleted(bool $Deleted): self
+    {
+        $this->Deleted = $Deleted;
 
         return $this;
     }

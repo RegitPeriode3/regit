@@ -27,4 +27,10 @@ class HourRegistrationController extends AbstractController
         return $this->json($hourRegistrationService->GetProjectPerCompany($companyId));
     }
 
+    #[Route('/GetActivities', name: 'GetActivities', methods: ['GET'])]
+    public function GetActivities(HourRegistrationService $hourRegistrationService): Response
+    {
+        return $this->json($hourRegistrationService->GetActivities());
+    }
+
 }

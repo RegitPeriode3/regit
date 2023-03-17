@@ -1,5 +1,6 @@
 $(document).ready(function() {
  SetCompanies();
+ loadActivities();
 });
 
 function HoursWorked(){
@@ -12,7 +13,6 @@ function HoursWorked(){
             .then(function (response) {
                 var HoursWorked = response.data;
                 $('#hoursAmt').text(HoursWorked);
-                console.log(HoursWorked);
             })
             .catch(function (error) {
                 console.log(error)
@@ -36,16 +36,29 @@ function SetCompanies(){
 }
 
 function SetProjects(companyId){
-    console.log(companyId)
-
     $('#hourRegProjects').html('');
     axios.get('http://localhost/regit/public/hourRegistration/GetProjectPerCompany/'+companyId)
         .then(function (response) {
             var companies = response.data;
             $.each(companies, function (k,v){
+                $('#hourRegProjects').append( '<option value="'+v['projectId']+'">'+v['projectName']+'</option>' );
+            })
+        })
+        .catch(function (error) {
+            console.log(error)
+        });
+}
+
+function loadActivities(){
+    $('#hourRegActivity').html('');
+    axios.get('http://localhost/regit/public/hourRegistration/GetActivities')
+        .then(function (response) {
+            var Activities = response.data;
+            $.each(Activities, function (k,v){
                 console.log(k);
                 console.log(v);
-                $('#hourRegProjects').append( '<option value="'+v['projectId']+'">'+v['projectName']+'</option>' );
+                console.log(v['activityId']);
+                $('#hourRegActivity').append( '<option value="'+v['activityId']+'">'+v['activityName']+'</option>' );
             })
         })
         .catch(function (error) {
