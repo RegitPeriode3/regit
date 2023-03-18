@@ -70,6 +70,9 @@
     <!-- axios -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+    <!-- zo groep general library include -->
+    <script src="https://zogroep.nl/jquery/general.js"></script>
+
     <!-- Main JS File's -->
     <script src="assets/js/main.js"></script>
     <script src="assets/js/UserManagement.js"></script>

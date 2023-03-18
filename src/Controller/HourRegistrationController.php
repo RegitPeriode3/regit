@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Service\HourRegistrationService;
+use http\Env\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -33,4 +34,10 @@ class HourRegistrationController extends AbstractController
         return $this->json($hourRegistrationService->GetActivities());
     }
 
+    #[Route('/RegisterHour', name: 'RegisterHour', methods: ['POST'])]
+    public function RegisterHour(HourRegistrationService $hourRegistrationService, \Symfony\Component\HttpFoundation\Request $request): Response
+    {
+        $parameters = json_decode($request->getContent(), true);
+        return $this->json($hourRegistrationService->RegisterHour($parameters));
+    }
 }

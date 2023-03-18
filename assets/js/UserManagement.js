@@ -53,7 +53,7 @@ function showUserInfo($el){
 }
 
 function CreateUser(){
-    var test = axios({
+    var result = axios({
         method: 'post',
         url: 'http://localhost/regit/public/user/Create',
         headers: {},
@@ -70,5 +70,5 @@ function CreateUser(){
             clearence: $('#NewUserClearance').val()
         },
     });
-    console.log(test);
+    console.log(result);
 }

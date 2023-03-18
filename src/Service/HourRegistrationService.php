@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\Company;
 use App\Entity\Employee;
+use App\Entity\HourRegistration;
 use App\Entity\Project;
 use App\Repository\ActivityRepository;
 use App\Repository\CompanyRepository;
@@ -13,6 +14,8 @@ use App\Repository\ProjectRepository;
 use App\Repository\UserRepository;
 use Carbon\Carbon;
 use Doctrine\ORM\EntityManagerInterface;
+use http\Env\Response;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class HourRegistrationService
 {
@@ -22,6 +25,7 @@ class HourRegistrationService
         private readonly UserRepository $userRepository,
         private readonly CompanyRepository $companyRepository,
         private readonly ActivityRepository $activityRepository,
+        private readonly ProjectRepository $projectRepository,
         private readonly EntityManagerInterface $em
     ) {
     }
@@ -94,4 +98,51 @@ class HourRegistrationService
         }
         return $activity;
     }
+
+    public function RegisterHour($parameters):Response
+    {
+        //haalt project op van de geselecteerde id anders zet var naar null
+        if (!empty($parameters['Project'])){
+            $project = $this->projectRepository->findOneBy(['id'=>$parameters['Project']]);
+        }else{
+            $project = null;
+        }
+
+//        //haalt $employee op van de geselecteerde id anders zet var naar null
+//        if (!empty($parameters['Company'])){
+//            $employee =
+//        }else{
+//            $employee = null;
+//        }
+
+        //temp hardcode
+        $employee = $this->projectRepository->findOneBy(['id'=>1]);
+
+        //haalt activity op en maakt nieuwe hourregistration object aan
+        $activity = $this->activityRepository->findOneBy(['id'=>$parameters['Activity']]);
+        $hourReg = new HourRegistration();
+
+        $hourReg->setTime($parameters['hoursWorked']);
+        $hourReg->setActivity($activity);
+        $hourReg->setDescription($parameters['Description']);
+        $hourReg->setDeleted(false);
+        $hourReg->setHourlyCost('3');
+        dd($employee);
+        $hourReg->setEmployee($employee);
+        $hourReg->setDate($parameters['Date']);
+        //$hourReg->setProject($project);
+
+
+
+        $this->em->persist($hourReg);
+        $this->em->flush();
+        return new Response('Uren zijn succesvol geregistreerd.');
+    }
 }
+
+//            Date: $('#hourRegDate').val(),
+//            hoursWorked: $('#hoursAmt').text(),
+//            Company: $('#hourRegCompanies').val(),
+//            Project: $('#hourRegProjects').val(),
+//            Activity: $('#hourRegActivity').val(),
+//            Description: $('#hourDescription').text(),

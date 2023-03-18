@@ -14,10 +14,10 @@
           <div class="card-body">
             <h5 class="card-title">Uren invoeren</h5>
 
-            <form class="row g-3">
+            <form id="hourRegForm" class="row g-3">
               <div class="col-md-12">
                 <label class="form-label">Datum</label>
-                <input type="date" class="form-control">
+                <input type="date" id="hourRegDate" value='<?php echo date("Y-m-d"); ?>' class="form-control">
               </div>
               <div class="col-md-6">
                 <label class="form-label">Van</label>
@@ -59,12 +59,12 @@
                   </select>
               </div>
               <div class="col-12">
-                <label class="form-label">Omschrijving</label>
+                <label class="form-label" id="hourDescription">Omschrijving</label>
                 <textarea class="form-control"></textarea>
               </div>
 
               <div class="text-center">
-                <button type="submit" class="btn btn-primary">Opslaan</button>
+                <button type="button" class="btn btn-primary" onclick="registerHour()">Opslaan</button>
                 <button type="reset" class="btn btn-secondary">Reset</button>
               </div>
             </form>

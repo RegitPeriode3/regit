@@ -55,13 +55,31 @@ function loadActivities(){
         .then(function (response) {
             var Activities = response.data;
             $.each(Activities, function (k,v){
-                console.log(k);
-                console.log(v);
-                console.log(v['activityId']);
                 $('#hourRegActivity').append( '<option value="'+v['activityId']+'">'+v['activityName']+'</option>' );
             })
         })
         .catch(function (error) {
             console.log(error)
         });
+}
+
+function registerHour(){
+    //console.log(objectifyForm($('#hourRegForm')));
+    //var formData = objectifyForm($('#hourRegForm').serializeArray());
+
+    var result = axios({
+        method: 'post',
+        url: 'http://localhost/regit/public/hourRegistration/RegisterHour',
+        headers: {},
+        data: {
+            Date: $('#hourRegDate').val(),
+            hoursWorked: $('#hoursAmt').text(),
+            Company: $('#hourRegCompanies').val(),
+            Project: $('#hourRegProjects').val(),
+            Activity: $('#hourRegActivity').val(),
+            Description: $('#hourDescription').text(),
+        },
+    });
+
+    console.log(result);
 }
