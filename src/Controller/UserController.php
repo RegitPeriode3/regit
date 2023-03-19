@@ -18,7 +18,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/GetSingleUser/{id}/{active}', name: 'GetUserInfo', methods: ['GET'])]
-    public function GetUserInfo($id, UserService $userService, $active=true): Response
+    public function GetUserInfo($id, UserService $userService, $active = false): Response
     {
         return $this->json($userService->GetUserInfo($id, $active));
     }
@@ -34,6 +34,22 @@ class UserController extends AbstractController
     {
         $parameters = json_decode($request->getContent(), true);
         return $this->json($userService->CreateUser($parameters));
-        //return $this->json($userService->CreateUser($displayName,$UserName,$password,$email, $phoneNr, $country, $location, $zipcode, $address, $active, $deleted, $clearence));
+    }
+
+
+
+    #[Route('/Update', name: 'UpdateUser', methods: ['POST'])]
+    public function UpdateUser(UserService $userService, Request $request): Response
+    {
+        $parameters = json_decode($request->getContent(), true);
+        return $this->json($userService->UpdateUser($parameters));
+    }
+
+
+    #[Route('/Delete', name: 'DeleteUser', methods: ['POST'])]
+    public function DeleteUser(UserService $userService, Request $request): Response
+    {
+        $parameters = json_decode($request->getContent(), true);
+        return $this->json($userService->DeleteUser($parameters));
     }
 }

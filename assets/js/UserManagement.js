@@ -1,11 +1,11 @@
-$(document).ready(function() {
+$(document).ready(function () {
     $('#UserManagementNav').on('click', GetUsers);
     $("#UserManageList").on("click", ' li', toggleUserList);
 });
 
 var selectedUserId;
 
-function GetUsers(){
+function GetUsers() {
     // var resultElement = document.getElementById('getResult1');
     // resultElement.innerHTML = '';
 
@@ -37,38 +37,114 @@ function GetUsers(){
 function toggleUserList() {
     $("#UserManageList li").removeClass("active");
     $(this).addClass("active");
-    selectedUserId = $(this).data()['Id'];
+    // selectedUserId = $(this).data()['Id'];
+    // //console.log($(this))
     showUserInfo($(this));
-    //opdrachtgeverFactuurLijst(opdrachtgeverID);
 }
 
-function showUserInfo($el){
+function showUserInfo($el) {
     //console.log($el);
     var userInfo = $el.data();
+    selectedUserId = userInfo.id;
+
     $.each(userInfo, function (k, v) {
-        //console.log(k);
         $("input[name=" + k + "]").val(v);
         $("textarea[name=" + k + "]").val(v);
+
+
+        //fill user clearance select
+        let select = document.querySelector('#UserClearance');
+        if (userInfo.clearence) {
+            select.value = userInfo.clearence;
+        } else {
+            select.value = 1;
+        }
+
+        //checkbox op wel / niet actief zetten
+        if (userInfo['active'] == true) {
+            $('#userActive').prop('checked', true);
+        } else {
+            $('#userActive').prop('checked', false);
+        }
     });
 }
 
-function CreateUser(){
-    var test = axios({
+function CreateUser() {
+    var userNew = axios({
         method: 'post',
         url: 'http://localhost/regit/public/user/Create',
         headers: {},
         data: {
-            displayName: $('#NewUserFirstname').val(),
+            displayName: $('#NewUserDisplayname').val(),
             UserName: $('#NewUserUsername').val(),
             password: $('#NewUserPassword').val(),
             email: $('#NewUserMail').val(),
             phoneNr: $('#NewUserPhoneNr').val(),
             country: $('#NewUserCountry').val(),
-            //location: 'Stad', //Dit is in principe voor dorp/stad maar die word blijkbaar niet opgevraagd
+            location: $('#NewUserLocation').val(),
             zipcode: $('#NewUserZipcode').val(),
             address: $('#NewUserAddress').val(),
             clearence: $('#NewUserClearance').val()
         },
     });
-    console.log(test);
+    console.log(userNew);
+    alert("De nieuwe gebruiker is opgeslagen");
+    GetUsers();
+}
+
+
+function DeleteUser() {
+
+    if (selectedUserId == null) {
+        alert("er is geen gebruiker geselecteerd");
+    } else {
+        var userDelete = axios({
+            method: 'post',
+            url: 'http://localhost/regit/public/user/Delete',
+            headers: {},
+            data: {
+                id: selectedUserId
+            },
+        });
+        console.log(userDelete);
+        alert("De gebruiker is verwijderd");
+        GetUsers();
+    }
+}
+
+function UpdateUser() {
+
+    if ($('#userActive').is(":checked")) {
+        activeCheck = 1;
+    } else {
+        activeCheck = 0;
+    }
+
+    if (selectedUserId == null) {
+        alert("er is geen gebruiker geselecteerd");
+    } else {
+        var userUpdate = axios({
+            method: 'post',
+            url: 'http://localhost/regit/public/user/Update',
+            headers: {},
+            data: {
+                id: selectedUserId,
+                DisplayName: $('#UserDisplayName').val(),
+                UserName: $('#UserUsername').val(),
+                Password: $('#UserPassword').val(),
+                Email: $('#UserMail').val(),
+                PhoneNr: $('#UserPhoneNr').val(),
+                Country: $('#UserCountry').val(),
+                Location: $('#UserLocation').val(),
+                Zipcode: $('#UserZipcode').val(),
+                Address: $('#UserAddress').val(),
+                Clearence: $('#UserClearance').val(),
+                active: activeCheck
+            },
+        });
+        console.log(userUpdate);
+        alert("De gebruiker gegevens zijn gewijzigd");
+        GetUsers();
+        showUserInfo();
+    }
 }

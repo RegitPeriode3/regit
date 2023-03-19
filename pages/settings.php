@@ -20,8 +20,8 @@
 
       <!--email-->
       <div class="tab-pane fade show active" id="email" role="tabpanel" aria-labelledby="home-tab">
-        <div class="col-12 row card card-body mt-4 instellingen-card">
-        <h5 class="user-management-title mt-3">Email instellingen</h5>
+        <div class="col-12 row card card-body mt-4 settings-card">
+          <h5 class="user-management-title mt-3">Email instellingen</h5>
           <!-- Form -->
           <form class="row col-12 g-3 user-management-form">
 
@@ -58,10 +58,10 @@
 
       <!--activity-->
       <div class="tab-pane fade" id="activiteit" role="tabpanel" aria-labelledby="profile-tab">
-        <div class="col-12 row mt-4 instellingen-activity-card">
+        <div class="col-12 row mt-4 settings-white-card settings-card">
 
           <!--activity list-->
-          <div class="col-4">
+          <div class="col-3">
             <!--filter-->
             <div class="filter mb-3">
               <input type="text" class="form-control" placeholder="filter.." onkeyup="FilterNextUlParent($(this));">
@@ -89,7 +89,7 @@
           <!--end activity list-->
 
           <!-- activity form -->
-          <div class="col-8">
+          <div class="col-9">
 
             <div class="row mt-3">
               <div class="col-8">

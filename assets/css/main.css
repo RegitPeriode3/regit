@@ -16,6 +16,13 @@ html {
     max-height: 70vh;
 }
 
+.header-nav {
+    margin-right: 1%;
+}
+
+.header-company-name {
+    margin-left: 3%;
+}
 
 /* user management */
 .user-management-title {
@@ -30,4 +37,31 @@ html {
     padding-left: 50px;
     padding-top: 30px;
     padding-right: 50px;
+}
+
+.user-actief-label {
+    margin-top: 15% !important;
+    margin-right: 9%;
+    margin-left: 9%;
+}
+
+.new-user-title {
+    font-size: 25px;
+}
+
+.user-right {
+    margin-left: 3%;
+}
+
+
+/* billing */
+.billing-field {
+    margin-left: 2%;
+    width: 82%;
+}
+
+/* instellingen */
+.instellingen-card {
+    width: 75%;
+    margin-left: 12%;
 }

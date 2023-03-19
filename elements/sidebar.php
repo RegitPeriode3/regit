@@ -6,14 +6,14 @@
     <li class="nav-item">
       <a href="#" class="nav-link collapsed" data-target="HourRegistration">
         <i class="bi bi-clock"></i>
-        <span>uren registratie</span>
+        <span>Uren registratie</span>
       </a>
     </li>
 
     <li class="nav-item">
       <a href="#" class="nav-link collapsed" data-target="Billing">
         <i class="bi bi-archive"></i>
-        <span>facturatie</span>
+        <span>Facturatie</span>
       </a>
     </li>
 
@@ -22,14 +22,14 @@
     <li class="nav-item">
       <a href="#" class="nav-link collapsed" data-target="ClientManagement">
         <i class="bi bi-file-earmark-person"></i>
-        <span>klant beheer</span>
+        <span>Klantbeheer</span>
       </a>
     </li>
 
     <li class="nav-item">
       <a href="#" class="nav-link collapsed" id="UserManagementNav" data-target="UserManagement">
         <i class="bi bi-person-gear"></i>
-        <span>gebruiker beheer</span>
+        <span>Gebruikerbeheer</span>
       </a>
     </li>
 
