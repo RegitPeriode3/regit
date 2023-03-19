@@ -11,7 +11,7 @@ class ViewController extends AbstractController
     #[Route('/test', name: 'test')]
     public function index(): Response
     {
-        return $this->render('view/index.html.twig', [
+        return $this->render('view/login.html.twig', [
             'controller_name' => 'ViewController',
         ]);
     }

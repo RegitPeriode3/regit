@@ -8,7 +8,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/user', name: 'app_user')]
+/**
+ * @Route("/login", name="app_login")
+ */
 class UserController extends AbstractController
 {
     #[Route('/', name: 'GetAllUsersInfo', methods: ['GET'])]
