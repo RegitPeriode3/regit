@@ -30,10 +30,6 @@ class HourRegistration
     private ?bool $Deleted = null;
 
     #[ORM\ManyToOne(inversedBy: 'hourRegistrations')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Employee $Employee = null;
-
-    #[ORM\ManyToOne(inversedBy: 'hourRegistrations')]
     private ?Invoice $Invoice = null;
 
     #[ORM\ManyToOne(inversedBy: 'hourRegistrations')]
@@ -101,18 +97,6 @@ class HourRegistration
     public function setDeleted(?bool $Deleted): self
     {
         $this->Deleted = $Deleted;
-
-        return $this;
-    }
-
-    public function getEmployee(): ?Employee
-    {
-        return $this->Employee;
-    }
-
-    public function setEmployee(?Employee $Employee): self
-    {
-        $this->Employee = $Employee;
 
         return $this;
     }

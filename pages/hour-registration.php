@@ -59,8 +59,8 @@
                   </select>
               </div>
               <div class="col-12">
-                <label class="form-label" id="hourDescription">Omschrijving</label>
-                <textarea class="form-control"></textarea>
+                <label class="form-label">Omschrijving</label>
+                <textarea class="form-control" id="hourDescription"></textarea>
               </div>
 
               <div class="text-center">

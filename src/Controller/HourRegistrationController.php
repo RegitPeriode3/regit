@@ -37,6 +37,7 @@ class HourRegistrationController extends AbstractController
     #[Route('/RegisterHour', name: 'RegisterHour', methods: ['POST'])]
     public function RegisterHour(HourRegistrationService $hourRegistrationService, \Symfony\Component\HttpFoundation\Request $request): Response
     {
+        //$parameters = $request->get('Date');
         $parameters = json_decode($request->getContent(), true);
         return $this->json($hourRegistrationService->RegisterHour($parameters));
     }

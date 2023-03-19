@@ -63,11 +63,11 @@ function loadActivities(){
         });
 }
 
-function registerHour(){
+async function registerHour(){
     //console.log(objectifyForm($('#hourRegForm')));
     //var formData = objectifyForm($('#hourRegForm').serializeArray());
 
-    var result = axios({
+    var result = await axios({
         method: 'post',
         url: 'http://localhost/regit/public/hourRegistration/RegisterHour',
         headers: {},
@@ -77,9 +77,9 @@ function registerHour(){
             Company: $('#hourRegCompanies').val(),
             Project: $('#hourRegProjects').val(),
             Activity: $('#hourRegActivity').val(),
-            Description: $('#hourDescription').text(),
+            Description: $('#hourDescription').val(),
         },
     });
 
-    console.log(result);
+    console.log(await result);
 }

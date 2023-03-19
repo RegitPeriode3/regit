@@ -35,7 +35,7 @@ class HourRegistrationService
         if(!empty($from) && !empty($till)){
             $from = Carbon::parse($from);//convert string naar carbon datetime
             $till = Carbon::parse($till);
-            $totalDuration = $till->diff($from)->format('%h:%I'); //rekent tijdverschil uit
+            $totalDuration = $till->diff($from)->format('%h.%I'); //rekent tijdverschil uit
             return $totalDuration;
         }else{
             return 0;
@@ -99,7 +99,7 @@ class HourRegistrationService
         return $activity;
     }
 
-    public function RegisterHour($parameters):Response
+    public function RegisterHour($parameters): string
     {
         //haalt project op van de geselecteerde id anders zet var naar null
         if (!empty($parameters['Project'])){
@@ -114,35 +114,26 @@ class HourRegistrationService
 //        }else{
 //            $employee = null;
 //        }
-
-        //temp hardcode
-        $employee = $this->projectRepository->findOneBy(['id'=>1]);
-
-        //haalt activity op en maakt nieuwe hourregistration object aan
-        $activity = $this->activityRepository->findOneBy(['id'=>$parameters['Activity']]);
         $hourReg = new HourRegistration();
 
-        $hourReg->setTime($parameters['hoursWorked']);
+        $Date = Carbon::parse($parameters['Date']);
+
+        //temp hardcode
+        //$employee = $this->projectRepository->findOneBy(['id'=>1]);
+        //haalt activity op en maakt nieuwe hourregistration object aan
+
+        $activity = $this->activityRepository->findOneBy(['id'=>$parameters['Activity']]);
+
         $hourReg->setActivity($activity);
-        $hourReg->setDescription($parameters['Description']);
         $hourReg->setDeleted(false);
         $hourReg->setHourlyCost('3');
-        dd($employee);
-        $hourReg->setEmployee($employee);
-        $hourReg->setDate($parameters['Date']);
+        $hourReg->setTime($parameters['hoursWorked']);
+        $hourReg->setDescription($parameters['Description']);
+        $hourReg->setDate($Date);
         //$hourReg->setProject($project);
-
-
 
         $this->em->persist($hourReg);
         $this->em->flush();
-        return new Response('Uren zijn succesvol geregistreerd.');
+        return 'Uren zijn succesvol geregistreerd.';
     }
 }
-
-//            Date: $('#hourRegDate').val(),
-//            hoursWorked: $('#hoursAmt').text(),
-//            Company: $('#hourRegCompanies').val(),
-//            Project: $('#hourRegProjects').val(),
-//            Activity: $('#hourRegActivity').val(),
-//            Description: $('#hourDescription').text(),
