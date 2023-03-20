@@ -41,4 +41,10 @@ class HourRegistrationController extends AbstractController
         $parameters = json_decode($request->getContent(), true);
         return $this->json($hourRegistrationService->RegisterHour($parameters));
     }
+
+    #[Route('/getInvoiceRows', name: 'getInvoiceRows', methods: ['GET'])]
+    public function getInvoiceRows(HourRegistrationService $hourRegistrationService): Response
+    {
+        return $this->json($hourRegistrationService->getInvoiceRows());
+    }
 }

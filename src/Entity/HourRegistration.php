@@ -36,6 +36,15 @@ class HourRegistration
     #[ORM\JoinColumn(nullable: false)]
     private ?Activity $Activity = null;
 
+    #[ORM\ManyToOne(inversedBy: 'hourRegistrations')]
+    private ?Company $company = null;
+
+    #[ORM\ManyToOne(inversedBy: 'hourRegistrations')]
+    private ?User $user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'hourRegistrations')]
+    private ?Project $project = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -124,4 +133,41 @@ class HourRegistration
 
         return $this;
     }
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): self
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getProject(): ?Project
+    {
+        return $this->project;
+    }
+
+    public function setProject(?Project $project): self
+    {
+        $this->project = $project;
+
+        return $this;
+    }
+
 }

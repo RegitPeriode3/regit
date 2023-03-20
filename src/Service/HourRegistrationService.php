@@ -108,21 +108,22 @@ class HourRegistrationService
             $project = null;
         }
 
-//        //haalt $employee op van de geselecteerde id anders zet var naar null
-//        if (!empty($parameters['Company'])){
-//            $employee =
-//        }else{
-//            $employee = null;
-//        }
         $hourReg = new HourRegistration();
 
         $Date = Carbon::parse($parameters['Date']);
-
-        //temp hardcode
-        //$employee = $this->projectRepository->findOneBy(['id'=>1]);
-        //haalt activity op en maakt nieuwe hourregistration object aan
+        if (empty($parameters['hoursWorked'])){
+            return 'Er zijn geen uren ingevuld';
+        }
 
         $activity = $this->activityRepository->findOneBy(['id'=>$parameters['Activity']]);
+        $user = $this->userRepository->findOneBy(['id'=>5]);
+        $company = $this->companyRepository->findOneBy(['id'=>$parameters['Company']]);
+
+        //Deze check is in principe niet nodig omdat dit niet mogenlijk zou moeten zijn,
+        //maar voor de zekerheid wordt die uitgevoerd.
+        if(empty($user) || empty($company)){
+            return 'er is iets misgegaan, probeer opnieuw';
+        }
 
         $hourReg->setActivity($activity);
         $hourReg->setDeleted(false);
@@ -130,10 +131,47 @@ class HourRegistrationService
         $hourReg->setTime($parameters['hoursWorked']);
         $hourReg->setDescription($parameters['Description']);
         $hourReg->setDate($Date);
-        //$hourReg->setProject($project);
+        $hourReg->setUser($user);
+        $hourReg->setCompany($company);
+        $hourReg->setProject($project);
 
         $this->em->persist($hourReg);
         $this->em->flush();
         return 'Uren zijn succesvol geregistreerd.';
+    }
+
+    public function getInvoiceRows(){
+        $invoiceRowsList = $this->hourRegistrationRepository->findAll();
+
+        $invoiceRows = [];
+        foreach ($invoiceRowsList as $currentInvoiceRow){
+            //zorgt ervoor dat als project leeg is er geen error komt
+            if(!empty($currentInvoiceRow->getProject())){
+                $project = $currentInvoiceRow->getProject()->getName();
+            }else{
+                $project = '';
+            }
+
+            //zorgt ervoor dat InvoiceNr niet errort als die niet bestaat
+            if(!empty($currentInvoiceRow->getInvoice())){
+                $invoiceNr = $currentInvoiceRow->getInvoice()->getInvoiceNumber();
+            }else{
+                $invoiceNr = '';
+            }
+
+            if(!$currentInvoiceRow->isDeleted()){
+
+                $invoiceRows[] = [
+                    "Id" => $currentInvoiceRow->getId(),
+                    "InvoiceNr" => $invoiceNr,
+                    "Date" => $currentInvoiceRow->getDate()->format('Y-m-d'),
+                    "HoursWorked" => $currentInvoiceRow->getTime(),
+                    "Project" => $project,
+                    "Activity" => $currentInvoiceRow->getActivity()->getActivity(),
+                    "Description" => $currentInvoiceRow->getDescription()
+                ] ;
+            }
+        }
+        return $invoiceRows;
     }
 }

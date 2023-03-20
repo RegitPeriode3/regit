@@ -1,6 +1,7 @@
 $(document).ready(function() {
  SetCompanies();
  loadActivities();
+ getInvoiceRows();
 });
 
 function HoursWorked(){
@@ -80,6 +81,30 @@ async function registerHour(){
             Description: $('#hourDescription').val(),
         },
     });
+    getInvoiceRows();
+    $.alert(await result.data);
+}
 
-    console.log(await result);
+function getInvoiceRows(){
+    $('#tblInvoiceRow tbody').html('');
+    axios.get('http://localhost/regit/public/hourRegistration/getInvoiceRows')
+        .then(function (response) {
+            var invoiceRows = response.data;
+            console.log(invoiceRows);
+            $.each(invoiceRows, function (k,v){
+                console.log(v);
+                $('#tblInvoiceRow').append( '<tr id="'+v['Id']+'">' +
+                    '<td>' + v["InvoiceNr"] + '</td>' +
+                    '<td>' + v["Date"] + '</td>' +
+                    '<td>' + v["HoursWorked"] + '</td>' +
+                    '<td>' + v["Project"] + '</td>' +
+                    '<td>' + v["Activity"] + '</td>' +
+                    '<td>' + v["Activity"] + '</td>' +
+                    '<td>' + v["Description"] + '</td>' +
+                    '</tr>' );
+            })
+        })
+        .catch(function (error) {
+            console.log(error)
+        });
 }

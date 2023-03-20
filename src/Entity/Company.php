@@ -55,10 +55,15 @@ class Company
     #[ORM\OneToMany(mappedBy: 'company', targetEntity: Project::class)]
     private Collection $projects;
 
+    #[ORM\OneToMany(mappedBy: 'company', targetEntity: HourRegistration::class)]
+    private Collection $hourRegistrations;
+
+
     public function __construct()
     {
         $this->employees = new ArrayCollection();
         $this->projects = new ArrayCollection();
+        $this->hourRegistrations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -257,4 +262,35 @@ class Company
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, HourRegistration>
+     */
+    public function getHourRegistrations(): Collection
+    {
+        return $this->hourRegistrations;
+    }
+
+    public function addHourRegistration(HourRegistration $hourRegistration): self
+    {
+        if (!$this->hourRegistrations->contains($hourRegistration)) {
+            $this->hourRegistrations->add($hourRegistration);
+            $hourRegistration->setCompany($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHourRegistration(HourRegistration $hourRegistration): self
+    {
+        if ($this->hourRegistrations->removeElement($hourRegistration)) {
+            // set the owning side to null (unless already changed)
+            if ($hourRegistration->getCompany() === $this) {
+                $hourRegistration->setCompany(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

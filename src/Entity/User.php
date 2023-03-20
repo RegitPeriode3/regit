@@ -58,9 +58,13 @@ class User
     #[ORM\OneToMany(mappedBy: 'User', targetEntity: Employee::class)]
     private Collection $employees;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: HourRegistration::class)]
+    private Collection $hourRegistrations;
+
     public function __construct()
     {
         $this->employees = new ArrayCollection();
+        $this->hourRegistrations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -253,4 +257,35 @@ class User
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, HourRegistration>
+     */
+    public function getHourRegistrations(): Collection
+    {
+        return $this->hourRegistrations;
+    }
+
+    public function addHourRegistration(HourRegistration $hourRegistration): self
+    {
+        if (!$this->hourRegistrations->contains($hourRegistration)) {
+            $this->hourRegistrations->add($hourRegistration);
+            $hourRegistration->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHourRegistration(HourRegistration $hourRegistration): self
+    {
+        if ($this->hourRegistrations->removeElement($hourRegistration)) {
+            // set the owning side to null (unless already changed)
+            if ($hourRegistration->getUser() === $this) {
+                $hourRegistration->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

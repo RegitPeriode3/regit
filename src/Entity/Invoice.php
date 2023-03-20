@@ -31,6 +31,9 @@ class Invoice
     #[ORM\OneToMany(mappedBy: 'Invoice', targetEntity: HourRegistration::class)]
     private Collection $hourRegistrations;
 
+    #[ORM\Column(length: 25, nullable: true)]
+    private ?string $invoiceNumber = null;
+
     public function __construct()
     {
         $this->hourRegistrations = new ArrayCollection();
@@ -115,6 +118,18 @@ class Invoice
                 $hourRegistration->setInvoice(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getInvoiceNumber(): ?string
+    {
+        return $this->invoiceNumber;
+    }
+
+    public function setInvoiceNumber(?string $invoiceNumber): self
+    {
+        $this->invoiceNumber = $invoiceNumber;
 
         return $this;
     }

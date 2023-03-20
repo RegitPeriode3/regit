@@ -27,8 +27,12 @@ class Project
     #[ORM\Column]
     private ?bool $Deleted = null;
 
+    #[ORM\OneToMany(mappedBy: 'project', targetEntity: HourRegistration::class)]
+    private Collection $hourRegistrations;
+
     public function __construct()
     {
+        $this->hourRegistrations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -80,6 +84,36 @@ class Project
     public function setDeleted(bool $Deleted): self
     {
         $this->Deleted = $Deleted;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, HourRegistration>
+     */
+    public function getHourRegistrations(): Collection
+    {
+        return $this->hourRegistrations;
+    }
+
+    public function addHourRegistration(HourRegistration $hourRegistration): self
+    {
+        if (!$this->hourRegistrations->contains($hourRegistration)) {
+            $this->hourRegistrations->add($hourRegistration);
+            $hourRegistration->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHourRegistration(HourRegistration $hourRegistration): self
+    {
+        if ($this->hourRegistrations->removeElement($hourRegistration)) {
+            // set the owning side to null (unless already changed)
+            if ($hourRegistration->getProject() === $this) {
+                $hourRegistration->setProject(null);
+            }
+        }
 
         return $this;
     }

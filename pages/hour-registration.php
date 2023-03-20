@@ -79,13 +79,11 @@
           <div class="card-body">
             <h5 class="card-title">Gemaakte uren</h5>
 
-            <table class="table table-striped">
+            <table class="table table-striped" id="tblInvoiceRow">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
+                  <th scope="col">Factuurnummer</th>
                   <th scope="col">Datum</th>
-                  <th scope="col">Van</th>
-                  <th scope="col">Tot</th>
                   <th scope="col">Aantal uren</th>
                   <th scope="col">Project</th>
                   <th scope="col">Activiteit</th>
@@ -93,36 +91,6 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>2-19-2023</td>
-                  <td>8:00</td>
-                  <td>14:00</td>
-                  <td>6</td>
-                  <td> - </td>
-                  <td> - </td>
-                  <td> - </td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>2-19-2023</td>
-                  <td>8:00</td>
-                  <td>14:00</td>
-                  <td>6</td>
-                  <td> - </td>
-                  <td> - </td>
-                  <td> - </td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>2-19-2023</td>
-                  <td>8:00</td>
-                  <td>14:00</td>
-                  <td>6</td>
-                  <td> - </td>
-                  <td> - </td>
-                  <td> - </td>
-                </tr>
 
               </tbody>
             </table>
