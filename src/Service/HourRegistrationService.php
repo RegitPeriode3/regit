@@ -174,4 +174,12 @@ class HourRegistrationService
         }
         return $invoiceRows;
     }
+
+    public function DeleteHourReg($parameters){
+        $hourReg = $this->hourRegistrationRepository->findOneBy(['id'=>$parameters['Id']]);
+        $hourReg->setDeleted(true);
+        $this->em->persist($hourReg);
+        $this->em->flush();
+        return 'Row deleted';
+    }
 }

@@ -88,6 +88,7 @@
                   <th scope="col">Project</th>
                   <th scope="col">Activiteit</th>
                   <th scope="col">Omschrijving</th>
+                  <th scope="col">Verwijder</th>
                 </tr>
               </thead>
               <tbody>

@@ -47,4 +47,12 @@ class HourRegistrationController extends AbstractController
     {
         return $this->json($hourRegistrationService->getInvoiceRows());
     }
+
+    #[Route('/DeleteHourReg', name: 'DeleteHourReg', methods: ['POST'])]
+    public function DeleteHourReg(HourRegistrationService $hourRegistrationService, \Symfony\Component\HttpFoundation\Request $request): Response
+    {
+        //$parameters = $request->get('Date');
+        $parameters = json_decode($request->getContent(), true);
+        return $this->json($hourRegistrationService->DeleteHourReg($parameters));
+    }
 }

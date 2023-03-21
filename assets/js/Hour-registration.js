@@ -87,6 +87,8 @@ async function registerHour(){
 
 function getInvoiceRows(){
     $('#tblInvoiceRow tbody').html('');
+    $WorkedFrom = $('#WorkedFrom').val();
+    $WorkedTill = $('#WorkedTill').val();
     axios.get('http://localhost/regit/public/hourRegistration/getInvoiceRows')
         .then(function (response) {
             var invoiceRows = response.data;
@@ -98,10 +100,28 @@ function getInvoiceRows(){
                     '<td>' + v["Project"] + '</td>' +
                     '<td>' + v["Activity"] + '</td>' +
                     '<td>' + v["Description"] + '</td>' +
+                    '<td name="Action"><i class="bx bxs-trash" name="deleteRow" onclick="DeleteHourReg($(this));" style="cursor:pointer;" title="Verwijderen">Verwijder</i></td>'+
                     '</tr>' );
+                $('#tblInvoiceRow tbody tr:last').data(v)
             })
         })
         .catch(function (error) {
             console.log(error)
         });
+}
+
+async function DeleteHourReg(row){
+    data = row.closest('tr').data();
+    console.log(data);
+
+    var result = await axios({
+        method: 'post',
+        url: 'http://localhost/regit/public/hourRegistration/DeleteHourReg',
+        headers: {},
+        data: {
+            Id: data['Id']
+        },
+    });
+
+    getInvoiceRows();
 }
