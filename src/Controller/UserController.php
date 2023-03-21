@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Doctrine\ORM\EntityManagerInterface;
 #[Route('/user', name: 'app_user')]
 class UserController extends AbstractController
 {
@@ -36,4 +36,7 @@ class UserController extends AbstractController
         return $this->json($userService->CreateUser($parameters));
         //return $this->json($userService->CreateUser($displayName,$UserName,$password,$email, $phoneNr, $country, $location, $zipcode, $address, $active, $deleted, $clearence));
     }
+
+
+
 }
