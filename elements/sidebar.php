@@ -20,7 +20,7 @@
     <hr>
 
     <li class="nav-item">
-      <a href="#" class="nav-link collapsed" data-target="ClientManagement">
+      <a href="#" class="nav-link collapsed" id="CompanyManagementNav" data-target="ClientManagement">
         <i class="bi bi-file-earmark-person"></i>
         <span>Klantbeheer</span>
       </a>
