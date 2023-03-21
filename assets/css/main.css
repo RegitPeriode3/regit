@@ -85,3 +85,33 @@ html {
     max-height: 52vh;
     overflow-y: scroll;
 }
+
+
+/*company management*/
+
+.clientlist-scroll {
+    max-height: 61vh;
+    overflow-y: scroll;
+}
+
+.client-btn {
+    width: 100%;
+}
+
+.client-management-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #012970;
+    font-family: "Poppins", sans-serif;
+    padding-top: 1.5%;
+}
+
+.client-field-right {
+    margin-left: 2%;
+    width: 80%;
+}
+
+.field-client-data {
+    width: 85%;
+    margin-left: 5%;
+}

@@ -2,7 +2,7 @@
 <div id="ClientManagement" class="content">
 
   <div class="pagetitle">
-    <h1>Klant beheer</h1>
+    <h1>Klantbeheer</h1>
   </div><!-- End Page Title -->
 
   <section class="section">
@@ -13,24 +13,8 @@
         <div class="filter mb-3">
           <input type="text" class="form-control" placeholder="filter.." onkeyup="FilterNextUlParent($(this));">
         </div>
-        <ul class="list-group clientlist-scroll card mb-2">
-          <li class="list-group-item active" aria-current="true">An active item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A fourth item</li>
-          <li class="list-group-item disabled">A fifth item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A fourth item</li>
-          <li class="list-group-item disabled">A fifth item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A fourth item</li>
-          <li class="list-group-item disabled">A fifth item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A fourth item</li>
-          <li class="list-group-item disabled">A fifth item</li>
+        <ul class="list-group clientlist-scroll card mb-3" id="CompanyManageList">
+
         </ul>
         <!--new client-->
         <div class="col-12">
@@ -43,38 +27,57 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Nieuwe klant</h5>
+              <span class="modal-title new-user-title">Nieuwe klant</span>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body row">
               <!-- Form -->
               <form class="row col-12 g-3">
-                <div class="col-md-6">
-                  <label class="form-label">Bedrijfsnaam</label>
-                  <input type="text" class="form-control">
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label">Bedrijfsnaam</label>
-                  <input type="text" class="form-control">
-                </div>
+              <div class="col-md-6">
+                <label class="form-label">bedrijfsnaam</label>
+                <input type="text" id="NewCompanyName" class="form-control">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">tel nr.</label>
+                <input type="text" id="NewCompanyPhoneNr" class="form-control">
+              </div>
+              <hr>
+              <div class="col-md-6">
+                <label class="form-label">Land</label>
+                <input type="text" id="NewCompanyCountry" class="form-control">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Plaats</label>
+                <input type="text" id="NewCompanyLocation" class="form-control">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Adres</label>
+                <input type="text" id="NewCompanyAddress" class="form-control">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Postcode</label>
+                <input type="text" id="NewCompanyZipcode" class="form-control">
+              </div>
+              <hr>
+              <div class="col-md-6">
+                <label class="form-label">factuur adress</label>
+                <textarea class="form-control" id="NewCompanyInvoiceAdress" rows="2"></textarea>
+              </div>
               </form><!-- End Form -->
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuleer</button>
-              <button type="button" class="btn btn-primary">invoeren</button>
+              <button type="button" class="btn btn-primary" onclick="CreateCompany();" data-bs-dismiss="modal">invoeren</button>
             </div>
           </div>
         </div>
       </div><!-- End new client Modal-->
 
       <!--client tabs-->
-      <div class="col-10">
+      <div class="col-10 client-field-right">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="algemeen-tab" data-bs-toggle="tab" data-bs-target="#algemeen" type="button" role="tab" aria-controls="algemeen" aria-selected="true">algemeen</button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="contactGegevens-tab" data-bs-toggle="tab" data-bs-target="#contactGegevens" type="button" role="tab" aria-controls="contactGegevens" aria-selected="false">contact gegevens</button>
+            <button class="nav-link active" id="algemeen-tab" data-bs-toggle="tab" data-bs-target="#algemeen" type="button" role="tab" aria-controls="algemeen" aria-selected="true">bedrijfs gegevens</button>
           </li>
           <li class="nav-item" role="presentation">
             <button class="nav-link" id="facturatie-tab" data-bs-toggle="tab" data-bs-target="#facturatie" type="button" role="tab" aria-controls="contact" aria-selected="false">facturatie</button>
@@ -84,121 +87,65 @@
           </li>
         </ul>
 
-        <div class="tab-content pt-2" id="myTabContent">
+        <div class="tab-content pt-2 field-client-data" id="myTabContent">
           <div class="tab-pane fade show active card-body card row client-algemeen" id="algemeen" role="tabpanel" aria-labelledby="algemeen-tab">
             <div class="pagetitle client-titles">
-              <h1>algemeen</h1>
+              <h5 class="client-management-title mt-3">bedrijfs gegevens</h5>
             </div><!-- End Page Title -->
             <!-- Form -->
             <form class="row col-12 g-3 client-form">
-              <div class="col-md-6">
+              <div class="col-md-5">
                 <label class="form-label">bedrijfsnaam</label>
-                <input type="text" class="form-control">
+                <input type="text" name="name" id="CompanyName" class="form-control">
               </div>
-              <div class="col-md-6">
-                <label class="form-label">RISN</label>
-                <input type="text" class="form-control">
+              <div class="col-md-4">
+                <label class="form-label">tel nr.</label>
+                <input type="text" name="phoneNr" id="phoneNr" class="form-control">
               </div>
-              <div class="col-md-6">
-                <label class="form-label">subnummer BTW</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">subnummer LH</label>
-                <input type="text" class="form-control">
-              </div>
-
-              <hr>
-
-              <div class="col-md-6">
-                <label class="form-label">BTW tijdvak</label>
-                <select class="form-select">
-                  <option selected>Choose...</option>
-                  <option>...</option>
-                </select>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">KVK nummer</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">rekeningnummer</label>
-                <input type="text" class="form-control">
+              <div class="col-md-3">
+                <div class="form-check form-check-inline user-actief-label">
+                  <input class="form-check-input" type="checkbox" id="CompanyActive">
+                  <label class="form-check-label">actief</label>
+                </div>
               </div>
               <hr>
               <div class="col-md-6">
-                <label class="form-label">datum inschrijving</label>
-                <input type="date" class="form-control">
+                <label class="form-label">Land</label>
+                <input type="text" name="country" id="CustomerCountry" class="form-control">
               </div>
               <div class="col-md-6">
-                <label class="form-label">datum inschrijving</label>
-                <input type="date" class="form-control">
+                <label class="form-label">Plaats</label>
+                <input type="text" name="location" id="CustomerLocation" class="form-control">
               </div>
               <div class="col-md-6">
-                <label class="form-label">klant sinds</label>
-                <input type="date" class="form-control">
+                <label class="form-label">Adres</label>
+                <input type="text" name="address" id="CustomerAddress" class="form-control">
               </div>
               <div class="col-md-6">
-                <label class="form-label">klant tot</label>
-                <input type="date" class="form-control">
+                <label class="form-label">Postcode</label>
+                <input type="text" name="zipcode" id="CustomerZipcode" class="form-control">
+              </div>
+              <hr>
+              <div class="col-md-6">
+                <label class="form-label">factuur adress</label>
+                <textarea class="form-control" name="invoiceAdress" id="CustomerInvoiceAdress" rows="2"></textarea>
               </div>
               <hr>
               <div class="col-12 row">
                 <div class="col-6 mb-3">
-                  <button type="submit" class="btn btn-primary float-right">Aanpassingen opslaan</button>
+                  <button type="button" id="UpdateCustomerBtn" onclick="UpdateCompany();" class="btn btn-primary float-right">Aanpassingen opslaan</button>
                 </div>
                 <div class="col-6">
-                  <button type="submit" class="btn btn-danger float-left">Geslecteerde klant verwijderen</button>
+                    <button type="button" id="DeleteCustomerBtn" onclick="deleteCompany();" class="btn btn-danger float-left">Geslecteerde klant verwijderen</button>
                 </div>
               </div>
             </form><!-- End Form -->
           </div><!--end panel algemeen-->
 
-          <!--panel contact-->
-          <div class="tab-pane fade card-body card row" id="contactGegevens" role="tabpanel" aria-labelledby="contactGegevens-tab">
-            <div class="pagetitle client-titles">
-              <h1>contact gegevens</h1>
-            </div><!-- End Page Title -->
-            <!-- Form -->
-            <form class="row col-12 g-3 client-form">
-              <div class="col-md-6">
-                <label class="form-label">Email adres</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Tel nr.</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="col-md-4">
-                <label class="form-label">plaats</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="col-md-4">
-                <label class="form-label">straatnaam</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="col-md-4">
-                <label class="form-label">postcode</label>
-                <input type="text" class="form-control">
-              </div>
-
-
-              <hr>
-              <div class="col-12 row">
-                <div class="col-6 mb-3">
-                  <button type="submit" class="btn btn-primary float-right">Aanpassingen opslaan</button>
-                </div>
-                <div class="col-6">
-                  <button type="submit" class="btn btn-danger float-left">Geslecteerde klant verwijderen</button>
-                </div>
-              </div>
-            </form><!-- End Form -->
-          </div><!--end panel contact-->
-
           <!--panel facturatie-->
           <div class="tab-pane fade card-body card row" id="facturatie" role="tabpanel" aria-labelledby="facturatie-tab">
             <div class="pagetitle client-titles">
-              <h1>facturatie</h1>
+              <h5 class="client-management-title mt-3">facturatie</h5>
             </div><!-- End Page Title -->
             <!-- Form -->
             <form class="row col-12 g-3 client-form">
@@ -246,7 +193,7 @@
                   <button type="submit" class="btn btn-primary float-right">Aanpassingen opslaan</button>
                 </div>
                 <div class="col-6">
-                  <button type="submit" class="btn btn-danger float-left">Geslecteerde klant verwijderen</button>
+                  <button type="button" class="btn btn-danger float-left">Geslecteerde klant verwijderen</button>
                 </div>
               </div>
             </form><!-- End Form -->
@@ -255,7 +202,7 @@
           <!--panel projecten-->
           <div class="tab-pane fade card-body card row" id="projecten" role="tabpanel" aria-labelledby="projecten-tab">
             <div class="pagetitle client-titles">
-              <h1>projecten</h1>
+              <h5 class="client-management-title mt-3">projecten</h5>
             </div><!-- End Page Title -->
 
             <table class="table table-striped">
