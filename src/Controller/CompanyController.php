@@ -25,4 +25,19 @@ class CompanyController extends AbstractController
         return $this->json($companyService->CreateCompany($parameters));
     }
 
+    #[Route('/deleteCompany', name: 'deleteCompany', methods: ['POST'])]
+    public function deleteCompany(CompanyService $companyService, Request $request): Response
+    {
+        $parameters = json_decode($request->getContent(), true);
+        return $this->json($companyService->deleteCompany($parameters));
+    }
+
+    #[Route('/update', name: 'deleteCompany', methods: ['POST'])]
+    public function UpdateCompany(CompanyService $companyService, Request $request): Response
+    {
+        $parameters = json_decode($request->getContent(), true);
+        return $this->json($companyService->UpdateCompany($parameters));
+    }
+
+
 }

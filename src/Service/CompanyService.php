@@ -31,6 +31,7 @@ class CompanyService
 
     public function GetAllCompanyInfo(): array
     {
+
         $companies = $this->companyRepository->findBy(['Deleted' => false]);
         $allCompanies = [];
 
@@ -51,25 +52,60 @@ class CompanyService
         return $allCompanies;
     }
 
+    public function CreateCompany($parameters)
+    {
 
-        public function CreateCompany($parameters)
-        {
+        $company = new Company();
+        $company->setName($parameters['name']);
+        $company->setPhoneNr($parameters['phoneNr']);
+        $company->setCountry($parameters['country']);
+        $company->setZipcode($parameters['zipcode']);
+        $company->setLocation($parameters['location']);
+        $company->setInvoiceAddress($parameters['invoiceAddress']);
+        $company->setAddress($parameters['address']);
+        $company->setActive(True);
+        $company->setDeleted(False);
 
-            $company = new Company();
+        $this->em->persist($company);
+        $this->em->flush();
+        return new Response('Nieuwe klant opgeslagen');
+    }
+
+    public function UpdateCompany($parameters): string
+    {
+        $company = $this->companyRepository->findOneBy(['id' => $parameters['id']]);
+
+        //$Clearance = $this->clearenceRepository->findOneBy(['id' => $parameters['clearence']]);
+        // dd($user);
+        if (!empty($company)) {
             $company->setName($parameters['name']);
-            $company->setPhoneNr($parameters['phoneNr']);
             $company->setCountry($parameters['country']);
+            $company->setActive($parameters['active']);
+            $company->setPhoneNr($parameters['phoneNr']);
             $company->setZipcode($parameters['zipcode']);
-            $company->getLocation($parameters['location']);
-            $company->getInvoiceAddress($parameters['invoiceAddress']);
+            $company->setLocation($parameters['location']);
             $company->setAddress($parameters['address']);
-            $company->setActive(True);
-            $company->setDeleted(False);
-    
+            $company->setInvoiceAddress($parameters['invoiceAddress']);
+
             $this->em->persist($company);
             $this->em->flush();
-            return new Response('Nieuwe klant opgeslagen');
+            return new Response('klant opgeslagen');
         }
+        return 'Er is iets fout gegaan probeer opnieuw';
+    }
 
+    public function deleteCompany($parameters): string
+    {
+        $company = $this->companyRepository->findOneBy(['id' => $parameters['id']]);
+        //$Clearance = $this->clearenceRepository->findOneBy(['id' => $parameters['clearence']]);
+        // dd($user);
+        if (!empty($company)) {
+            $company->setDeleted(true);
 
+            $this->em->persist($company);
+            $this->em->flush();
+            return new Response('klant is verwijderd');
+        }
+        return 'Er is iets fout gegaan probeer opnieuw';
+    }
 }

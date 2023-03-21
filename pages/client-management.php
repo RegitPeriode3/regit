@@ -100,7 +100,7 @@
               </div>
               <div class="col-md-4">
                 <label class="form-label">tel nr.</label>
-                <input type="text" name="name" id="phoneNr" class="form-control">
+                <input type="text" name="phoneNr" id="phoneNr" class="form-control">
               </div>
               <div class="col-md-3">
                 <div class="form-check form-check-inline user-actief-label">
@@ -128,15 +128,15 @@
               <hr>
               <div class="col-md-6">
                 <label class="form-label">factuur adress</label>
-                <textarea class="form-control" name="invoice_address" id="CustomerInvoiceAdress" rows="2"></textarea>
+                <textarea class="form-control" name="invoiceAdress" id="CustomerInvoiceAdress" rows="2"></textarea>
               </div>
               <hr>
               <div class="col-12 row">
                 <div class="col-6 mb-3">
-                  <button type="submit" id="UpdateCustomerBtn" class="btn btn-primary float-right">Aanpassingen opslaan</button>
+                  <button type="button" id="UpdateCustomerBtn" onclick="UpdateCompany();" class="btn btn-primary float-right">Aanpassingen opslaan</button>
                 </div>
                 <div class="col-6">
-                  <button type="submit" id="DeleteCustomerBtn" class="btn btn-danger float-left">Geslecteerde klant verwijderen</button>
+                    <button type="button" id="DeleteCustomerBtn" onclick="deleteCompany();" class="btn btn-danger float-left">Geslecteerde klant verwijderen</button>
                 </div>
               </div>
             </form><!-- End Form -->
@@ -190,10 +190,10 @@
               <hr>
               <div class="col-12 row">
                 <div class="col-6 mb-3">
-                  <button type="submit" id="" class="btn btn-primary float-right">Aanpassingen opslaan</button>
+                  <button type="submit" class="btn btn-primary float-right">Aanpassingen opslaan</button>
                 </div>
                 <div class="col-6">
-                  <button type="submit" class="btn btn-danger float-left">Geslecteerde klant verwijderen</button>
+                  <button type="button" class="btn btn-danger float-left">Geslecteerde klant verwijderen</button>
                 </div>
               </div>
             </form><!-- End Form -->

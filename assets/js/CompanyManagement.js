@@ -6,7 +6,6 @@ $(document).ready(function () {
 var selectedCompanyId;
 
 function GetCompanies() {
-
  axios.get('http://localhost/regit/public/company/')
         .then(function (response) {
             console.log(response.data);
@@ -35,7 +34,7 @@ function GetCompanies() {
 function toggleCompanyList() {
     $("#CompanyManageList li").removeClass("active");
     $(this).addClass("active");
-    // selectedCompanyId = $(this).data()['Id'];
+    selectedCompanyId = $(this).data()['Id'];
     // //console.log($(this))
     showCompanyInfo($(this));
 }
@@ -77,5 +76,43 @@ function CreateCompany() {
     });
     console.log(companyNew);
     alert("De nieuwe klant is opgeslagen");
+    GetCompanies();
+}
+
+async function UpdateCompany(){
+    console.log($('#CustomerInvoiceAdress').text());
+    var companyUpdated = await axios({
+        method: 'post',
+        url: 'http://localhost/regit/public/company/update',
+        headers: {},
+        data: {
+            id: selectedCompanyId,
+            name: $('#CompanyName').val(),
+            country: $('#CustomerCountry').val(),
+            active: $('#CompanyActive').is(":checked"),
+            phoneNr: $('#phoneNr').val(),
+            zipcode: $('#CustomerZipcode').val(),
+            location: $('#CustomerLocation').val(),
+            address: $('#CustomerAddress').val(),
+            invoiceAddress: $('#CustomerInvoiceAdress').val(),
+        },
+    });
+console.log(companyUpdated);
+    GetCompanies();
+}
+
+async function deleteCompany() {
+    var companyDelete = await axios({
+        method: 'post',
+        url: 'http://localhost/regit/public/company/deleteCompany',
+        headers: {},
+        data: {
+            id: selectedCompanyId
+        },
+    });
+
+    console.log(companyDelete);
+
+
     GetCompanies();
 }
