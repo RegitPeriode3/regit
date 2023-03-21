@@ -23,7 +23,7 @@ class UserService
     public function GetAllUsersInfo(): array
     {
 
-        $users = $this->userRepository->findAll();
+        $users = $this->userRepository->findBy(['Deleted' => false]);
         $allUsers = [];
 
         foreach ($users as $user) {
@@ -109,7 +109,6 @@ class UserService
         $this->em->flush();
         return new Response('Nieuwe Gebruiker opgeslagen');
     }
-
 
 
     public function UpdateUser($parameters): string

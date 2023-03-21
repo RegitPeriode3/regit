@@ -70,7 +70,7 @@ function showUserInfo($el) {
 }
 
 function CreateUser() {
-    
+
     var userNew = axios({
         method: 'post',
         url: 'http://localhost/regit/public/user/Create',
