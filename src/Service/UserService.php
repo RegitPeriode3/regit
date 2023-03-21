@@ -107,7 +107,7 @@ class UserService
 
         $this->em->persist($user);
         $this->em->flush();
-        return new Response('Nieuwe Gerbruiker opgeslagen');
+        return new Response('Nieuwe Gebruiker opgeslagen');
     }
 
 
@@ -137,11 +137,9 @@ class UserService
         return 'Er is iets fout gegaan probeer opnieuw';
     }
 
-    public function DeleteUser($parameters): array
+    public function DeleteUser($parameters): string
     {
         $user = $this->userRepository->findOneBy(['id' => $parameters['id']]);
-
-        dd($user);
 
         if (!empty($user)) {
             $user->setActive(False);
@@ -151,6 +149,6 @@ class UserService
             $this->em->flush();
             return new Response('gebruiker verwijderd');
         }
-        return [];
+        return 'Er is iets fout gegaan probeer opnieuw';
     }
 }

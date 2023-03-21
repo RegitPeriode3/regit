@@ -8,7 +8,7 @@
   <section class="section">
     <div class="row">
       <!-- select user list -->
-      <div class="col-3 user-list mt-2">
+      <div class="col-2 user-list mt-2">
         <!--filter-->
         <div class="filter mb-3">
           <input type="text" class="form-control" placeholder="filter.." onkeyup="FilterNextUlParent($(this));">

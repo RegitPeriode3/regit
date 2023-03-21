@@ -24,6 +24,11 @@ html {
     margin-left: 3%;
 }
 
+.main-scroll {
+    max-height: 84vh;
+    overflow-y: scroll;
+}
+
 /* user management */
 .user-management-title {
     font-size: 18px;
@@ -61,7 +66,22 @@ html {
 }
 
 /* instellingen */
-.instellingen-card {
+.settings-card {
     width: 75%;
     margin-left: 12%;
+}
+
+.settings-white-card {
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+    background-color: #fff;
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+    padding-top: 2%;
+}
+
+.activity-scroll {
+    max-height: 52vh;
+    overflow-y: scroll;
 }

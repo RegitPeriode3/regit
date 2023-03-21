@@ -70,6 +70,7 @@ function showUserInfo($el) {
 }
 
 function CreateUser() {
+    
     var userNew = axios({
         method: 'post',
         url: 'http://localhost/regit/public/user/Create',
@@ -99,7 +100,7 @@ function DeleteUser() {
         alert("er is geen gebruiker geselecteerd");
     } else {
         var userDelete = axios({
-            method: 'post',
+            method: 'put',
             url: 'http://localhost/regit/public/user/Delete',
             headers: {},
             data: {
@@ -124,7 +125,7 @@ function UpdateUser() {
         alert("er is geen gebruiker geselecteerd");
     } else {
         var userUpdate = axios({
-            method: 'post',
+            method: 'put',
             url: 'http://localhost/regit/public/user/Update',
             headers: {},
             data: {
@@ -138,13 +139,12 @@ function UpdateUser() {
                 Location: $('#UserLocation').val(),
                 Zipcode: $('#UserZipcode').val(),
                 Address: $('#UserAddress').val(),
-                Clearence: $('#UserClearance').val(),
+                clearence: $('#UserClearance').val(),
                 active: activeCheck
             },
         });
         console.log(userUpdate);
         alert("De gebruiker gegevens zijn gewijzigd");
         GetUsers();
-        showUserInfo();
     }
 }

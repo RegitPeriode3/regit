@@ -1,4 +1,4 @@
-<main id="main" class="main">
+<main id="main" class="main main-scroll">
 
     <?php
     include "pages/hour-registration.php";

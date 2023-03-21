@@ -38,7 +38,7 @@ class UserController extends AbstractController
 
 
 
-    #[Route('/Update', name: 'UpdateUser', methods: ['POST'])]
+    #[Route('/Update', name: 'UpdateUser', methods: ['PUT'])]
     public function UpdateUser(UserService $userService, Request $request): Response
     {
         $parameters = json_decode($request->getContent(), true);
@@ -46,7 +46,7 @@ class UserController extends AbstractController
     }
 
 
-    #[Route('/Delete', name: 'DeleteUser', methods: ['POST'])]
+    #[Route('/Delete', name: 'DeleteUser', methods: ['PUT'])]
     public function DeleteUser(UserService $userService, Request $request): Response
     {
         $parameters = json_decode($request->getContent(), true);

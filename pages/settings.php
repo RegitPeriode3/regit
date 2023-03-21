@@ -25,7 +25,7 @@
           <!-- Form -->
           <form class="row col-12 g-3 user-management-form">
 
-            <div class="col-md-6">
+            <div class="col-md-5">
               <label class="form-label">Email</label>
               <input type="text" class="form-control">
             </div>
@@ -36,8 +36,8 @@
                 <option>...</option>
               </select>
             </div>
-            <div class="col-md-6">
-              <div class="form-check mt-2 mb-2">
+            <div class="col-md-3">
+              <div class="form-check mt-4 mb-4">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">
                   Default checkbox
@@ -104,7 +104,7 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title">Nieuwe activiteit</h5>
+                    <span class="modal-title new-user-title">Nieuwe activiteit</span>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body row">
@@ -119,7 +119,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuleer</button>
-                      <button type="button" class="btn btn-primary">invoeren</button>
+                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal">invoeren</button>
                     </div>
                   </div>
                 </div>
