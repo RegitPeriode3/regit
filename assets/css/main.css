@@ -16,6 +16,18 @@ html {
     max-height: 70vh;
 }
 
+.header-nav {
+    margin-right: 1%;
+}
+
+.header-company-name {
+    margin-left: 3%;
+}
+
+.main-scroll {
+    max-height: 84vh;
+    overflow-y: scroll;
+}
 
 /* user management */
 .user-management-title {
@@ -30,4 +42,46 @@ html {
     padding-left: 50px;
     padding-top: 30px;
     padding-right: 50px;
+}
+
+.user-actief-label {
+    margin-top: 15% !important;
+    margin-right: 9%;
+    margin-left: 9%;
+}
+
+.new-user-title {
+    font-size: 25px;
+}
+
+.user-right {
+    margin-left: 3%;
+}
+
+
+/* billing */
+.billing-field {
+    margin-left: 2%;
+    width: 82%;
+}
+
+/* instellingen */
+.settings-card {
+    width: 75%;
+    margin-left: 12%;
+}
+
+.settings-white-card {
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+    background-color: #fff;
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+    padding-top: 2%;
+}
+
+.activity-scroll {
+    max-height: 52vh;
+    overflow-y: scroll;
 }

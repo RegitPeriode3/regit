@@ -20,12 +20,12 @@
 
       <!--email-->
       <div class="tab-pane fade show active" id="email" role="tabpanel" aria-labelledby="home-tab">
-        <div class="col-12 row card card-body mt-4 instellingen-card">
-        <h5 class="user-management-title mt-3">Email instellingen</h5>
+        <div class="col-12 row card card-body mt-4 settings-card">
+          <h5 class="user-management-title mt-3">Email instellingen</h5>
           <!-- Form -->
           <form class="row col-12 g-3 user-management-form">
 
-            <div class="col-md-6">
+            <div class="col-md-5">
               <label class="form-label">Email</label>
               <input type="text" class="form-control">
             </div>
@@ -36,8 +36,8 @@
                 <option>...</option>
               </select>
             </div>
-            <div class="col-md-6">
-              <div class="form-check mt-2 mb-2">
+            <div class="col-md-3">
+              <div class="form-check mt-4 mb-4">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">
                   Default checkbox
@@ -58,10 +58,10 @@
 
       <!--activity-->
       <div class="tab-pane fade" id="activiteit" role="tabpanel" aria-labelledby="profile-tab">
-        <div class="col-12 row mt-4 instellingen-activity-card">
+        <div class="col-12 row mt-4 settings-white-card settings-card">
 
           <!--activity list-->
-          <div class="col-4">
+          <div class="col-3">
             <!--filter-->
             <div class="filter mb-3">
               <input type="text" class="form-control" placeholder="filter.." onkeyup="FilterNextUlParent($(this));">
@@ -89,7 +89,7 @@
           <!--end activity list-->
 
           <!-- activity form -->
-          <div class="col-8">
+          <div class="col-9">
 
             <div class="row mt-3">
               <div class="col-8">
@@ -104,7 +104,7 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title">Nieuwe activiteit</h5>
+                    <span class="modal-title new-user-title">Nieuwe activiteit</span>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body row">
@@ -119,7 +119,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuleer</button>
-                      <button type="button" class="btn btn-primary">invoeren</button>
+                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal">invoeren</button>
                     </div>
                   </div>
                 </div>
