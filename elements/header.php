@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+include 'C:\laragon\www\regit\pages\loginTest.php';
+
+$_SESSION['loggedin'] = TRUE;
+$username = $_SESSION['username'];
+
+//$_SESSION['password'] = $password;
+//$_SESSION['id'] = $id;
+
+
+?>
+
 <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -15,8 +29,8 @@
     <li class=" dropdown pe-3">
 
       <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-        <img src="assets/img/profile-img.png" alt="Profile" class="rounded-circle">
-        <span class="d-none d-md-block dropdown-toggle ps-2">Gebruikersnaam</span>
+        <img src="../assets/img/profile-img.png" alt="Profile" class="rounded-circle">
+        <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $username ?></span>
       </a><!-- End Profile Iamge Icon -->
 
       <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">

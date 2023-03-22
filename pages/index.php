@@ -1,3 +1,21 @@
+<?php
+session_start();
+
+include 'C:\laragon\www\regit\pages\loginTest.php';
+//$test = $_SESSION['loggedin'];
+//echo $test;
+if(!isset($_SERVER['HTTP_REFERER'])){
+    // redirect them to your desired location
+    header("Location: http://localhost/regit/pages/login.php");
+    exit;
+}
+
+else
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +30,7 @@
     <!-- Favicons -->
     <link href="../assets/img/favicon.png" rel="icon">
     <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="../assets/img/profile-img.png" rel="icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -37,10 +56,13 @@
 
 <body>
 <?php
+
+ {
 include "../elements/header.php";
 include "../elements/sidebar.php";
 include "../elements/main.php";
 include "../elements/footer.php";
+}
 ?>
 <body>
 
