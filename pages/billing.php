@@ -1,3 +1,14 @@
+<?php
+if(!isset($_SERVER['HTTP_REFERER'])){
+    // redirect them to your desired location
+    header("Location: http://localhost/regit/pages/login.php");
+    exit;
+}
+else {
+
+    ?>
+
+
 <!-- billing -->
 <div id="Billing" class="content">
 
@@ -107,3 +118,5 @@
   </section>
 
 </div><!-- End billing -->
+<?php
+}
