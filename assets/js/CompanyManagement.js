@@ -6,7 +6,7 @@ $(document).ready(function () {
 var selectedCompanyId;
 
 function GetCompanies() {
- axios.get('http://localhost/regit/public/company/')
+    axios.get('http://localhost/regit/public/company/')
         .then(function (response) {
             console.log(response.data);
             var CompanyItem = response.data;
@@ -79,7 +79,7 @@ function CreateCompany() {
     GetCompanies();
 }
 
-async function UpdateCompany(){
+async function UpdateCompany() {
     console.log($('#CustomerInvoiceAdress').text());
     var companyUpdated = await axios({
         method: 'post',
@@ -97,7 +97,8 @@ async function UpdateCompany(){
             invoiceAddress: $('#CustomerInvoiceAdress').val(),
         },
     });
-console.log(companyUpdated);
+    console.log(companyUpdated);
+    alert("De klant is aanepast");
     GetCompanies();
 }
 
@@ -112,7 +113,7 @@ async function deleteCompany() {
     });
 
     console.log(companyDelete);
-
+    alert("De geselecteerde klant is verwijderd");
 
     GetCompanies();
 }

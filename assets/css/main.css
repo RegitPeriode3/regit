@@ -40,7 +40,7 @@ html {
 
 .user-management-form {
     padding-left: 50px;
-    padding-top: 30px;
+    padding-top: 12px;
     padding-right: 50px;
 }
 
@@ -63,6 +63,10 @@ html {
 .billing-field {
     margin-left: 2%;
     width: 82%;
+}
+
+.billing-search {
+    margin-top: 2.4%;
 }
 
 /* instellingen */

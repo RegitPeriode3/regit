@@ -44,7 +44,7 @@
             <label class="form-label">tot</label>
             <input type="date" class="form-control">
           </div>
-          <div class="filter col-md-3 mb-3">
+          <div class="filter col-md-3 mb-3 billing-search">
             <input type="text" class="form-control billing-search" placeholder="zoeken.." onkeyup="FilterNextUlParent($(this));">
           </div>
         </div>

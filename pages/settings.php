@@ -25,36 +25,42 @@
           <!-- Form -->
           <form class="row col-12 g-3 user-management-form">
 
-            <div class="col-md-5">
-              <label class="form-label">Email</label>
+            <div class="col-md-6">
+              <label class="form-label">naam</label>
               <input type="text" class="form-control">
             </div>
-            <div class="col-md-4">
-              <label class="form-label">blank</label>
-              <select class="form-select">
-                <option selected>Choose...</option>
-                <option>...</option>
-              </select>
-            </div>
-            <div class="col-md-3">
-              <div class="form-check mt-4 mb-4">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                  Default checkbox
-                </label>
-              </div>
+            <div class="col-md-6">
+              <label class="form-label">email adres</label>
+              <input type="text" class="form-control">
             </div>
 
-            <hr>
+            <hr class="mt-4">
+
+            <div class="col-md-6">
+              <label class="form-label">smtp server</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">smtp port</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">gebruikersnaam</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">wachtwoord</label>
+              <input type="text" class="form-control">
+            </div>
+
+            <hr class="mt-5">
             <div class="col-12 text-center">
-              <button type="submit" class="btn btn-primary">Aanpassingen opslaan</button>
+              <button type="submit" class="btn btn-primary">aanpassingen opslaan</button>
             </div>
           </form><!-- End activity Form -->
         </div>
       </div>
       <!--end email-->
-
-
 
       <!--activity-->
       <div class="tab-pane fade" id="activiteit" role="tabpanel" aria-labelledby="profile-tab">
@@ -104,7 +110,7 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                    <span class="modal-title new-user-title">Nieuwe activiteit</span>
+                      <span class="modal-title new-user-title">Nieuwe activiteit</span>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body row">
@@ -137,13 +143,13 @@
                 <label class="form-label">omschrijving</label>
                 <input type="text" class="form-control">
               </div>
-              <hr>
+              <hr class="mt-5 mb-4">
               <div class="col-12 row">
                 <div class="col-5">
-                  <button type="submit" class="btn btn-primary float-right">Aanpassingen opslaan</button>
+                  <button type="submit" class="btn btn-primary float-right">aanpassingen opslaan</button>
                 </div>
                 <div class="col-7">
-                  <button type="submit" class="btn btn-danger float-left">Geslecteerde activiteit verwijderen</button>
+                  <button type="submit" class="btn btn-danger float-left">geslecteerde activiteit verwijderen</button>
                 </div>
               </div>
             </form><!-- End activity Form -->
