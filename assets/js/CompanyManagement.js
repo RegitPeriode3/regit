@@ -74,6 +74,16 @@ function CreateCompany() {
             invoiceAddress: $('#NewCompanyInvoiceAdress').val(),
         },
     });
+
+    $('#NewCompanyName').val('');
+    $('#NewCompanyPhoneNr').val('');
+    $('#NewCustomerCountry').val('');
+    $('#NewCustomerLocation').val('');
+    $('#NewCustomerAddress').val('');
+    $('#NewCustomerZipcode').val('');
+    $('#NewCompanyActive').val('');
+
+
     console.log(companyNew);
     alert("De nieuwe klant is opgeslagen");
     GetCompanies();
@@ -111,6 +121,17 @@ async function deleteCompany() {
             id: selectedCompanyId
         },
     });
+
+
+
+    $('#CompanyName').val('');
+    $('#phoneNr').val('');
+    $('#CustomerCountry').val('');
+    $('#CustomerLocation').val('');
+    $('#CustomerAddress').val('');
+    $('#CustomerZipcode').val('');
+    $('#invoiceAdress').val('');
+    $('#CompanyActive').val('');
 
     console.log(companyDelete);
     alert("De geselecteerde klant is verwijderd");

@@ -1,3 +1,5 @@
+
+
 $(document).ready(function () {
     $('#UserManagementNav').on('click', GetUsers);
     $("#UserManageList").on("click", ' li', toggleUserList);
@@ -88,6 +90,19 @@ function CreateUser() {
             clearence: $('#NewUserClearance').val()
         },
     });
+
+    $('#NewUserDisplayname').val('');
+    $('#NewUserUsername').val('');
+    $('#NewUserAddress').val('');
+    $('#NewUserPassword').val('');
+    $('#NewUserMail').val('');
+    $('#NewUserPhoneNr').val('');
+    $('#NewUserCountry').val('');
+    $('#NewUserLocation').val('');
+    $('#NewUserZipcode').val('');
+    $('#UserClearance').prop('selectedIndex',0);
+    $('#userActive').prop('selectedIndex',0);
+
     console.log(userNew);
     alert("De nieuwe gebruiker is opgeslagen");
     GetUsers();
@@ -107,6 +122,22 @@ function DeleteUser() {
                 id: selectedUserId
             },
         });
+
+
+
+
+        $('#UserDisplayName').val('');
+        $('#UserUsername').val('');
+        $('#UserAddress').val('');
+        $('#UserPassword').val('');
+        $('#UserMail').val('');
+        $('#UserPhoneNr').val('');
+        $('#UserCountry').val('');
+        $('#UserLocation').val('');
+        $('#UserZipcode').val('');
+        //$('#userActive').val('');
+        $('#UserClearance').prop('selectedIndex',0);
+        $( "#userActive" ).prop( "checked", false );
         console.log(userDelete);
         alert("De gebruiker is verwijderd");
         GetUsers();

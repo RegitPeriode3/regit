@@ -1,3 +1,8 @@
+<?php
+
+?>
+
+
 <!-- ======= Sidebar ======= -->
 <aside id="sidebar" class="sidebar">
 
@@ -43,9 +48,9 @@
     </li>
 
     <li class="nav-item">
-      <a class="nav-link collapsed">
+      <a  class="nav-link collapsed">
         <i class="bi bi-box-arrow-in-right"></i>
-        <span>Uitloggen</span>
+        <span href="http://localhost/regit/pages/logout.php">Uitloggen</span>
       </a>
     </li>
 

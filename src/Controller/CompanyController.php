@@ -38,7 +38,7 @@ else {
             return $this->json($companyService->deleteCompany($parameters));
         }
 
-        #[Route('/update', name: 'deleteCompany', methods: ['POST'])]
+        #[Route('/update', name: 'update', methods: ['POST'])]
         public function UpdateCompany(CompanyService $companyService, Request $request): Response
         {
             $parameters = json_decode($request->getContent(), true);
