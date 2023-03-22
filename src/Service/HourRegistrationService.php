@@ -116,7 +116,7 @@ class HourRegistrationService
         }
 
         $activity = $this->activityRepository->findOneBy(['id'=>$parameters['Activity']]);
-        $user = $this->userRepository->findOneBy(['id'=>5]);
+        $user = $this->userRepository->findOneBy(['id'=>4]);
         $company = $this->companyRepository->findOneBy(['id'=>$parameters['Company']]);
 
         //Deze check is in principe niet nodig omdat dit niet mogenlijk zou moeten zijn,

@@ -16,8 +16,8 @@ if(!isset($_SERVER['HTTP_REFERER'])){
 }
 else {
 
-    #[Route('/GetSingleUser/{id}/{active}', name: 'GetUserInfo', methods: ['GET'])]
-    public function GetUserInfo($id, UserService $userService, $active = false): Response
+    #[Route('/user', name: 'app_user')]
+    class UserController extends AbstractController
     {
         #[Route('/', name: 'GetAllUsersInfo', methods: ['GET'])]
         public function GetAllUsersInfo(UserService $userService): Response
@@ -26,7 +26,7 @@ else {
         }
 
         #[Route('/GetSingleUser/{id}/{active}', name: 'GetUserInfo', methods: ['GET'])]
-        public function GetUserInfo($id, UserService $userService, $active = true): Response
+        public function GetUserInfo($id, UserService $userService, $active = false): Response
         {
             return $this->json($userService->GetUserInfo($id, $active));
         }
@@ -42,31 +42,24 @@ else {
         {
             $parameters = json_decode($request->getContent(), true);
             return $this->json($userService->CreateUser($parameters));
-            //return $this->json($userService->CreateUser($displayName,$UserName,$password,$email, $phoneNr, $country, $location, $zipcode, $address, $active, $deleted, $clearence));
         }
 
 
-    #[Route('/Create', name: 'CreateUser', methods: ['POST'])]
-    public function CreateUser(UserService $userService, Request $request): Response
-    {
-        $parameters = json_decode($request->getContent(), true);
-        return $this->json($userService->CreateUser($parameters));
+        #[Route('/Update', name: 'UpdateUser', methods: ['PUT'])]
+        public function UpdateUser(UserService $userService, Request $request): Response
+        {
+            $parameters = json_decode($request->getContent(), true);
+            return $this->json($userService->UpdateUser($parameters));
+        }
+
+
+        #[Route('/Delete', name: 'DeleteUser', methods: ['PUT'])]
+        public function DeleteUser(UserService $userService, Request $request): Response
+        {
+            $parameters = json_decode($request->getContent(), true);
+            return $this->json($userService->DeleteUser($parameters));
+        }
     }
 
 
-
-    #[Route('/Update', name: 'UpdateUser', methods: ['PUT'])]
-    public function UpdateUser(UserService $userService, Request $request): Response
-    {
-        $parameters = json_decode($request->getContent(), true);
-        return $this->json($userService->UpdateUser($parameters));
     }
-
-
-    #[Route('/Delete', name: 'DeleteUser', methods: ['PUT'])]
-    public function DeleteUser(UserService $userService, Request $request): Response
-    {
-        $parameters = json_decode($request->getContent(), true);
-        return $this->json($userService->DeleteUser($parameters));
-    }
-}
