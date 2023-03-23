@@ -29,6 +29,13 @@ html {
     overflow-y: scroll;
 }
 
+@media only screen and (max-width: 1300px) {
+    .invisi-nav {
+        display: none;
+    }
+}
+
+
 /* user management */
 .user-management-title {
     font-size: 18px;
@@ -69,6 +76,7 @@ html {
     margin-top: 2.4%;
 }
 
+
 /* instellingen */
 .settings-card {
     width: 75%;
@@ -92,7 +100,6 @@ html {
 
 
 /*company management*/
-
 .clientlist-scroll {
     max-height: 61vh;
     overflow-y: scroll;
