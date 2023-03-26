@@ -94,7 +94,6 @@ function getInvoiceRows(){
             var invoiceRows = response.data;
             $.each(invoiceRows, function (k,v){
                 $('#tblInvoiceRow').append( '<tr id="'+v['Id']+'">' +
-                    '<td>' + v["InvoiceNr"] + '</td>' +
                     '<td>' + v["Date"] + '</td>' +
                     '<td>' + v["HoursWorked"] + '</td>' +
                     '<td>' + v["Project"] + '</td>' +

@@ -22,20 +22,8 @@ else {
         <input type="text" class="form-control" placeholder="filter.." onkeyup="FilterNextUlParent($(this));">
       </div>
       <!-- select list -->
-      <ul class="list-group userlist-scroll card">
+      <ul class="list-group userlist-scroll card" id="clientListInvoice">
         <li class="list-group-item active" aria-current="true">An active item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-        <li class="list-group-item">A fourth item</li>
-        <li class="list-group-item disabled">A fifth item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-        <li class="list-group-item">A fourth item</li>
-        <li class="list-group-item disabled">A fifth item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-        <li class="list-group-item">A fourth item</li>
-        <li class="list-group-item disabled">A fifth item</li>
         <li class="list-group-item">A second item</li>
         <li class="list-group-item">A third item</li>
         <li class="list-group-item">A fourth item</li>
@@ -49,11 +37,11 @@ else {
         <div class="col-10 row mb-3 mt-4">
           <div class="col-md-2">
             <label class="form-label">van</label>
-            <input type="date" class="form-control">
+            <input type="date" class="form-control" value="<?php echo date("Y-m-d"); ?>">
           </div>
           <div class="col-md-2">
             <label class="form-label">tot</label>
-            <input type="date" class="form-control">
+            <input type="date" class="form-control" value="<?php echo date("Y-m-d"); ?>">
           </div>
           <div class="filter col-md-3 mb-3 billing-search">
             <input type="text" class="form-control billing-search" placeholder="zoeken.." onkeyup="FilterNextUlParent($(this));">
@@ -62,55 +50,25 @@ else {
         <hr>
         <div class="col-10 row">
           <div class="col-2"><button class="btn btn-primary">Maak factuur</button></div>
-          <div class="col-2"><button class="btn btn-primary">pro foma</button></div>
+<!--          <div class="col-2"><button class="btn btn-primary">pro foma</button></div>-->
         </div>
       </div><!--end menu-->
       <!--table-->
       <div class="col-10 row card-body card">
-        <table class="table table-striped">
+        <table class="table table-striped"id="tblInvoiceRowCompany">
           <thead>
             <tr>
-              <th scope="col">#</th>
               <th scope="col">Datum</th>
-              <th scope="col">Van</th>
-              <th scope="col">Tot</th>
+              <th scope="col">Kosten per uur</th>
               <th scope="col">Aantal uren</th>
               <th scope="col">Project</th>
               <th scope="col">Activiteit</th>
               <th scope="col">Omschrijving</th>
+              <th scope="col">Factureren</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>2-19-2023</td>
-              <td>8:00</td>
-              <td>14:00</td>
-              <td>6</td>
-              <td> - </td>
-              <td> - </td>
-              <td> - </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>2-19-2023</td>
-              <td>8:00</td>
-              <td>14:00</td>
-              <td>6</td>
-              <td> - </td>
-              <td> - </td>
-              <td> - </td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>2-19-2023</td>
-              <td>8:00</td>
-              <td>14:00</td>
-              <td>6</td>
-              <td> - </td>
-              <td> - </td>
-              <td> - </td>
-            </tr>
+
           </tbody>
         </table>
       </div><!--end table-->

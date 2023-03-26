@@ -27,8 +27,10 @@ else {
         #[Route('/Create', name: 'CreateCompany', methods: ['POST'])]
         public function CreateCompany(CompanyService $companyService, Request $request): Response
         {
-            $parameters = json_decode($request->getContent(), true);
-            return $this->json($companyService->CreateCompany($parameters));
+            if(true){//check user ingelogd (evt ook rechten user checken)
+                $parameters = json_decode($request->getContent(), true);
+                return $this->json($companyService->CreateCompany($parameters));
+            }
         }
 
         #[Route('/deleteCompany', name: 'deleteCompany', methods: ['POST'])]

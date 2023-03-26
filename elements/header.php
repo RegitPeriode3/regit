@@ -1,7 +1,7 @@
 <?php
 //session_start();
 
-include 'C:\laragon\www\regit\pages\loginTest.php';
+include '../pages/loginTest.php';
 
 $_SESSION['loggedin'] = TRUE;
 //$username = $_SESSION['username'];

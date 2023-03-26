@@ -82,7 +82,6 @@
             <table class="table table-striped" id="tblInvoiceRow">
               <thead>
                 <tr>
-                  <th scope="col">Factuurnummer</th>
                   <th scope="col">Datum</th>
                   <th scope="col">Aantal uren</th>
                   <th scope="col">Project</th>

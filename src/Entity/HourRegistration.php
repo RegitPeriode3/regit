@@ -45,6 +45,9 @@ class HourRegistration
     #[ORM\ManyToOne(inversedBy: 'hourRegistrations')]
     private ?Project $project = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $addToInvoice = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -166,6 +169,18 @@ class HourRegistration
     public function setProject(?Project $project): self
     {
         $this->project = $project;
+
+        return $this;
+    }
+
+    public function isAddToInvoice(): ?bool
+    {
+        return $this->addToInvoice;
+    }
+
+    public function setAddToInvoice(?bool $addToInvoice): self
+    {
+        $this->addToInvoice = $addToInvoice;
 
         return $this;
     }
