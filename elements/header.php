@@ -3,11 +3,7 @@
 
 include '../pages/loginTest.php';
 
-$_SESSION['loggedin'] = TRUE;
-//$username = $_SESSION['username'];
-
-//$_SESSION['password'] = $password;
-//$_SESSION['id'] = $id;
+$username = $_SESSION['username'];
 
 
 ?>

@@ -32,7 +32,7 @@
             </div>
             <div class="modal-body row">
               <!-- Form -->
-              <form class="row col-12 g-3">
+              <form id="newCompanyForm" class="row col-12 g-3">
                 <div class="col-md-6">
                   <label class="form-label">bedrijfsnaam</label>
                   <input type="text" id="NewCompanyName" class="form-control">
@@ -67,7 +67,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuleer</button>
-              <button type="button" class="btn btn-primary" onclick="CreateCompany();" data-bs-dismiss="modal">invoeren</button>
+              <button type="button" id="btnCreateCompany" class="btn btn-primary" onclick="CreateCompany();" data-bs-dismiss="modal">invoeren</button>
             </div>
           </div>
         </div>
@@ -93,7 +93,7 @@
               <h5 class="client-management-title mt-3">bedrijfs gegevens</h5>
             </div><!-- End Page Title -->
             <!-- Form -->
-            <form class="row col-12 g-3 client-form">
+            <form id="client-form" class="row col-12 g-3 client-form">
               <div class="col-md-5">
                 <label class="form-label">bedrijfsnaam</label>
                 <input type="text" name="name" id="CompanyName" class="form-control">
@@ -235,7 +235,7 @@
                 </div>
 
                 <!-- Form -->
-                <form class="row col-12 g-3 user-management-form">
+                <form id="changeUserForm" class="row col-12 g-3 user-management-form">
                   <div class="col-md-6">
                     <label class="form-label">project naam</label>
                     <input type="text" class="form-control">

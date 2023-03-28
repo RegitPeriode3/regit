@@ -40,7 +40,7 @@
                 </div>
                 <div class="modal-body row">
                   <!-- Form -->
-                  <form class="row col-12 g-3">
+                  <form id="newUserForm" class="row col-12 g-3">
 
                     <div class="col-md-6">
                       <label class="form-label">weergavennaam</label>
@@ -100,7 +100,7 @@
         </div>
 
         <!-- Form -->
-        <form class="row col-12 g-3 user-management-form">
+        <form id="userForm" class="row col-12 g-3 user-management-form">
 
           <div class="col-md-6">
             <label class="form-label">weergavennaam</label>

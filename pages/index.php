@@ -1,9 +1,9 @@
 <?php
-session_start();
+//session_start();
 
 include '../pages/loginTest.php';
-//$test = $_SESSION['loggedin'];
-//echo $test;
+
+
 if(!isset($_SERVER['HTTP_REFERER'])){
     // redirect them to your desired location
     header("Location: http://localhost/regit/pages/login.php");
