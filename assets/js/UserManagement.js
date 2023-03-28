@@ -91,15 +91,7 @@ function CreateUser() {
         },
     });
 
-    $('#NewUserDisplayname').val('');
-    $('#NewUserUsername').val('');
-    $('#NewUserAddress').val('');
-    $('#NewUserPassword').val('');
-    $('#NewUserMail').val('');
-    $('#NewUserPhoneNr').val('');
-    $('#NewUserCountry').val('');
-    $('#NewUserLocation').val('');
-    $('#NewUserZipcode').val('');
+    clearForms();
     $('#UserClearance').prop('selectedIndex',0);
     $('#userActive').prop('selectedIndex',0);
 
@@ -126,18 +118,7 @@ function DeleteUser() {
 
 
 
-        $('#UserDisplayName').val('');
-        $('#UserUsername').val('');
-        $('#UserAddress').val('');
-        $('#UserPassword').val('');
-        $('#UserMail').val('');
-        $('#UserPhoneNr').val('');
-        $('#UserCountry').val('');
-        $('#UserLocation').val('');
-        $('#UserZipcode').val('');
-        //$('#userActive').val('');
-        $('#UserClearance').prop('selectedIndex',0);
-        $( "#userActive" ).prop( "checked", false );
+        clearForms();
         console.log(userDelete);
         alert("De gebruiker is verwijderd");
         GetUsers();
@@ -178,4 +159,14 @@ function UpdateUser() {
         alert("De gebruiker gegevens zijn gewijzigd");
         GetUsers();
     }
+}
+
+function clearForms()
+{
+    $("#client-form")[0].reset();
+    $("#newCompanyForm")[0].reset();
+    $("#changeUserForm")[0].reset();
+    $("#newUserForm")[0].reset();
+    $("#userForm")[0].reset();
+
 }

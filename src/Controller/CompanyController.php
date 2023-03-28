@@ -45,6 +45,12 @@ else {
             return $this->json($companyService->UpdateCompany($parameters));
         }
 
+//        #[Route('/lastCompany', name: 'getLastCompanyData', methods: ['GET'])]
+//        public function getLastCompanyData(CompanyService $companyService): Response
+//        {
+//            return $this->json($companyService->getLastCompanydata());
+//        }
+
 
     }
 }

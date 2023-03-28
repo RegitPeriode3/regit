@@ -1,9 +1,9 @@
 <?php
-session_start();
+//session_start();
 
-include 'C:\laragon\www\regit\pages\loginTest.php';
-//$test = $_SESSION['loggedin'];
-//echo $test;
+include '../pages/loginTest.php';
+
+
 if(!isset($_SERVER['HTTP_REFERER'])){
     // redirect them to your desired location
     header("Location: http://localhost/regit/pages/login.php");
