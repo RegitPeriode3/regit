@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include 'C:\xampp\htdocs\regit\pages\loginTest.php';
+include '../pages/loginTest.php';
 //$test = $_SESSION['loggedin'];
 //echo $test;
 if(!isset($_SERVER['HTTP_REFERER'])){
