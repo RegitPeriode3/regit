@@ -49,7 +49,7 @@ else {
         </div>
         <hr>
         <div class="col-10 row">
-          <div class="col-2"><button class="btn btn-primary">Maak factuur</button></div>
+          <div class="col-2"><button class="btn btn-primary" onclick="MakeInvoice()">Maak factuur</button></div>
 <!--          <div class="col-2"><button class="btn btn-primary">pro foma</button></div>-->
         </div>
       </div><!--end menu-->

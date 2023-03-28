@@ -86,3 +86,24 @@ async function toggleFactureren(row){
         },
     });
 }
+
+function MakeInvoice(){
+    var InvoiceRowIds = [];
+
+    $("#tblInvoiceRowCompany tr").each(function(k,v) {
+        if(k != 0){
+            InvoiceRowIds.push(v.id);
+        }
+    });
+
+    var result = axios({
+        method: 'post',
+        url: 'http://localhost/regit/public/invoice/createInvoice',
+        headers: {},
+        data: {
+            invoiceRowIds: InvoiceRowIds
+        },
+    });
+
+    console.log(result);
+}

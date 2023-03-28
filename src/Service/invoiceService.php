@@ -74,12 +74,54 @@ class invoiceService
     }
 
     public function toggleFactureren($rowID, $bool):string{
-        //dd($rowID);
+
         $invoiceRow = $this->hourRegistrationRepository->findOneBy(['id' => $rowID, 'Deleted' => false]);
-        //dd($invoiceRow);
         $invoiceRow->setAddToInvoice($bool);
         $this->em->persist($invoiceRow);
         $this->em->flush();
         return "row is geupdate";
+    }
+
+    public function createInvoice($ids):string{
+//        dd($ids);
+//        $idList = [];
+//        foreach($ids as $k=>$v){
+//            $idList[] = $v;
+//        }
+        //$names = array('John', 'Jane');
+//        $idList = $this->em->getRepository(hourRegistrationRepository::class)->findBy(array('id' => $ids));
+//        dd($idList);
+
+        //$names = array('John', 'Jane');
+//        $invoiceRows = $this->em->getRepository(hourRegistrationRepository::class)->findBy(array('id' => $ids), null, null, null, null, 'name IN (:names)');
+//        $invoiceRows = $this->em->createQuery($dql)->setParameter('names', $ids)->getResult();
+
+//        $invoiceRows = $this->em->getRepository(hourRegistrationRepository::class)->findBy(array('id' => $ids), null, null, null, null, 'name IN (:names)');
+//        $query = $this->em->createQuery($invoiceRows);
+//        $invoiceRows = $query->setParameter('id', $ids)->getResult();
+//        dd($invoiceRows);
+
+//        // Usage:
+//        $ids = array('20', '22');
+//        $sql = "SELECT * FROM users WHERE name IN (:ids)";
+//        $stmt = $this->em->getConnection()->prepare($sql);
+//        $stmt->executeQuery(['ids' => implode(',', $ids)]);
+//        $idList = $stmt->fetchAll();
+//            dd($idList);
+
+//        $ids = array('20', '22');
+//        $sql = "SELECT * FROM users WHERE name IN (:ids)";
+//        $stmt = $this->em->getConnection()->prepare($sql);
+//        $stmt->bindParam(':ids', $ids, \Doctrine\DBAL\Connection::PARAM_STR_ARRAY);
+//        $stmt->execute();
+//        $idList = $stmt->fetchAll();
+//        dd($idList);
+
+
+        $invoiceRow = $this->hourRegistrationRepository->findby(['Deleted' => false, 'addToInvoice' => true]);
+        //$invoiceRow = $this->hourRegistrationRepository->findby(array('id' => $ids));
+        //$invoiceRow = $this->em->getRepository(hourRegistrationRepository::class)->findBy(['Deleted' => false, 'addToInvoice' => true]);
+        dd($invoiceRow);
+        return "Factuur is gemaakt";
     }
 }

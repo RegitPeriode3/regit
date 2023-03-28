@@ -33,4 +33,12 @@ class InvoiceController extends AbstractController
         return $this->json($invoiceService->toggleFactureren($parameters["invoiceRowId"], $parameters["bool"]));
     }
 
+    #[Route('/createInvoice', name: 'createInvoice', methods: ['POST'])]
+    public function createInvoice(invoiceService $invoiceService, Request $request): Response
+    {
+
+        $parameters = json_decode($request->getContent(), true);
+        return $this->json($invoiceService->createInvoice($parameters));
+    }
+
 }
