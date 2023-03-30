@@ -3,10 +3,14 @@
 namespace App\Service;
 
 use App\Entity\HourRegistration;
+use App\Entity\Invoice;
 use App\Repository\CompanyRepository;
 use App\Repository\HourRegistrationRepository;
+use App\Repository\InvoiceRepository;
 use App\Repository\UserRepository;
+use Doctrine\DBAL\Exception;
 use Doctrine\ORM\EntityManagerInterface;
+use Carbon\Carbon;
 
 class invoiceService
 {
@@ -14,6 +18,8 @@ class invoiceService
         private readonly UserRepository $userRepository,
         private readonly CompanyRepository $companyRepository,
         private readonly HourRegistrationRepository $hourRegistrationRepository,
+        private readonly InvoiceRepository $invoiceRepository,
+        private readonly HourRegistrationService $hourRegistrationService,
         private readonly EntityManagerInterface $em
     ){
     }
@@ -36,7 +42,7 @@ class invoiceService
         return $userCompanies;
     }
 
-    public function GetCompanyInvoiceRows($companyId):array
+    public function GetCompanyInvoiceRows(int $companyId):array
     {
         $company = $this->companyRepository->findOneBy(['id' => $companyId, 'Active' => true, 'Deleted' => false]);
         $invoiceRows = $company->getHourRegistrations();
@@ -82,46 +88,67 @@ class invoiceService
         return "row is geupdate";
     }
 
-    public function createInvoice($ids):string{
-//        dd($ids);
-//        $idList = [];
-//        foreach($ids as $k=>$v){
-//            $idList[] = $v;
-//        }
-        //$names = array('John', 'Jane');
-//        $idList = $this->em->getRepository(hourRegistrationRepository::class)->findBy(array('id' => $ids));
-//        dd($idList);
 
-        //$names = array('John', 'Jane');
-//        $invoiceRows = $this->em->getRepository(hourRegistrationRepository::class)->findBy(array('id' => $ids), null, null, null, null, 'name IN (:names)');
-//        $invoiceRows = $this->em->createQuery($dql)->setParameter('names', $ids)->getResult();
+    public function createInvoice($ids):array{
+        $invoice = new Invoice();
 
-//        $invoiceRows = $this->em->getRepository(hourRegistrationRepository::class)->findBy(array('id' => $ids), null, null, null, null, 'name IN (:names)');
-//        $query = $this->em->createQuery($invoiceRows);
-//        $invoiceRows = $query->setParameter('id', $ids)->getResult();
-//        dd($invoiceRows);
+        //get max fact nr +1 als nieuwe factnr
+        $connection = $this->em->getConnection();
+        $invoiceNr = $connection->executeQuery("SELECT MAX(invoice_number)+1 FROM invoice");
+        $invoiceNr = $invoiceNr->fetchOne();
 
-//        // Usage:
-//        $ids = array('20', '22');
-//        $sql = "SELECT * FROM users WHERE name IN (:ids)";
-//        $stmt = $this->em->getConnection()->prepare($sql);
-//        $stmt->executeQuery(['ids' => implode(',', $ids)]);
-//        $idList = $stmt->fetchAll();
-//            dd($idList);
+        //set values for new invoice
+        $invoice->setInvoiceNumber($invoiceNr);
+        $invoice->setBTW(21);
+        $invoice->setDate(Carbon::parse(date("Y-m-d")));
+        $invoice->setDeleted(0);
 
-//        $ids = array('20', '22');
-//        $sql = "SELECT * FROM users WHERE name IN (:ids)";
-//        $stmt = $this->em->getConnection()->prepare($sql);
-//        $stmt->bindParam(':ids', $ids, \Doctrine\DBAL\Connection::PARAM_STR_ARRAY);
-//        $stmt->execute();
-//        $idList = $stmt->fetchAll();
-//        dd($idList);
+        $this->em->persist($invoice);
+        $this->em->flush();
 
+        //returns id of invoice just created
+        $invoiceId = $invoice->getId();
 
-        $invoiceRow = $this->hourRegistrationRepository->findby(['Deleted' => false, 'addToInvoice' => true]);
-        //$invoiceRow = $this->hourRegistrationRepository->findby(array('id' => $ids));
-        //$invoiceRow = $this->em->getRepository(hourRegistrationRepository::class)->findBy(['Deleted' => false, 'addToInvoice' => true]);
-        dd($invoiceRow);
-        return "Factuur is gemaakt";
+        //sets the new invoice id to the corresponding invoice rows
+        return  $this->AssignInvoiceRows($ids, $invoiceId);
+        //return '';
     }
+
+    private function AssignInvoiceRows($ids, $invoiceId):array{
+        //turns the array into a string seperated by ,
+        $idString = implode(',', $ids['invoiceRowIds']);
+
+        //updates the invoice rows with the invoice id
+        $connection = $this->em->getConnection();
+        $connection->executeQuery("UPDATE hour_registration SET invoice_id = " . $invoiceId . " WHERE id IN ($idString) AND deleted = 0 AND add_to_Invoice = 1 AND invoice_id IS NULL");
+
+        //$idList = $connection->executeQuery("SELECT company_id FROM hour_registration WHERE id");
+        $companyId = $this->hourRegistrationRepository->findOneBy(["id" => $ids['invoiceRowIds'][0]])->getCompany()->getId();
+        //$companyId = $singleInvoiceRow->getCompany()->getId();
+
+        return $this->GetCompanyInvoiceRows($companyId);
+    }
+
+//    public function GetInvoiceData($ids):string{
+//
+//        $test = implode(',', $ids['invoiceRowIds']);
+//        $connection = $this->em->getConnection();
+//
+//        $invoiceRowInfo = $connection->executeQuery("SELECT hr.*, us.display_name, ac.activity, ac.invoice_description, pr.name, pr.description
+//         FROM hour_registration hr
+//         INNER JOIN user us ON hr.user_id = us.id
+//         INNER JOIN activity ac ON hr.activity_id = ac.id
+//         LEFT JOIN project pr ON hr.project_id = pr.id
+//         WHERE hr.id IN ($test) AND hr.deleted = 0 AND hr.add_to_invoice = 1 AND hr.invoice_id IS NULL");
+//
+//        $factData['invoiceRows'] = $invoiceRowInfo->fetchAllAssociative();
+//
+//        $companyInfo = $connection->executeQuery("SELECT * FROM company
+//         WHERE id = ".$factData['invoiceRows'][0]['company_id']." AND deleted = 0");
+//
+//        $factData['invoiceData'] = $companyInfo->fetchAllAssociative();
+//        dd($factData);
+//
+//        return "Factuur is gemaakt";
+//    }
 }

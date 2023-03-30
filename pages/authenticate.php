@@ -1,5 +1,5 @@
 <?php
-session_start();
+if(session_status() === PHP_SESSION_NONE) session_start();
 // Change this to your connection info.
 $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'root';

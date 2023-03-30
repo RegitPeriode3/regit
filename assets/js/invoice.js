@@ -35,10 +35,15 @@ function toggleClientList() {
     showInvoiceRows($(this));
 }
 
-function showInvoiceRows($el) {
-    var companyInfo = $el.data();
-    selectedCompanyId = companyInfo.companyId;
-    console.log(selectedCompanyId);
+function showInvoiceRows($el, refresh = false) {
+    var companyInfo = '';
+    if(refresh){
+        companyInfo = $el;
+        selectedCompanyId = companyInfo[0]['companyId'];
+    }else {
+        companyInfo = $el.data();
+        selectedCompanyId = companyInfo.companyId;
+    }
 
     $('#tblInvoiceRowCompany tbody').html('');
 
@@ -87,7 +92,7 @@ async function toggleFactureren(row){
     });
 }
 
-function MakeInvoice(){
+async function MakeInvoice(){
     var InvoiceRowIds = [];
 
     $("#tblInvoiceRowCompany tr").each(function(k,v) {
@@ -96,7 +101,7 @@ function MakeInvoice(){
         }
     });
 
-    var result = axios({
+    var result = await axios({
         method: 'post',
         url: 'http://localhost/regit/public/invoice/createInvoice',
         headers: {},
@@ -105,5 +110,6 @@ function MakeInvoice(){
         },
     });
 
-    console.log(result);
+    result = result.data;
+    showInvoiceRows(result, true);
 }

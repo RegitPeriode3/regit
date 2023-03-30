@@ -10,7 +10,7 @@ use App\Repository\ProjectRepository;
 use App\Repository\UserRepository;
 use Carbon\Carbon;
 use Doctrine\ORM\EntityManagerInterface;
-
+if(session_status() === PHP_SESSION_NONE) session_start();
 class HourRegistrationService
 {
     public function __construct(
@@ -36,8 +36,9 @@ class HourRegistrationService
     }
 
     //haalt de companies op waar een user aan gekoppeld is
-    public function GetCompanyPerUser($id):array
+    public function GetCompanyPerUser():array
     {
+        $id = $_SESSION['id'];
         $user = $this->userRepository->findOneBy(['id' => $id, 'Active' => true, 'Deleted' => false]);//haalt de user op
         $userEmployees = $user->getEmployees();//haalt alle employees op van deze user
         $userCompanies = [];
@@ -109,7 +110,7 @@ class HourRegistrationService
         }
 
         $activity = $this->activityRepository->findOneBy(['id'=>$parameters['Activity']]);
-        $user = $this->userRepository->findOneBy(['id'=>4]);
+        $user = $this->userRepository->findOneBy(['id'=>$_SESSION['id']]);
         $company = $this->companyRepository->findOneBy(['id'=>$parameters['Company']]);
 
         //Deze check is in principe niet nodig omdat dit niet mogenlijk zou moeten zijn,
