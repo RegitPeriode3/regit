@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 // Change this to your connection info.
 $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'root';
@@ -18,6 +18,7 @@ if ( !isset($_POST['username'], $_POST['password']) ) {
 // Could not get the data that should have been sent.
     //exit('Please fill both the username and password fields!');
 }
+
 
 // preparing the SQL statement will prevent SQL injection.
 if ($stmt = $con->prepare('SELECT id,user_name, password FROM user WHERE user_name = ?')) {

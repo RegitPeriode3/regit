@@ -1,3 +1,5 @@
+
+
 $(document).ready(function () {
     $('#UserManagementNav').on('click', GetUsers);
     $("#UserManageList").on("click", ' li', toggleUserList);
@@ -88,6 +90,11 @@ function CreateUser() {
             clearence: $('#NewUserClearance').val()
         },
     });
+
+    clearForms();
+    $('#UserClearance').prop('selectedIndex',0);
+    $('#userActive').prop('selectedIndex',0);
+
     console.log(userNew);
     alert("De nieuwe gebruiker is opgeslagen");
     GetUsers();
@@ -107,6 +114,11 @@ function DeleteUser() {
                 id: selectedUserId
             },
         });
+
+
+
+
+        clearForms();
         console.log(userDelete);
         alert("De gebruiker is verwijderd");
         GetUsers();
@@ -147,4 +159,14 @@ function UpdateUser() {
         alert("De gebruiker gegevens zijn gewijzigd");
         GetUsers();
     }
+}
+
+function clearForms()
+{
+    $("#client-form")[0].reset();
+    $("#newCompanyForm")[0].reset();
+    $("#changeUserForm")[0].reset();
+    $("#newUserForm")[0].reset();
+    $("#userForm")[0].reset();
+
 }

@@ -20,13 +20,14 @@ class CompanyService
 {
     public function __construct(
         private readonly HourRegistrationRepository $hourRegistrationRepository,
-        private readonly EmployeeRepository $employeeRepository,
-        private readonly UserRepository $userRepository,
-        private readonly CompanyRepository $companyRepository,
-        private readonly ActivityRepository $activityRepository,
-        private readonly ProjectRepository $projectRepository,
-        private readonly EntityManagerInterface $em
-    ) {
+        private readonly EmployeeRepository         $employeeRepository,
+        private readonly UserRepository             $userRepository,
+        private readonly CompanyRepository          $companyRepository,
+        private readonly ActivityRepository         $activityRepository,
+        private readonly ProjectRepository          $projectRepository,
+        private readonly EntityManagerInterface     $em
+    )
+    {
     }
 
     public function GetAllCompanyInfo(): array
@@ -108,4 +109,30 @@ class CompanyService
         }
         return 'Er is iets fout gegaan probeer opnieuw';
     }
+
+//    public function getLastCompanydata(): array
+//    {
+//        $lastCompany = $this->companyRepository->findBy(array(), array('id' => 'DESC'), 1, 0);
+//       //$lastCompany = $this->companyRepository->findBy(['Deleted' => false]);
+//        $lastCompanyData = [];
+//
+//
+//        $lastCompanyData[] = [
+//            'id' => $lastCompany->getId(),
+//            'name' => $lastCompany->getName(),
+//            'phoneNr' => $lastCompany->getPhoneNr(),
+//            'country' => $lastCompany->getCountry(),
+//            'zipcode' => $lastCompany->getZipcode(),
+//            'location' => $lastCompany->getLocation(),
+//            'active' => $lastCompany->isActive(),
+//            'invoiceAdress' => $lastCompany->getInvoiceAddress(),
+//            'address' => $lastCompany->getAddress()
+//        ];
+//
+//        return $lastCompanyData;
+//    }
+
+
+
+
 }

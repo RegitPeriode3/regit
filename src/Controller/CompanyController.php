@@ -40,12 +40,18 @@ else {
             return $this->json($companyService->deleteCompany($parameters));
         }
 
-        #[Route('/update', name: 'deleteCompany', methods: ['POST'])]
+        #[Route('/update', name: 'update', methods: ['POST'])]
         public function UpdateCompany(CompanyService $companyService, Request $request): Response
         {
             $parameters = json_decode($request->getContent(), true);
             return $this->json($companyService->UpdateCompany($parameters));
         }
+
+//        #[Route('/lastCompany', name: 'getLastCompanyData', methods: ['GET'])]
+//        public function getLastCompanyData(CompanyService $companyService): Response
+//        {
+//            return $this->json($companyService->getLastCompanydata());
+//        }
 
 
     }
