@@ -20,6 +20,7 @@ class invoiceService
         private readonly HourRegistrationRepository $hourRegistrationRepository,
         private readonly InvoiceRepository $invoiceRepository,
         private readonly HourRegistrationService $hourRegistrationService,
+        private readonly PdfService $pdfService,
         private readonly EntityManagerInterface $em
     ){
     }
@@ -43,7 +44,7 @@ class invoiceService
         return $userCompanies;
     }
 
-    public function GetCompanyInvoiceRows(int $companyId):array
+    public function GetCompanyInvoiceRows($companyId):array
     {
         $company = $this->companyRepository->findOneBy(['id' => $companyId, 'Active' => true, 'Deleted' => false]);
         $invoiceRows = $company->getHourRegistrations();
@@ -111,11 +112,11 @@ class invoiceService
         $invoiceId = $invoice->getId();
 
         //sets the new invoice id to the corresponding invoice rows
-        return  $this->AssignInvoiceRows($ids, $invoiceId);
+        return  $this->AssignInvoiceRows($ids, $invoiceId, $invoiceNr);
         //return '';
     }
 
-    private function AssignInvoiceRows($ids, $invoiceId):array{
+    private function AssignInvoiceRows($ids, $invoiceId, $invoiceNr):array{
         //turns the array into a string seperated by ,
         $idString = implode(',', $ids['invoiceRowIds']);
 
@@ -126,6 +127,7 @@ class invoiceService
         //$idList = $connection->executeQuery("SELECT company_id FROM hour_registration WHERE id");
         $companyId = $this->hourRegistrationRepository->findOneBy(["id" => $ids['invoiceRowIds'][0]])->getCompany()->getId();
         //$companyId = $singleInvoiceRow->getCompany()->getId();
+        $this->pdfService->CreatePdf($ids, $invoiceNr);
 
         return $this->GetCompanyInvoiceRows($companyId);
     }

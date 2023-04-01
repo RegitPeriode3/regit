@@ -24,9 +24,9 @@ class PdfService
         return [];
     }
 
-    public function CreatePdf()
+    public function CreatePdf($ids, $invoiceNr)
     {
-        $this->CreateContent($this->GetInvoiceData());
+        $this->CreateContent($this->GetInvoiceData($ids), $invoiceNr);
 //        $this->FillContent();
     }
 
@@ -35,9 +35,9 @@ class PdfService
         return 0;
     }
 
-    public function getinvoicedata($ids): array
+    private function getinvoicedata($ids): array
     {
-        $test = implode(',', $ids['invoicerowids']);
+        $test = implode(',', $ids['invoiceRowIds']);
         $connection = $this->em->getconnection();
 
         $invoicerowinfo = $connection->executequery(
@@ -46,22 +46,21 @@ class PdfService
          inner join user us on hr.user_id = us.id
          inner join activity ac on hr.activity_id = ac.id
          left join project pr on hr.project_id = pr.id
-         where hr.id in ($test) and hr.deleted = 0 and hr.add_to_invoice = 1 and hr.invoice_id is null"
+         where hr.id in ($test) and hr.deleted = 0 and hr.add_to_invoice = 1"
+         //where hr.id in ($test) and hr.deleted = 0 and hr.add_to_invoice = 1 and hr.invoice_id = $invoiceId"
         );
 
         $factdata['invoicerows'] = $invoicerowinfo->fetchallassociative();
-
         $companyinfo = $connection->executequery(
             "select * from company
          where id = " . $factdata['invoicerows'][0]['company_id'] . " and deleted = 0"
         );
 
         $factdata['invoicedata'] = $companyinfo->fetchallassociative();
-dd($factdata);
         return $factdata;
     }
 
-    private function CreateContent($Data)
+    private function CreateContent($Data, $invoiceNr)
     {
         $html = '';
 
@@ -81,21 +80,17 @@ dd($factdata);
 
         //adres naam en factuur adres
         $html .= "<div class=\"adres\"><h4>Factuuradres</h4></div>";
-        $html .= "<div class=\"adres\">" . nl2br($factuurData['FactuurData']['Factuuradres']) . "</div>";
+        $html .= "<div class=\"adres\">" . nl2br($Data['invoicedata'][0]['invoice_address']) . "</div>";
 
         //rit overzicht label en datum
-        $html .= "<div class=\"Datum\">Factuurnummer: " . $factuurNummer . " </div><br>";
+        $html .= "<div class=\"Datum\">Factuurnummer: " . $invoiceNr . " </div><br>";
         $html .= "<div class=\"Datum\">Datum: " . date("d-m-Y") . "</div><br>";
 
         //overzicht tabel ()headers)
         $html .= "<div class=\"table\"><table class=\"bestelling\" border=\"0\" cellpadding=\"0px\" cellspacing=\"0px\" width=\"730\" float=\"right\">";
         $html .= "<tr>
-            <td width=\"75\"><strong>Klantnummer</strong></td>
-            <td width=\"75\"><strong>Omschrijving</strong></td>
-            <td width=\"75\"><strong>Datum</strong></td>
-            <td width=\"75\"><strong>Aantal</strong></td>
-            <td width=\"125\"><strong>Prijs</strong></td>
-            <td width=\"35\"  align='right'><strong>Bedrag excl. BTW</strong></td>
+            <td width=\"700\"><strong>Omschrijving</strong></td>
+            <td width=\"30\"><strong>Bedrag</strong></td>
             </tr>";
         $html .= "<tr><td colspan=\"8\"><hr/></td></tr>";
 
@@ -126,14 +121,6 @@ dd($factdata);
             'margin_footer' => 10
         ]);
 
-//        $pdf = new \Mpdf\Mpdf([
-//            'margin_left' => 20,
-//            'margin_right' => 15,
-//            'margin_top' => 48,
-//            'margin_bottom' => 25,
-//            'margin_header' => 30,
-//            'margin_footer' => 10
-//        ]);
         $pdf->allow_charset_conversion = true;
 
         //achtegrond afbeelding instellen
@@ -141,19 +128,19 @@ dd($factdata);
         //$pdf->SetDefaultBodyCSS('background', "url('$image')");
         //$pdf->SetDefaultBodyCSS('background-image-resize', 6);
 
-
         //html naar pdf omzetten
         $pdf->WriteHTML($html);
 
         //pad voor locale opslag
-        $filename = "factuur-" . $factuurNummer;
-        $savepath = $_SERVER['DOCUMENT_ROOT'] . "/portal/temp/Factuur/" . $filename . ".pdf";
+        $filename = "factuur-" . $invoiceNr;
+        $savepath = "C:/wamp64/www/regit/temp/Invoices/". $filename . ".pdf";//path hardcoded needs change
+        //$savepath = "../temp/Invoices";//path hardcoded needs change
+        //$savepath = $_SERVER['DOCUMENT_ROOT'] . "/temp/Factuur/" . $filename . ".pdf";
 
         //schrijf de pdf naar de aangegeven locatie
         $pdf->Output($savepath, "F");
         ob_end_flush();
 
-        echo $savepath;
         return $savepath;
     }
 
@@ -163,21 +150,17 @@ dd($factdata);
         $html = '';
         $totExBtw = 0;
 
-        foreach ($Data['FactuurRegels'] as $factuurRegel) {
-            $bedrag = ($factuurRegel['AantalPersonen'] * $factuurRegel['Tarief']);
-            $totExBtw += $bedrag;
+        foreach ($Data['invoicerows'] as $invoiceRow) {
+            $Price = ($invoiceRow['time'] * $invoiceRow['hourly_cost']);
+            $totExBtw += $Price;
 
             $fmt = numfmt_create('nl_NL', NumberFormatter::CURRENCY);
-            $bedrag = numfmt_format_currency($fmt, $bedrag, "EUR");
+            $Price = numfmt_format_currency($fmt, $Price, "EUR");
             //$data['BevestigdBedrag']= money_format("%.2n",$data['BevestigdBedrag']);
 
             $html .= "<tr>
-              <td width=\"125\"> $factuurRegel[klant] </td>
-              <td width=\"175\"> $factuurRegel[Omschrijving] </td>
-              <td width=\"125\"> $factuurRegel[Datum] </td>
-              <td width=\"55\"> $factuurRegel[AantalPersonen] </td>
-              <td width=\"75\"> $factuurRegel[Tarief] </td>
-              <td width=\"125\" align='right'> $bedrag </td>
+              <td width=\"700\"> $invoiceRow[invoice_description] </td>
+              <td width=\"30\" align='right'> $Price </td>
             </tr>";
         }
 
