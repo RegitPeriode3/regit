@@ -12,10 +12,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class InvoiceController extends AbstractController
 {
 
-    #[Route('/SetCompaniesInvoice/{id}', name: 'SetCompaniesInvoice', methods: ['GET'])]
-    public function SetCompaniesInvoice($id, invoiceService $invoiceService): Response
+    #[Route('/SetCompaniesInvoice', name: 'SetCompaniesInvoice', methods: ['GET'])]
+    public function SetCompaniesInvoice(invoiceService $invoiceService): Response
     {
-        return $this->json($invoiceService->SetCompaniesInvoice($id));
+        return $this->json($invoiceService->SetCompaniesInvoice());
     }
 
     #[Route('/GetCompanyInvoiceRows/{companyId}', name: 'GetCompanyInvoiceRows', methods: ['GET'])]

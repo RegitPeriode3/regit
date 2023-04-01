@@ -7,7 +7,7 @@ var selectedCompanyId;
 
 function SetCompaniesInvoice(){
     $('#clientListInvoice').html('');
-    axios.get('http://localhost/regit/public/invoice/SetCompaniesInvoice/'+4)//let op hier moet nog een variable als id komen en niet hardcoded
+    axios.get('http://localhost/regit/public/invoice/SetCompaniesInvoice')
         .then(function (response) {
             var companies = response.data;
             $('#clientListInvoice').empty();

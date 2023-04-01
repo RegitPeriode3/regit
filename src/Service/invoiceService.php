@@ -24,8 +24,9 @@ class invoiceService
     ){
     }
 
-    public function SetCompaniesInvoice($id):array
+    public function SetCompaniesInvoice():array
     {
+        $id = $_SESSION['id'];
         $user = $this->userRepository->findOneBy(['id' => $id, 'Active' => true, 'Deleted' => false]);//haalt de user op
         $userEmployees = $user->getEmployees();//haalt alle employees op van deze user
         $userCompanies = [];
@@ -128,27 +129,4 @@ class invoiceService
 
         return $this->GetCompanyInvoiceRows($companyId);
     }
-
-//    public function GetInvoiceData($ids):string{
-//
-//        $test = implode(',', $ids['invoiceRowIds']);
-//        $connection = $this->em->getConnection();
-//
-//        $invoiceRowInfo = $connection->executeQuery("SELECT hr.*, us.display_name, ac.activity, ac.invoice_description, pr.name, pr.description
-//         FROM hour_registration hr
-//         INNER JOIN user us ON hr.user_id = us.id
-//         INNER JOIN activity ac ON hr.activity_id = ac.id
-//         LEFT JOIN project pr ON hr.project_id = pr.id
-//         WHERE hr.id IN ($test) AND hr.deleted = 0 AND hr.add_to_invoice = 1 AND hr.invoice_id IS NULL");
-//
-//        $factData['invoiceRows'] = $invoiceRowInfo->fetchAllAssociative();
-//
-//        $companyInfo = $connection->executeQuery("SELECT * FROM company
-//         WHERE id = ".$factData['invoiceRows'][0]['company_id']." AND deleted = 0");
-//
-//        $factData['invoiceData'] = $companyInfo->fetchAllAssociative();
-//        dd($factData);
-//
-//        return "Factuur is gemaakt";
-//    }
 }
