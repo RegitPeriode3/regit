@@ -35,14 +35,16 @@ function toggleClientList() {
     showInvoiceRows($(this));
 }
 
-function showInvoiceRows($el, refresh = false) {
+function showInvoiceRows($el = 0, refresh = false) {
     var companyInfo = '';
-    if(refresh){
-        companyInfo = $el;
-        selectedCompanyId = companyInfo[0]['companyId'];
-    }else {
-        companyInfo = $el.data();
-        selectedCompanyId = companyInfo.companyId;
+    if($el != 0){
+        if(refresh){
+            companyInfo = $el;
+            selectedCompanyId = companyInfo[0]['companyId'];
+        }else {
+            companyInfo = $el.data();
+            selectedCompanyId = companyInfo.companyId;
+        }
     }
 
     $('#tblInvoiceRowCompany tbody').html('');

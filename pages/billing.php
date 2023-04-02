@@ -37,11 +37,11 @@ else {
         <div class="col-10 row mb-3 mt-4">
           <div class="col-md-2">
             <label class="form-label">van</label>
-            <input type="date" id="dateFromInvoice" class="form-control" value="<?php echo date("Y-m-d", strtotime(date("Y-m-d"). ' - 14 days')); ?>">
+            <input type="date" id="dateFromInvoice" onchange="showInvoiceRows();" class="form-control" value="<?php echo date("Y-m-d", strtotime(date("Y-m-d"). ' - 14 days')); ?>">
           </div>
           <div class="col-md-2">
             <label class="form-label">tot</label>
-            <input type="date" id="dateTillInvoice" class="form-control" value="<?php echo date("Y-m-d"); ?>">
+            <input type="date" id="dateTillInvoice" onchange="showInvoiceRows();" class="form-control" value="<?php echo date("Y-m-d"); ?>">
           </div>
           <div class="filter col-md-3 mb-3 billing-search">
             <input type="text" class="form-control billing-search" placeholder="zoeken.." onkeyup="FilterNextUlParent($(this));">
