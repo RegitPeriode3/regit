@@ -1,7 +1,9 @@
 $(document).ready(function () {
     $('#CompanyManagementNav').on('click', GetCompanies);
     $("#CompanyManageList").on("click", ' li', toggleCompanyList);
-    // $("#CompanyManagementNav").on("click", ' li', getLastCompanyData);
+    $("#btnCreateCompany").on("click", getLastCompanyData);
+    //$("#UpdateCustomerBtn").on("click", getLastCompanyData);
+
 
 });
 
@@ -29,7 +31,6 @@ function GetCompanies() {
 
             list.data(CompanyItem);
 
-
         })
         .catch(function (error) {
             //$.alert('error');
@@ -45,13 +46,13 @@ function toggleCompanyList() {
     showCompanyInfo($(this));
 }
 
-//$('#CompanyManageList li:last-child').css("background-color", "lightgreen");
 function showCompanyInfo($el) {
     //console.log($el);
     var companyInfo = $el.data();
     selectedCompanyId = companyInfo.id;
 
     $.each(companyInfo, function (k, v) {
+
         $("input[name=" + k + "]").val(v);
         $("textarea[name=" + k + "]").val(v);
 
@@ -150,33 +151,33 @@ function clearForms()
 
 }
 
-// function getLastCompanyData() {
-//     axios.get('http://localhost/regit/public/company/lastCompany')
-//         .then(function (response) {
-//             console.log(response.data);
-//             var CompanyItem = response.data;
-//             //var CompanyItem = JSON.parse(response.data);
-//
-//             $('#CompanyManageList').empty();
-//             var list = $('#CompanyManageList');
-//             $.each(CompanyItem, function (k, v) {
-//                 var entry = document.createElement('li');
-//                 entry.className = 'list-group-item';
-//                 entry.innerHTML = v['name'];
-//                 entry.id = v['id'];
-//                 //console.log(entry.id);
-//                 list.append(entry);
-//                 $('#CompanyManageList li').last().data(v);
-//
-//             })
-//
-//             list.data(CompanyItem);
-//
-//
-//         })
-//         .catch(function (error) {
-//             //$.alert('error');
-//             console.log(error)
-//         });
-//
-// }
+
+function getLastCompanyData() {
+    axios.get('http://localhost/regit/public/company/lastCompany')
+        .then(function (response) {
+            var lastUserData = response.data;
+            //console.log(lastUserData)
+            $("#CompanyManageList li").removeClass("active");
+            $('#CompanyManageList li').last().addClass("active");
+
+            selectedCompanyData = $('#CompanyManageList li').last().data();
+            //console.log(selectedCompanyData)
+            $.each(selectedCompanyData, function (k, v) {
+
+                $("input[name=" + k + "]").val(v);
+                $("textarea[name=" + k + "]").val(v);
+
+                if (selectedCompanyData['active'] === true) {
+                    $('#CompanyActive').prop('checked', true);
+                } else {
+                    $('#CompanyActive').prop('checked', false);
+                }
+            });
+        })
+        .catch(function (error) {
+            //$.alert('error');
+            console.log(error)
+        });
+
+}
+

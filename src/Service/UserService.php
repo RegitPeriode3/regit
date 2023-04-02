@@ -150,4 +150,30 @@ class UserService
         }
         return 'Er is iets fout gegaan probeer opnieuw';
     }
+
+    public function getLastUserData(): array
+    {
+        $lastUser = $this->userRepository->findBy(array(), array('id' => 'DESC'), 1, 0);
+        $lastUserData = [];
+
+        foreach ($lastUser as $user) {
+            $userClearance = $user->getClearence();
+            $lastUserData[] = [
+                'id' => $user->getId(),
+                'displayName' => $user->getDisplayName(),
+                'userName' => $user->getUserName(),
+                'password' => $user->getPassword(),
+                'email' => $user->getEmail(),
+                'phoneNr' => $user->getPhoneNr(),
+                'country' => $user->getCountry(),
+                'location' => $user->getLocation(),
+                'zipcode' => $user->getZipcode(),
+                'address' => $user->getAddress(),
+                'active' => $user->isActive(),
+                'clearence' => $userClearance->getId()
+            ];
+        }
+        return $lastUserData;
+    }
+
 }

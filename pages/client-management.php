@@ -173,24 +173,8 @@
                 <div class="filter mb-3">
                   <input type="text" class="form-control" placeholder="filter.." onkeyup="FilterNextUlParent($(this));">
                 </div>
-                <ul class="list-group activity-scroll card">
-                  <li class="list-group-item active" aria-current="true">An active item</li>
-                  <li class="list-group-item">A second item</li>
-                  <li class="list-group-item">A third item</li>
-                  <li class="list-group-item">A fourth item</li>
-                  <li class="list-group-item disabled">A fifth item</li>
-                  <li class="list-group-item">A second item</li>
-                  <li class="list-group-item">A third item</li>
-                  <li class="list-group-item">A fourth item</li>
-                  <li class="list-group-item disabled">A fifth item</li>
-                  <li class="list-group-item">A second item</li>
-                  <li class="list-group-item">A third item</li>
-                  <li class="list-group-item">A fourth item</li>
-                  <li class="list-group-item disabled">A fifth item</li>
-                  <li class="list-group-item">A second item</li>
-                  <li class="list-group-item">A third item</li>
-                  <li class="list-group-item">A fourth item</li>
-                  <li class="list-group-item disabled">A fifth item</li>
+                <ul id="projectManageList"   class="list-group activity-scroll card">
+
                 </ul>
               </div>
               <!--end activity list-->
@@ -203,7 +187,7 @@
                     <h5 class="user-management-title">Projecten toevoegen / aanpassen</h5>
                   </div>
                   <div class="col-4">
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#projectModal" class="btn btn-primary float-right"><i class="bi bi-plus"></i> nieuw project</button>
+                    <button type="button" id="btnNewProject" data-bs-toggle="modal" data-bs-target="#projectModal" class="btn btn-primary float-right"><i class="bi bi-plus"></i> nieuw project</button>
                   </div>
 
                   <!-- Modal -->
@@ -212,7 +196,7 @@
                       <div class="modal-content">
                         <div class="modal-header">
                           <span class="modal-title new-user-title">Nieuw project</span>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          <button type="button"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body row">
                           <div class="col-md-6">
@@ -247,10 +231,10 @@
                   <hr class="mt-5 mb-4">
                   <div class="col-12 row">
                     <div class="col-5">
-                      <button type="submit" class="btn btn-primary float-right">Aanpassingen opslaan</button>
+                      <button type="submit" id="btnEditProject" class="btn btn-primary float-right">Aanpassingen opslaan</button>
                     </div>
                     <div class="col-7">
-                      <button type="submit" class="btn btn-danger float-left">Geslecteerd project verwijderen</button>
+                      <button type="submit" id="btnDeleteProject" class="btn btn-danger float-left">Geslecteerd project verwijderen</button>
                     </div>
                   </div>
                 </form><!-- End activity Form -->

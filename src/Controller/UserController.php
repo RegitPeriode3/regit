@@ -9,12 +9,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 
-if(!isset($_SERVER['HTTP_REFERER'])){
-    // redirect them to your desired location
-    header("Location: http://localhost/regit/pages/login.php");
-    exit;
-}
-else {
 
     #[Route('/user', name: 'app_user')]
     class UserController extends AbstractController
@@ -59,7 +53,15 @@ else {
             $parameters = json_decode($request->getContent(), true);
             return $this->json($userService->DeleteUser($parameters));
         }
-    }
+
+        #[Route('/lastUser', name: 'lastUserData', methods: ['GET'])]
+        public function getLastUserData(UserService $userService): Response
+        {
+            return $this->json($userService->getLastUserData());
+        }
+
+
 
 
     }
+

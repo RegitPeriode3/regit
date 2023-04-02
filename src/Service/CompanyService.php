@@ -110,27 +110,26 @@ class CompanyService
         return 'Er is iets fout gegaan probeer opnieuw';
     }
 
-//    public function getLastCompanydata(): array
-//    {
-//        $lastCompany = $this->companyRepository->findBy(array(), array('id' => 'DESC'), 1, 0);
-//       //$lastCompany = $this->companyRepository->findBy(['Deleted' => false]);
-//        $lastCompanyData = [];
-//
-//
-//        $lastCompanyData[] = [
-//            'id' => $lastCompany->getId(),
-//            'name' => $lastCompany->getName(),
-//            'phoneNr' => $lastCompany->getPhoneNr(),
-//            'country' => $lastCompany->getCountry(),
-//            'zipcode' => $lastCompany->getZipcode(),
-//            'location' => $lastCompany->getLocation(),
-//            'active' => $lastCompany->isActive(),
-//            'invoiceAdress' => $lastCompany->getInvoiceAddress(),
-//            'address' => $lastCompany->getAddress()
-//        ];
-//
-//        return $lastCompanyData;
-//    }
+    public function getLastCompanydata(): array
+    {
+        $lastCompany = $this->companyRepository->findBy(array(), array('id' => 'DESC'), 1, 0);
+        $lastCompanyData = [];
+
+        foreach ($lastCompany as $company) {
+            $lastCompanyData[] = [
+                'id' => $company->getId(),
+                'name' => $company->getName(),
+                'phoneNr' => $company->getPhoneNr(),
+                'country' => $company->getCountry(),
+                'zipcode' => $company->getZipcode(),
+                'location' => $company->getLocation(),
+                'active' => $company->isActive(),
+                'invoiceAdress' => $company->getInvoiceAddress(),
+                'address' => $company->getAddress()
+            ];
+        }
+        return $lastCompanyData;
+    }
 
 
 
