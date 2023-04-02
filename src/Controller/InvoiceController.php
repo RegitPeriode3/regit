@@ -18,10 +18,10 @@ class InvoiceController extends AbstractController
         return $this->json($invoiceService->SetCompaniesInvoice());
     }
 
-    #[Route('/GetCompanyInvoiceRows/{companyId}', name: 'GetCompanyInvoiceRows', methods: ['GET'])]
-    public function GetCompanyInvoiceRows($companyId, invoiceService $invoiceService): Response
+    #[Route('/GetCompanyInvoiceRows/{companyId}/{dateFrom}/{dateTill}/', name: 'GetCompanyInvoiceRows', methods: ['GET'])]
+    public function GetCompanyInvoiceRows($companyId, $dateFrom, $dateTill, invoiceService $invoiceService): Response
     {
-        return $this->json($invoiceService->GetCompanyInvoiceRows($companyId));
+        return $this->json($invoiceService->GetCompanyInvoiceRows($companyId, $dateFrom, $dateTill));
     }
 
     #[Route('/toggleFactureren', name: 'toggleFactureren', methods: ['POST'])]
@@ -36,7 +36,6 @@ class InvoiceController extends AbstractController
     #[Route('/createInvoice', name: 'createInvoice', methods: ['POST'])]
     public function createInvoice(invoiceService $invoiceService, Request $request): Response
     {
-
         $parameters = json_decode($request->getContent(), true);
         return $this->json($invoiceService->createInvoice($parameters));
     }

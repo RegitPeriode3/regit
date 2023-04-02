@@ -17,7 +17,7 @@
             <form id="hourRegForm" class="row g-3">
               <div class="col-md-12">
                 <label class="form-label">Datum</label>
-                <input type="date" id="hourRegDate" value='<?php echo date("Y-m-d"); ?>' class="form-control">
+                <input type="date" id="hourRegDate" onchange="" value='<?php echo date("Y-m-d"); ?>' class="form-control">
               </div>
               <div class="col-md-6">
                 <label class="form-label">Van</label>

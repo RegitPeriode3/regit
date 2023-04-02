@@ -44,14 +44,17 @@ class invoiceService
         return $userCompanies;
     }
 
-    public function GetCompanyInvoiceRows($companyId):array
+    public function GetCompanyInvoiceRows($companyId, $dateFrom, $dateTill):array
     {
         $company = $this->companyRepository->findOneBy(['id' => $companyId, 'Active' => true, 'Deleted' => false]);
         $invoiceRows = $company->getHourRegistrations();
         $companyInvoiceRows = [];
 
         foreach ($invoiceRows as $invoiceRow){
-            if(!$invoiceRow->isDeleted() && empty($invoiceRow->getInvoice())){
+            $invoiceDate = $invoiceRow->getDate()->format('Y-m-d');
+            $dateBetween = $this->CheckDateBetween($invoiceDate, $dateFrom, $dateTill);
+
+            if(!$invoiceRow->isDeleted() && empty($invoiceRow->getInvoice()) && $dateBetween == 'true'){
 
                 if(!empty($invoiceRow->getProject())){
                     $projectName = $invoiceRow->getProject()->getName();
@@ -79,6 +82,14 @@ class invoiceService
             }
         }
         return $companyInvoiceRows;
+    }
+
+    private function CheckDateBetween($checkDate, $startDate, $endDate):bool{
+        $checkDate = Carbon::parse($checkDate);
+        $startDate = Carbon::parse($startDate);
+        $endDate = Carbon::parse($endDate);
+
+        return $checkDate->between($startDate, $endDate);
     }
 
     public function toggleFactureren($rowID, $bool):string{
@@ -110,7 +121,7 @@ class invoiceService
 
         //returns id of invoice just created
         $invoiceId = $invoice->getId();
-
+        $invoiceCreated = $invoice;
         //sets the new invoice id to the corresponding invoice rows
         return  $this->AssignInvoiceRows($ids, $invoiceId, $invoiceNr);
         //return '';

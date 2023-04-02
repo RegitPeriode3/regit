@@ -81,14 +81,15 @@ async function registerHour(){
             Description: $('#hourDescription').val(),
         },
     });
-    getInvoiceRows();
+    getInvoiceRows($('#hourRegDate').val());
     $.alert(await result.data);
 }
 
-function getInvoiceRows(){
+function getInvoiceRows(selectedDate){
     $('#tblInvoiceRow tbody').html('');
     $WorkedFrom = $('#WorkedFrom').val();
     $WorkedTill = $('#WorkedTill').val();
+    console.log(selectedDate);
     axios.get('http://localhost/regit/public/hourRegistration/getInvoiceRows')
         .then(function (response) {
             var invoiceRows = response.data;

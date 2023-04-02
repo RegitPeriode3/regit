@@ -26,7 +26,14 @@ class PdfService
 
     public function CreatePdf($ids, $invoiceNr)
     {
-        $this->CreateContent($this->GetInvoiceData($ids), $invoiceNr);
+        //creates pdf and returns save location (doclink)
+        $doclink = $this->CreateContent($this->GetInvoiceData($ids), $invoiceNr);
+
+        //gets the invoice from which the pdf is created and sets the doclink for it
+        $invoice = $this->invoiceRepository->findOneBy(["invoiceNumber" => $invoiceNr]);
+        $invoice->setDocLink($doclink);
+        $this->em->persist($invoice);
+        $this->em->flush();
 //        $this->FillContent();
     }
 

@@ -47,7 +47,7 @@ function showInvoiceRows($el, refresh = false) {
 
     $('#tblInvoiceRowCompany tbody').html('');
 
-    axios.get('http://localhost/regit/public/invoice/GetCompanyInvoiceRows/'+selectedCompanyId)
+    axios.get('http://localhost/regit/public/invoice/GetCompanyInvoiceRows/'+selectedCompanyId+'/'+ $('#dateFromInvoice').val()+'/'+$('#dateTillInvoice').val())
         .then(function (response) {
             var invoiceRows = response.data;
             console.log(invoiceRows);
@@ -106,7 +106,7 @@ async function MakeInvoice(){
         url: 'http://localhost/regit/public/invoice/createInvoice',
         headers: {},
         data: {
-            invoiceRowIds: InvoiceRowIds
+            invoiceRowIds: InvoiceRowIds,
         },
     });
 

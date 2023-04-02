@@ -153,7 +153,7 @@ class HourRegistrationService
                 $invoiceNr = '';
             }
 
-            if(!$currentInvoiceRow->isDeleted()){
+            if(!$currentInvoiceRow->isDeleted() && $currentInvoiceRow->getUser()->getId() == $_SESSION['id'] && empty($invoiceNr)){
 
                 $invoiceRows[] = [
                     "Id" => $currentInvoiceRow->getId(),
