@@ -25,7 +25,7 @@ html {
 }
 
 .main-scroll {
-    max-height: 84vh;
+    max-height: 81vh;
     overflow-y: scroll;
 }
 
@@ -77,7 +77,7 @@ html {
 }
 
 
-/* instellingen */
+/* settings */
 .settings-card {
     width: 75%;
     margin-left: 12%;
@@ -125,4 +125,14 @@ html {
 .field-client-data {
     width: 85%;
     margin-left: 5%;
+}
+
+.invoice-panel {
+    width: 117%;
+    margin-left: -6%;
+}
+
+.invoice-iframe {
+    width: 97%;
+    padding-left: 3%;
 }

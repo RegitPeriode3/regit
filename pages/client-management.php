@@ -143,23 +143,31 @@
           </div><!--end panel algemeen-->
 
           <!--panel facturatie-->
-          <div class="tab-pane fade card-body card row" id="facturatie" role="tabpanel" aria-labelledby="facturatie-tab">
+          <div class="tab-pane fade card-body card row invoice-panel" id="facturatie" role="tabpanel" aria-labelledby="facturatie-tab">
             <div class="pagetitle client-titles">
               <h5 class="client-management-title mt-3">facturatie</h5>
             </div><!-- End Page Title -->
-            <!-- Form -->
-            <form class="row col-12 g-3 client-form">
-
-              <hr>
-              <div class="col-12 row">
-                <div class="col-6 mb-3">
-                  <button type="submit" class="btn btn-primary float-right">Aanpassingen opslaan</button>
+            <div class="row col-12 g-3 client-form">
+              <!--invoice list-->
+              <div class="col-3">
+                <!--filter-->
+                <div class="filter mb-3">
+                  <input type="text" class="form-control" placeholder="filter.." onkeyup="FilterNextUlParent($(this));">
                 </div>
-                <div class="col-6">
-                  <button type="button" class="btn btn-danger float-left">Geslecteerde klant verwijderen</button>
-                </div>
+                <ul class="list-group activity-scroll card">
+                  <li class="list-group-item">A second item</li>
+                  <li class="list-group-item">A third item</li>
+                  <li class="list-group-item">A fourth item</li>
+                  <li class="list-group-item disabled">A fifth item</li>
+                </ul>
               </div>
-            </form><!-- End Form -->
+              <!--end invoice list-->
+
+              <div class="col-9 client-invoice">
+                <iframe class="invoice-iframe"></iframe>
+              </div>
+
+            </div>
           </div><!--end panel facturatie-->
 
 
@@ -174,19 +182,6 @@
                   <input type="text" class="form-control" placeholder="filter.." onkeyup="FilterNextUlParent($(this));">
                 </div>
                 <ul class="list-group activity-scroll card">
-                  <li class="list-group-item active" aria-current="true">An active item</li>
-                  <li class="list-group-item">A second item</li>
-                  <li class="list-group-item">A third item</li>
-                  <li class="list-group-item">A fourth item</li>
-                  <li class="list-group-item disabled">A fifth item</li>
-                  <li class="list-group-item">A second item</li>
-                  <li class="list-group-item">A third item</li>
-                  <li class="list-group-item">A fourth item</li>
-                  <li class="list-group-item disabled">A fifth item</li>
-                  <li class="list-group-item">A second item</li>
-                  <li class="list-group-item">A third item</li>
-                  <li class="list-group-item">A fourth item</li>
-                  <li class="list-group-item disabled">A fifth item</li>
                   <li class="list-group-item">A second item</li>
                   <li class="list-group-item">A third item</li>
                   <li class="list-group-item">A fourth item</li>
