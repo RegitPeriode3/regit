@@ -86,4 +86,34 @@ class SettingsService
         return new Response('Nieuwe activiteit opgeslagen');
     }
 
+    public function UpdateActivity($parameters): string
+    {
+        $activity = $this->ActivityRepository->findOneBy(['id' => $parameters['id']]);
+        // dd($user);
+        if (!empty($activity)) {
+            $activity->setActivity($parameters['activityName']);
+            $activity->setInvoiceDescription($parameters['activityDescr']);
+
+            $this->em->persist($activity);
+            $this->em->flush();
+            return new Response('gebruiker aangepast');
+        }
+        return 'Er is iets fout gegaan';
+    }
+
+    public function DeleteActivity($parameters): string
+    {
+        $activity = $this->ActivityRepository->findOneBy(['id' => $parameters['id']]);
+
+        if (!empty($activity)) {
+
+            $activity->setDeleted(True);
+
+            $this->em->persist($activity);
+            $this->em->flush();
+            return new Response('activiteit verwijderd');
+        }
+        return 'Er is iets fout gegaan';
+    }
+
 }

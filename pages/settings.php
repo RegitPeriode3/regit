@@ -128,10 +128,10 @@
               <hr class="mt-5 mb-4">
               <div class="col-12 row mb-5">
                 <div class="col-5">
-                  <button type="submit" class="btn btn-primary float-right">aanpassingen opslaan</button>
+                  <button type="button" class="btn btn-primary float-right" onclick="UpdateActivity();">aanpassingen opslaan</button>
                 </div>
                 <div class="col-7">
-                  <button type="submit" class="btn btn-danger float-left">geslecteerde activiteit verwijderen</button>
+                  <button type="button" class="btn btn-danger float-left" onclick="DeleteActivity();">geslecteerde activiteit verwijderen</button>
                 </div>
               </div>
             </form><!-- End activity Form -->

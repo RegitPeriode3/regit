@@ -24,7 +24,7 @@ $(document).ready(function () {
     }
 
     function UpdateSettings() {
-        let settingsUpdate = axios({
+        var settingsUpdate = axios({
             method: 'put',
             url: 'http://localhost/regit/public/settings/Update',
             headers: {},
@@ -78,7 +78,7 @@ $(document).ready(function () {
 
     function showActivityInfo($el) {
         //console.log($el);
-        let activityInfo = $el.data();
+        var activityInfo = $el.data();
         selectedActivityId = activityInfo.id;
 
         $.each(activityInfo, function (k, v) {
@@ -88,7 +88,6 @@ $(document).ready(function () {
     }
 
     //new activity
-
     function CreateActivity() {
 
         var activityNew = axios({
@@ -105,6 +104,50 @@ $(document).ready(function () {
         console.log(activityNew);
         alert("De nieuwe activiteit is opgeslagen");
         GetActivities();
+    }
+
+    //update & delete activities
+    function UpdateActivity() {
+
+        if (selectedActivityId == null) {
+            alert("er is geen activiteit geselecteerd");
+        } else {
+            var activityUpdate = axios({
+                method: 'put',
+                url: 'http://localhost/regit/public/settings/UpdateActivity',
+                headers: {},
+                data: {
+                    id: selectedActivityId,
+                    activityName: $('#activityName').val(),
+                    activityDescr: $('#activityDescr').val(),
+                },
+            });
+            console.log(activityUpdate);
+            alert("De activiteit is gewijzigd");
+            GetActivities();
+        }
+
+    }
+
+    function DeleteActivity() {
+        if (selectedActivityId == null) {
+            alert("er is geen activiteit geselecteerd");
+        } else {
+            var activityDelete = axios({
+                method: 'put',
+                url: 'http://localhost/regit/public/settings/DeleteActivity',
+                headers: {},
+                data: {
+                    id: selectedActivityId
+                },
+            });
+    
+            clearForms();
+            console.log(activityDelete);
+            alert("De activiteit is verwijderd");
+            clearForms();
+            GetActivities();
+        }
     }
 
 

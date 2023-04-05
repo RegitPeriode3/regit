@@ -44,5 +44,19 @@ if (!isset($_SERVER['HTTP_REFERER'])) {
             $parameters = json_decode($request->getContent(), true);
             return $this->json($SettingsService->CreateActivity($parameters));
         }
+
+        #[Route('/UpdateActivity', name: 'UpdateActivity', methods: ['PUT'])]
+        public function UpdateActivity(SettingsService $SettingsService, Request $request): Response
+        {
+            $parameters = json_decode($request->getContent(), true);
+            return $this->json($SettingsService->UpdateActivity($parameters));
+        }
+
+        #[Route('/DeleteActivity', name: 'DeleteActivity', methods: ['PUT'])]
+        public function DeleteActivity(SettingsService $SettingsService, Request $request): Response
+        {
+            $parameters = json_decode($request->getContent(), true);
+            return $this->json($SettingsService->DeleteActivity($parameters));
+        }
     }
 }
