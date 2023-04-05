@@ -1,5 +1,4 @@
 
-
 $(document).ready(function () {
     $('#UserManagementNav').on('click', GetUsers);
     $("#UserManageList").on("click", ' li', toggleUserList);
@@ -8,8 +7,6 @@ $(document).ready(function () {
 var selectedUserId;
 
 function GetUsers() {
-    // var resultElement = document.getElementById('getResult1');
-    // resultElement.innerHTML = '';
 
     axios.get('http://localhost/regit/public/user/')
         .then(function (response) {
@@ -31,7 +28,6 @@ function GetUsers() {
             list.data(UserItem);
         })
         .catch(function (error) {
-            //$.alert('error');
             console.log(error)
         });
 }
@@ -114,9 +110,6 @@ function DeleteUser() {
                 id: selectedUserId
             },
         });
-
-
-
 
         clearForms();
         console.log(userDelete);

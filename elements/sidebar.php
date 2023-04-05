@@ -56,7 +56,7 @@
         </li>
         <hr>
         <li class="nav-item">
-          <a href="#" class="nav-link collapsed" data-target="Settings">
+          <a href="#" class="nav-link collapsed" id="settingsNav" data-target="Settings">
             <i class="bi bi-gear"></i>
             <span>Instellingen</span>
           </a>

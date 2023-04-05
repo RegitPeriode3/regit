@@ -1,80 +1,119 @@
 $(document).ready(function () {
     $('#settingsNav').on('click', GetSettings);
+    $("#activityList").on("click", ' li', toggleActivityList);
+    $('#profile-tab').on('click', clearForms);
 });
 
-// var AdminId = $_SESSION['id'];
+//settings- email
 
-function GetSettings() {
-    
-    
-    var resultElement = document.getElementById('getResult1');
-    resultElement.innerHTML = '';
+    function GetSettings() {
+        axios.get('http://localhost/regit/public/settings/')
+            .then(function (response) {
+                console.log(response.data);
 
-    axios.get('http://localhost/regit/public/user/')
-        .then(function (response) {
-            console.log(response.data);
-            var UserItem = response.data;
-            //var UserItem = JSON.parse(response.data);
+                let SettingInfo = response.data;
+                $.each(SettingInfo, function (k, v) { //put data in matching inputs
+                    $("input[name=" + k + "]").val(v);
+                    $("textarea[name=" + k + "]").val(v);
+                });
 
-            $('#UserManageList').empty();
-            var list = $('#UserManageList');
-            $.each(UserItem, function (k, v) {
-                var entry = document.createElement('li');
-                entry.className = 'list-group-item';
-                entry.innerHTML = v['displayName'];
-                entry.id = v['id'];
-                list.append(entry);
-                $('#UserManageList li').last().data(v);
-                //console.log($('#opdrachtgeverLijstGegevens li'));
             })
-            list.data(UserItem);
-        })
-        .catch(function (error) {
-            //$.alert('error');
-            console.log(error)
+            .catch(function (error) {
+                console.log(error)
+            });
+    }
+
+    function UpdateSettings() {
+        let settingsUpdate = axios({
+            method: 'put',
+            url: 'http://localhost/regit/public/settings/Update',
+            headers: {},
+            data: {
+                id: 1,
+                Name: $('#SettingsName').val(),
+                Email: $('#SettingsEmail').val(),
+                Server: $('#SettingsServer').val(),
+                Port: $('#SettingsPort').val(),
+                UserName: $('#SettingsUserName').val(),
+                Password: $('#SettingsPassword').val(),
+            },
         });
-    showUserInfo();
-}
+        console.log(settingsUpdate);
+        alert("De gegevens zijn gewijzigd");
+        GetSettings();
+    }
 
-function showUserInfo($el) {
-    //console.log($el);
-    var userInfo = $el.data();
-    selectedUserId = userInfo.id;
+// settings- activity
 
-    $.each(userInfo, function (k, v) {
-        $("input[name=" + k + "]").val(v);
-        $("textarea[name=" + k + "]").val(v);
+    var selectedActivityId;
+
+    function GetActivities() {
+        axios.get('http://localhost/regit/public/settings/GetActivities')
+            .then(function (response) {
+                console.log(response.data);
+                var ActivityItem = response.data;
+
+                $('#activityList').empty();
+                var list = $('#activityList');
+                $.each(ActivityItem, function (k, v) {
+                    var entry = document.createElement('li');
+                    entry.className = 'list-group-item';
+                    entry.innerHTML = v['activityName'];
+                    entry.id = v['id'];
+                    list.append(entry);
+                    $('#activityList li').last().data(v);
+                })
+                list.data(ActivityItem);
+            })
+            .catch(function (error) {
+                console.log(error)
+            });
+    }
+
+    function toggleActivityList() {
+        $("#activityList li").removeClass("active");
+        $(this).addClass("active");
+        showActivityInfo($(this));
+    }
+
+    function showActivityInfo($el) {
+        //console.log($el);
+        let activityInfo = $el.data();
+        selectedActivityId = activityInfo.id;
+
+        $.each(activityInfo, function (k, v) {
+            $("input[name=" + k + "]").val(v);
+            $("textarea[name=" + k + "]").val(v);
+        });
+    }
+
+    //new activity
+
+    function CreateActivity() {
+
+        var activityNew = axios({
+            method: 'post',
+            url: 'http://localhost/regit/public/settings/CreateActivity',
+            headers: {},
+            data: {
+                activityName: $('#NewActivityName').val(),
+                activityDescr: $('#NewActivityDescr').val(),
+            },
+        });
+        clearForms();
+
+        console.log(activityNew);
+        alert("De nieuwe activiteit is opgeslagen");
+        GetActivities();
+    }
 
 
-        //fill user clearance select
-        let select = document.querySelector('#UserClearance');
-        if (userInfo.clearence) {
-            select.value = userInfo.clearence;
-        } else {
-            select.value = 1;
-        }
 
-        //checkbox op wel / niet actief zetten
-        if (userInfo['active'] == true) {
-            $('#userActive').prop('checked', true);
-        } else {
-            $('#userActive').prop('checked', false);
-        }
-    });
-}
-
-function UpdateSettings() {
-
-    var settingsUpdate = axios({
-        method: 'put',
-        url: 'http://localhost/regit/public/settings/Update',
-        headers: {},
-        data: {
-            id: AdminId,
-            UserName: $('#UserUsername').val(),
-            Password: $('#UserPassword').val(),
-        },
-    });
-    console.log(settingsUpdate);
-    alert("De gegevens zijn gewijzigd");
-}
+    function clearForms() {
+    $("#client-form")[0].reset();
+    $("#newCompanyForm")[0].reset();
+    $("#changeUserForm")[0].reset();
+    $("#newUserForm")[0].reset();
+    $("#userForm")[0].reset();
+    $("#activityForm")[0].reset();
+    }
