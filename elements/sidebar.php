@@ -5,7 +5,6 @@
 
     <?php
     $Id = $_SESSION['clearence_id'];
-    echo $Id;
 
     if ($Id == 1) { //normal user
     ?>
