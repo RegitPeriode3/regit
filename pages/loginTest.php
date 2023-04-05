@@ -21,7 +21,7 @@ if ( !isset($_POST['username'], $_POST['password']) ) {
 
 
 // preparing the SQL statement will prevent SQL injection.
-if ($stmt = $con->prepare('SELECT id,user_name, password FROM user WHERE user_name = ?')) {
+if ($stmt = $con->prepare('SELECT id,user_name, password,clearence_id FROM user WHERE user_name = ?')) {
 
     $stmt->bind_param('s', $_POST['username']);
     $stmt->execute();
@@ -29,7 +29,7 @@ if ($stmt = $con->prepare('SELECT id,user_name, password FROM user WHERE user_na
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result( $id,$username, $password);
+        $stmt->bind_result( $id,$username, $password,$clearance_id);
         $stmt->fetch();
         // Account exists, now we verify the password.
 
@@ -50,7 +50,7 @@ if ($stmt = $con->prepare('SELECT id,user_name, password FROM user WHERE user_na
             $_SESSION['username'] = $username;
             $_SESSION['password'] = $password;
             $_SESSION['id'] = $id;
-
+            $_SESSION['clearence_id'] = $clearance_id;
             header("Location: http://localhost/regit/pages/index.php");
             exit();
             //echo 'Welcome ' . $_SESSION['username'] . '!';
