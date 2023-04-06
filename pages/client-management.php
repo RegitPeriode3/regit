@@ -132,7 +132,7 @@
               </div>
               <hr>
               <div class="col-12 row">
-                <div class="col-6 mb-3">
+                <div class="col-6 mb-4">
                   <button type="button" id="UpdateCustomerBtn" onclick="UpdateCompany();" class="btn btn-primary float-right">Aanpassingen opslaan</button>
                 </div>
                 <div class="col-6">
@@ -229,6 +229,8 @@
 
                 </div>
 
+                <hr class="mb-4 mt-4">
+
                 <!-- Form -->
                 <form id="changeUserForm" class="row col-12 g-3 user-management-form">
                   <div class="col-md-6">
@@ -240,12 +242,12 @@
                     <input type="text" class="form-control">
                   </div>
                   <hr class="mt-5 mb-4">
-                  <div class="col-12 row">
-                    <div class="col-5">
+                  <div class="col-12 row mb-4">
+                    <div class="col-6">
                       <button type="submit" class="btn btn-primary float-right">Aanpassingen opslaan</button>
                     </div>
-                    <div class="col-7">
-                      <button type="submit" class="btn btn-danger float-left">Geslecteerd project verwijderen</button>
+                    <div class="col-6">
+                      <button type="submit" class="btn btn-danger float-left">Project verwijderen</button>
                     </div>
                   </div>
                 </form><!-- End activity Form -->

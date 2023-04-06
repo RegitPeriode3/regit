@@ -93,14 +93,14 @@ function getInvoiceRows(){
         .then(function (response) {
             var invoiceRows = response.data;
             $.each(invoiceRows, function (k,v){
-                $('#tblInvoiceRow').append( '<tr id="'+v['Id']+'">' +
-                    '<td>' + v["InvoiceNr"] + '</td>' +
-                    '<td>' + v["Date"] + '</td>' +
-                    '<td>' + v["HoursWorked"] + '</td>' +
-                    '<td>' + v["Project"] + '</td>' +
-                    '<td>' + v["Activity"] + '</td>' +
-                    '<td>' + v["Description"] + '</td>' +
-                    '<td name="Action"><i class="bx bxs-trash" name="deleteRow" onclick="DeleteHourReg($(this));" style="cursor:pointer;" title="Verwijderen">Verwijder</i></td>'+
+                $('#tblInvoiceRow').append( '<tr role="row" id="'+v['Id']+'">' +
+                    '<td role="cell">' + v["InvoiceNr"] + '</td>' +
+                    '<td role="cell">' + v["Date"] + '</td>' +
+                    '<td role="cell">' + v["HoursWorked"] + '</td>' +
+                    '<td role="cell">' + v["Project"] + '</td>' +
+                    '<td role="cell">' + v["Activity"] + '</td>' +
+                    '<td role="cell">' + v["Description"] + '</td>' +
+                    '<td role="cell" name="Action"><i class="bx bxs-trash" name="deleteRow" onclick="DeleteHourReg($(this));" style="cursor:pointer;" title="Verwijderen">Verwijder</i></td>'+
                     '</tr>' );
                 $('#tblInvoiceRow tbody tr:last').data(v)
             })
