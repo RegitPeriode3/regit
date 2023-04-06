@@ -85,11 +85,12 @@ class PdfService
               </style>
               <body>";
 
-        //factuur adres
-        $html .= "<div class=\"adres\" style='margin-top: 13%'>" . nl2br($Data['invoicedata'][0]['invoice_address']) . "</div>";
+        //naam en factuur adres
+        $html .= "<div class=\"adres\" style='margin-top: 13%'><b>" . $Data['invoicedata'][0]['name'] . "</b></div>";
+        $html .= "<div class=\"adres\" >" . nl2br($Data['invoicedata'][0]['invoice_address']) . "</div>";
 
         //datum, verval datum en factuurnummer
-        $html .= "<div style='margin-left: 65%; margin-top: -8%'>";
+        $html .= "<div style='margin-left: 65%; margin-top: -9.5%'>";
         $html .= "<div class=\"Datum\">Factuurdatum: " . date("d-m-Y") . "</div>";
         $html .= "<div class=\"Datum\">Vervaldatum: " . date('d-m-Y', strtotime(date('d-m-Y'). ' + 14 days')) . "</div><br>";
         $html .= "<div class=\"Datum\">Factuurnummer: " . sprintf("%08d", $invoiceNr) . " </div><br>";
@@ -124,7 +125,7 @@ class PdfService
         $PriceInclVAt = floatval($tableInfo['totExBtw']) * 1.21;
         $PriceInclVAt = numfmt_format_currency($fmt, $PriceInclVAt, "EUR");
 
-        //bepaal en conert btw prijs
+        //bepaal en convert btw prijs
         $VatPrice = floatval($tableInfo['totExBtw']) * 0.21;
         $VatPrice = numfmt_format_currency($fmt, $VatPrice, "EUR");
 
@@ -161,7 +162,6 @@ class PdfService
         //pad voor locale opslag
         $filename = "factuur-" . $invoiceNr;
         $savepath = "C:/wamp64/www/regit/temp/Invoices/". $filename . ".pdf";//path hardcoded needs change
-        //$savepath = "../temp/Invoices";//path hardcoded needs change
         //$savepath = $_SERVER['DOCUMENT_ROOT'] . "/temp/Factuur/" . $filename . ".pdf";
 
         //schrijf de pdf naar de aangegeven locatie
@@ -171,7 +171,7 @@ class PdfService
         return $savepath;
     }
 
-    //vult de tabel met de ritten
+    //vult de tabel met de geregistreerde uren
     private function FillTable($Data)
     {
         $html = '';
@@ -183,17 +183,6 @@ class PdfService
 
             $fmt = numfmt_create('nl_NL', NumberFormatter::CURRENCY);
             $Price = numfmt_format_currency($fmt, $Price, "EUR");
-
-
-//            <td width=\"100\"><strong>Activiteit</strong></td>
-//            <td width=\"100\"><strong>Datum</strong></td>
-//            <td width=\"100\"><strong>Medewerker</strong></td>
-//            <td width=\"100\"><strong>Omschrijving</strong></td>
-//            <td width=\"100\"><strong>Aantal</strong></td>
-//            <td width=\"30\"><strong>Bedrag</strong></td>
-//            <td width=\"100\"><strong>Totaal Bedrag Excl. Btw</strong></td>
-            //hr.*, us.display_name, ac.activity, ac.invoice_description, pr.name, pr.description
-            //dd($invoiceRow);
 
             $html .= "<tr>
               <td width=\"100\"> $invoiceRow[activity] </td>

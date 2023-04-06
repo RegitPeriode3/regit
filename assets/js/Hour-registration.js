@@ -37,6 +37,7 @@ function SetCompanies(){
 }
 
 function SetProjects(companyId){
+    console.log(companyId);
     $('#hourRegProjects').html('');
     axios.get('http://localhost/regit/public/hourRegistration/GetProjectPerCompany/'+companyId)
         .then(function (response) {

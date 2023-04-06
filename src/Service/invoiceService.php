@@ -14,6 +14,9 @@ use Carbon\Carbon;
 
 class invoiceService
 {
+    private $dateFrom;
+    private $dateTill;
+
     public function __construct(
         private readonly UserRepository $userRepository,
         private readonly CompanyRepository $companyRepository,
@@ -23,6 +26,8 @@ class invoiceService
         private readonly PdfService $pdfService,
         private readonly EntityManagerInterface $em
     ){
+        $this->dateFrom = '';
+        $this->dateTill = '';
     }
 
     public function SetCompaniesInvoice():array
@@ -46,6 +51,10 @@ class invoiceService
 
     public function GetCompanyInvoiceRows($companyId, $dateFrom, $dateTill):array
     {
+        //zet dat begin en eind datum als globale variabele zodat deze meegegeven kunnen worden vanuit AssignInvoiceRows()
+        $this->dateFrom = $dateFrom;
+        $this->dateTill = $dateTill;
+
         $company = $this->companyRepository->findOneBy(['id' => $companyId, 'Active' => true, 'Deleted' => false]);
         $invoiceRows = $company->getHourRegistrations();
         $companyInvoiceRows = [];
@@ -122,9 +131,9 @@ class invoiceService
         //returns id of invoice just created
         $invoiceId = $invoice->getId();
         $invoiceCreated = $invoice;
+
         //sets the new invoice id to the corresponding invoice rows
         return  $this->AssignInvoiceRows($ids, $invoiceId, $invoiceNr);
-        //return '';
     }
 
     private function AssignInvoiceRows($ids, $invoiceId, $invoiceNr):array{
@@ -135,11 +144,9 @@ class invoiceService
         $connection = $this->em->getConnection();
         $connection->executeQuery("UPDATE hour_registration SET invoice_id = " . $invoiceId . " WHERE id IN ($idString) AND deleted = 0 AND add_to_Invoice = 1 AND invoice_id IS NULL");
 
-        //$idList = $connection->executeQuery("SELECT company_id FROM hour_registration WHERE id");
         $companyId = $this->hourRegistrationRepository->findOneBy(["id" => $ids['invoiceRowIds'][0]])->getCompany()->getId();
-        //$companyId = $singleInvoiceRow->getCompany()->getId();
         $this->pdfService->CreatePdf($ids, $invoiceNr);
 
-        return $this->GetCompanyInvoiceRows($companyId);
+        return $this->GetCompanyInvoiceRows($companyId, $this->dateFrom, $this->dateTill);
     }
 }

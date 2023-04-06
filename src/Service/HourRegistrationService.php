@@ -38,6 +38,7 @@ class HourRegistrationService
     //haalt de companies op waar een user aan gekoppeld is
     public function GetCompanyPerUser():array
     {
+
         $id = $_SESSION['id'];
         $user = $this->userRepository->findOneBy(['id' => $id, 'Active' => true, 'Deleted' => false]);//haalt de user op
         $userEmployees = $user->getEmployees();//haalt alle employees op van deze user
@@ -59,7 +60,7 @@ class HourRegistrationService
     public function GetProjectPerCompany($id):array
     {
         $company = $this->companyRepository->findOneBy(['id' => $id, 'Deleted' => false]);//haalt de company op
-
+dd($company);
         $companyProjects = $company->getProjects();
         $project = [];
         foreach ($companyProjects as $companyProject){
