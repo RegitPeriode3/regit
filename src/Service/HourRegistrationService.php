@@ -2,26 +2,19 @@
 
 namespace App\Service;
 
-use App\Entity\Company;
-use App\Entity\Employee;
 use App\Entity\HourRegistration;
-use App\Entity\Project;
 use App\Repository\ActivityRepository;
 use App\Repository\CompanyRepository;
-use App\Repository\EmployeeRepository;
 use App\Repository\HourRegistrationRepository;
 use App\Repository\ProjectRepository;
 use App\Repository\UserRepository;
 use Carbon\Carbon;
 use Doctrine\ORM\EntityManagerInterface;
-use http\Env\Response;
-use phpDocumentor\Reflection\Types\Boolean;
-
+if(session_status() === PHP_SESSION_NONE) session_start();
 class HourRegistrationService
 {
     public function __construct(
         private readonly HourRegistrationRepository $hourRegistrationRepository,
-        private readonly EmployeeRepository $employeeRepository,
         private readonly UserRepository $userRepository,
         private readonly CompanyRepository $companyRepository,
         private readonly ActivityRepository $activityRepository,
@@ -43,8 +36,10 @@ class HourRegistrationService
     }
 
     //haalt de companies op waar een user aan gekoppeld is
-    public function GetCompanyPerUser($id):array
+    public function GetCompanyPerUser():array
     {
+
+        $id = $_SESSION['id'];
         $user = $this->userRepository->findOneBy(['id' => $id, 'Active' => true, 'Deleted' => false]);//haalt de user op
         $userEmployees = $user->getEmployees();//haalt alle employees op van deze user
         $userCompanies = [];
@@ -65,7 +60,7 @@ class HourRegistrationService
     public function GetProjectPerCompany($id):array
     {
         $company = $this->companyRepository->findOneBy(['id' => $id, 'Deleted' => false]);//haalt de company op
-
+dd($company);
         $companyProjects = $company->getProjects();
         $project = [];
         foreach ($companyProjects as $companyProject){
@@ -116,7 +111,7 @@ class HourRegistrationService
         }
 
         $activity = $this->activityRepository->findOneBy(['id'=>$parameters['Activity']]);
-        $user = $this->userRepository->findOneBy(['id'=>4]);
+        $user = $this->userRepository->findOneBy(['id'=>$_SESSION['id']]);
         $company = $this->companyRepository->findOneBy(['id'=>$parameters['Company']]);
 
         //Deze check is in principe niet nodig omdat dit niet mogenlijk zou moeten zijn,
@@ -159,7 +154,7 @@ class HourRegistrationService
                 $invoiceNr = '';
             }
 
-            if(!$currentInvoiceRow->isDeleted()){
+            if(!$currentInvoiceRow->isDeleted() && $currentInvoiceRow->getUser()->getId() == $_SESSION['id'] && empty($invoiceNr)){
 
                 $invoiceRows[] = [
                     "Id" => $currentInvoiceRow->getId(),

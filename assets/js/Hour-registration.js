@@ -23,7 +23,7 @@ function HoursWorked(){
 
 function SetCompanies(){
     $('#hourRegCompanies').html('');
-    axios.get('http://localhost/regit/public/hourRegistration/GetCompanyPerUser/'+4)//let op hier moet nog een variable als id komen en niet hardcoded
+    axios.get('http://localhost/regit/public/hourRegistration/GetCompanyPerUser')//let op hier moet nog een variable als id komen en niet hardcoded
         .then(function (response) {
             var companies = response.data;
             $.each(companies, function (k,v){
@@ -37,6 +37,7 @@ function SetCompanies(){
 }
 
 function SetProjects(companyId){
+    console.log(companyId);
     $('#hourRegProjects').html('');
     axios.get('http://localhost/regit/public/hourRegistration/GetProjectPerCompany/'+companyId)
         .then(function (response) {
@@ -81,20 +82,20 @@ async function registerHour(){
             Description: $('#hourDescription').val(),
         },
     });
-    getInvoiceRows();
+    getInvoiceRows($('#hourRegDate').val());
     $.alert(await result.data);
 }
 
-function getInvoiceRows(){
+function getInvoiceRows(selectedDate){
     $('#tblInvoiceRow tbody').html('');
     $WorkedFrom = $('#WorkedFrom').val();
     $WorkedTill = $('#WorkedTill').val();
+    console.log(selectedDate);
     axios.get('http://localhost/regit/public/hourRegistration/getInvoiceRows')
         .then(function (response) {
             var invoiceRows = response.data;
             $.each(invoiceRows, function (k,v){
                 $('#tblInvoiceRow').append( '<tr id="'+v['Id']+'">' +
-                    '<td>' + v["InvoiceNr"] + '</td>' +
                     '<td>' + v["Date"] + '</td>' +
                     '<td>' + v["HoursWorked"] + '</td>' +
                     '<td>' + v["Project"] + '</td>' +

@@ -22,10 +22,10 @@ else {
             return $this->json($hourRegistrationService->calcHours($from, $till));
         }
 
-        #[Route('/GetCompanyPerUser/{userId}', name: 'GetCompanyPerUser', methods: ['GET'])]
-        public function GetCompanyPerUser($userId, HourRegistrationService $hourRegistrationService): Response
+        #[Route('/GetCompanyPerUser', name: 'GetCompanyPerUser', methods: ['GET'])]
+        public function GetCompanyPerUser(HourRegistrationService $hourRegistrationService): Response
         {
-            return $this->json($hourRegistrationService->GetCompanyPerUser($userId));
+            return $this->json($hourRegistrationService->GetCompanyPerUser());
         }
 
         #[Route('/GetProjectPerCompany/{companyId}', name: 'GetProjectPerCompany', methods: ['GET'])]
@@ -48,7 +48,7 @@ else {
             return $this->json($hourRegistrationService->RegisterHour($parameters));
         }
 
-        #[Route('/getInvoiceRows', name: 'getInvoiceRows', methods: ['GET'])]
+        #[Route('/getInvoiceRows/', name: 'getInvoiceRows', methods: ['GET'])]
         public function getInvoiceRows(HourRegistrationService $hourRegistrationService): Response
         {
             return $this->json($hourRegistrationService->getInvoiceRows());

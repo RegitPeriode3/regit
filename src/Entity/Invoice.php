@@ -32,7 +32,7 @@ class Invoice
     private Collection $hourRegistrations;
 
     #[ORM\Column(length: 25, nullable: true)]
-    private ?string $invoiceNumber = null;
+    private ?int $invoiceNumber = null;
 
     public function __construct()
     {
