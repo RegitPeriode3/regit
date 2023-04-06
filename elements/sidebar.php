@@ -61,6 +61,7 @@
             <span>Instellingen</span>
           </a>
         </li>
+      </div>
         <a href="http://localhost/regit/pages/logout.php" class="nav-link collapsed">
           <li class="nav-item">
             <i class="bi bi-box-arrow-in-right"></i>

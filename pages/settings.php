@@ -115,6 +115,8 @@
 
             </div>
 
+            <hr class="mb-5 mt-3">
+
             <!-- Form -->
             <form class="row col-12 g-3 user-management-form" id="activityForm">
               <div class="col-md-6">
@@ -128,10 +130,10 @@
               <hr class="mt-5 mb-4">
               <div class="col-12 row mb-5">
                 <div class="col-5">
-                  <button type="button" class="btn btn-primary float-right" onclick="UpdateActivity();">aanpassingen opslaan</button>
+                  <button type="submit" class="btn btn-primary float-right" onclick="UpdateActivity();">aanpassingen opslaan</button>
                 </div>
                 <div class="col-7">
-                  <button type="button" class="btn btn-danger float-left" onclick="DeleteActivity();">geslecteerde activiteit verwijderen</button>
+                  <button type="submit" class="btn btn-danger float-left" onclick="DeleteActivity();">geslecteerde activiteit verwijderen</button>
                 </div>
               </div>
             </form><!-- End activity Form -->
