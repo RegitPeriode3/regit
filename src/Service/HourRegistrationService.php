@@ -60,7 +60,6 @@ class HourRegistrationService
     public function GetProjectPerCompany($id):array
     {
         $company = $this->companyRepository->findOneBy(['id' => $id, 'Deleted' => false]);//haalt de company op
-dd($company);
         $companyProjects = $company->getProjects();
         $project = [];
         foreach ($companyProjects as $companyProject){
