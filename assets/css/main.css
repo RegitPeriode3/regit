@@ -29,6 +29,13 @@ html {
     overflow-y: scroll;
 }
 
+@media only screen and (max-width: 1300px) {
+    .invisi-nav {
+        display: none;
+    }
+}
+
+
 /* user management */
 .user-management-title {
     font-size: 18px;
@@ -40,6 +47,7 @@ html {
 
 .user-management-form {
     padding-left: 50px;
+    padding-top: 12px;
     padding-right: 50px;
 }
 
@@ -127,20 +135,4 @@ html {
 .invoice-iframe {
     width: 97%;
     padding-left: 3%;
-}
-
-
-/* responsive */
-
-@media only screen and (max-width: 1300px) {
-    .invisi-nav {
-        display: none;
-    }
-}
-
-@media only screen and (max-width: 1300px) {
-    .max-width-div {
-        width: 100%;
-        margin-left: 0;
-    }
 }
