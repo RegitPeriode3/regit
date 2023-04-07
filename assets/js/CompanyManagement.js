@@ -1,6 +1,7 @@
 $(document).ready(function () {
     $('#CompanyManagementNav').on('click', GetCompanies);
     $("#CompanyManageList").on("click", ' li', toggleCompanyList);
+    $("#InvoiceList").on("click", ' li', toggleInvoiceList);
     // $("#CompanyManagementNav").on("click", ' li', getLastCompanyData);
 
 });
@@ -37,11 +38,28 @@ function GetCompanies() {
         });
 }
 
+function FillInvoiceList(companyData){
+    $('#InvoiceList').empty();
+    var list = $('#InvoiceList');
+    $.each(companyData['Inovices'], function (k, v) {
+        var entry = document.createElement('li');
+        entry.className = 'list-group-item';
+        entry.innerHTML = v['invoiceNumber'];
+        entry.id = v['id'];
+        //console.log(entry.id);
+        list.append(entry);
+        $('#InvoiceList li').last().data(v);
+
+    })
+}
+
 function toggleCompanyList() {
     $("#CompanyManageList li").removeClass("active");
     $(this).addClass("active");
     selectedCompanyId = $(this).data()['Id'];
     // //console.log($(this))
+    $("#invoicePdf").attr("src", "")//cleared iframe
+    FillInvoiceList($(this).data());
     showCompanyInfo($(this));
 }
 
@@ -64,6 +82,20 @@ function showCompanyInfo($el) {
     });
 }
 
+function toggleInvoiceList() {
+    $("#InvoiceList li").removeClass("active");
+    $(this).addClass("active");
+    selectedInvoiceId = $(this).data()['id'];
+    // //console.log($(this))
+    LoadInvoiceIframe($(this).data()['link']);
+}
+
+function LoadInvoiceIframe(filename){
+    var link = 'http://127.0.0.1:8887/'+ filename + '.pdf'
+    console.log(link);
+    $("#invoicePdf").attr("src", "")//cleared iframe
+    $("#invoicePdf").attr("src",link);
+}
 
 function CreateCompany() {
 

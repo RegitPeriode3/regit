@@ -54,7 +54,6 @@ class PdfService
          inner join activity ac on hr.activity_id = ac.id
          left join project pr on hr.project_id = pr.id
          where hr.id in ($test) and hr.deleted = 0 and hr.add_to_invoice = 1"
-         //where hr.id in ($test) and hr.deleted = 0 and hr.add_to_invoice = 1 and hr.invoice_id = $invoiceId"
         );
 
         $factdata['invoicerows'] = $invoicerowinfo->fetchallassociative();
@@ -168,7 +167,7 @@ class PdfService
         $pdf->Output($savepath, "F");
         ob_end_flush();
 
-        return $savepath;
+        return $filename;
     }
 
     //vult de tabel met de geregistreerde uren

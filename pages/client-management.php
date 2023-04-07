@@ -154,17 +154,14 @@
                 <div class="filter mb-3">
                   <input type="text" class="form-control" placeholder="filter.." onkeyup="FilterNextUlParent($(this));">
                 </div>
-                <ul class="list-group activity-scroll card">
-                  <li class="list-group-item">A second item</li>
-                  <li class="list-group-item">A third item</li>
-                  <li class="list-group-item">A fourth item</li>
-                  <li class="list-group-item disabled">A fifth item</li>
+                <ul class="list-group activity-scroll card" id="InvoiceList">
+=
                 </ul>
               </div>
               <!--end invoice list-->
 
               <div class="col-9 client-invoice">
-                <iframe class="invoice-iframe"></iframe>
+                <iframe class="invoice-iframe" id="invoicePdf"></iframe>
               </div>
 
             </div>

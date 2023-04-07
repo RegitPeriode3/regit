@@ -19,15 +19,9 @@ use Symfony\Component\HttpFoundation\Response;
 class CompanyService
 {
     public function __construct(
-        private readonly HourRegistrationRepository $hourRegistrationRepository,
-        private readonly EmployeeRepository         $employeeRepository,
-        private readonly UserRepository             $userRepository,
         private readonly CompanyRepository          $companyRepository,
-        private readonly ActivityRepository         $activityRepository,
-        private readonly ProjectRepository          $projectRepository,
         private readonly EntityManagerInterface     $em
-    )
-    {
+    ){
     }
 
     public function GetAllCompanyInfo(): array
@@ -47,10 +41,25 @@ class CompanyService
                 'location' => $company->getLocation(),
                 'active' => $company->isActive(),
                 'invoiceAdress' => $company->getInvoiceAddress(),
-                'address' => $company->getAddress()
+                'address' => $company->getAddress(),
+                'Inovices' => $this->GetCompanyInvoices($company)
             ];
         }
         return $allCompanies;
+    }
+
+    private function GetCompanyInvoices($company):array{
+        //$company = $this->companyRepository->findOneBy(['id' => $companyId, 'Deleted' => 0]);
+        $companyHourRegs = $company->getHourRegistrations();
+        $invoices = [];
+
+        foreach ($companyHourRegs as $companyHourReg){
+            if(!is_null($companyHourReg->getInvoice())){
+                $invoices[] = ['id' => $companyHourReg->getInvoice()->getId(), 'link' => $companyHourReg->getInvoice()->getDocLink(),
+                    'invoiceNumber' => $companyHourReg->getInvoice()->getInvoiceNumber(), 'date' => $companyHourReg->getInvoice()->getDate()];
+            }
+        }
+        return   $this->unique_multidim_array($invoices, 'id');
     }
 
     public function CreateCompany($parameters)
@@ -108,6 +117,34 @@ class CompanyService
             return new Response('klant is verwijderd');
         }
         return 'Er is iets fout gegaan probeer opnieuw';
+    }
+
+    private function unique_multidim_array($array, $key) {
+
+        $temp_array = array();
+
+        $i = 0;
+
+        $key_array = array();
+
+
+
+        foreach($array as $val) {
+
+            if (!in_array($val[$key], $key_array)) {
+
+                $key_array[$i] = $val[$key];
+
+                $temp_array[$i] = $val;
+
+            }
+
+            $i++;
+
+        }
+
+        return $temp_array;
+
     }
 
 //    public function getLastCompanydata(): array
