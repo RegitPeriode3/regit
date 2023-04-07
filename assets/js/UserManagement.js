@@ -187,10 +187,7 @@ function getLastUserData() {
             selectedUserData = $('#UserManageList li').last().data();
 
             $.each(selectedUserData, function (k, v) {
-
-                $("#Name").val(lastProjectData[0]['name']);
-                $("#Description").val(lastProjectData[0]['description']);
-
+                $("input[name=" + k + "]").val(v);
             });
         })
         .catch(function (error) {

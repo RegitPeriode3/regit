@@ -5,6 +5,10 @@ $(document).ready(function () {
     $("#btnCreateProject").on("click", LoadProjectsByCompany);
     $("#projecten-tab").on("click", clearForms);
     $("#btnNewProject").on("click", clearForms);
+    $("#btnCreateProject").on("click", clearForms);
+    $("#btnDeleteProject").on("click", deleteProject);
+
+
 
 });
 
@@ -68,22 +72,24 @@ function LoadProjectsByCompany() {
             var list = $('#projectManageList');
 
             $("#projectManageList li").removeClass("active");
-            $('#projectManageList li').last().addClass("active");
-            selectedUserData = $('#projectManageList li').last().data();
-            console.log(Project)
-            // $.each(Project, function (k, v) {
-            //
-            //     var entry = document.createElement('li');
-            //     entry.className = 'list-group-item';
-            //     entry.innerHTML = v['name'];
-            //     entry.id = v['id'];
-            //
-            //     //console.log(entry.id);
-            //     list.append(entry);
-            //     $('#projectManageList li').last().data(v);
-            //
-            // })
 
+            selectedUserData = $('#projectManageList li').last().data();
+
+            $.each(Project, function (k, v) {
+
+                var entry = document.createElement('li');
+                entry.className = 'list-group-item';
+                entry.innerHTML = v['name'];
+                entry.id = v['id'];
+
+                //console.log(entry.id);
+                list.append(entry);
+                $('#projectManageList li').last().data(v);
+
+                $("#Name").val(v['name']);
+                $("#Description").val(v['description']);
+            })
+            $('#projectManageList li').last().addClass("active");
             //list.data(Project);
 
         })
@@ -157,11 +163,11 @@ async function Updateproject() {
     }
 }
 
-async function deleteProject() {
+ function deleteProject() {
     if (selectedProject == null) {
         alert("er is geen project geselecteerd");
     } else {
-        var projectDelete = await axios({
+        var projectDelete =  axios({
             method: 'POST',
             url: 'http://localhost/regit/public/project/deleteProject',
             headers: {},
@@ -174,7 +180,7 @@ async function deleteProject() {
         console.log(selectedProject);
         alert("Het geselecteerde project is verwijderd");
 
-        //getProjects();
+        //LoadProjectsByCompany();
     }
 }
 
@@ -240,6 +246,7 @@ function toggleProjectList() {
 
 function clearForms()
 {
+    console.log("123")
     $("#client-form")[0].reset();
     $("#newCompanyForm")[0].reset();
     $("#projectForm")[0].reset();

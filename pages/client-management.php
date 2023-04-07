@@ -238,7 +238,7 @@
                       <button type="submit" id="btnEditProject" onclick="Updateproject()" class="btn btn-primary float-right">Aanpassingen opslaan</button>
                     </div>
                     <div class="col-7">
-                      <button type="submit" id="btnDeleteProject" onclick="deleteProject()" class="btn btn-danger float-left">Geslecteerd project verwijderen</button>
+                      <button type="submit" id="btnDeleteProject" class="btn btn-danger float-left">Geslecteerd project verwijderen</button>
                     </div>
                   </div>
                 </form><!-- End activity Form -->

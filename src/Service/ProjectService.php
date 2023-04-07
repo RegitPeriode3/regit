@@ -89,27 +89,10 @@ class ProjectService
 
     public function getLastProjectData($parameters): array
     {
-
-        //$companyID = $this->companyRepository->findOneBy(['id' => $parameters]);
-
-        $lastProject = $this->projectRepository->findBy(['id' => $parameters]);
-
         $connection = $this->em->getConnection();
         $companyProject= $connection->executeQuery("SELECT project.id,project.name,project.description FROM `project` inner join company on  project.company_id = company.id where project.deleted = 0 and company_id = $parameters ORDER BY project.id ASC");
         $companyProject = $companyProject->fetchAll();
 
-
-//        $lastProjectData = [];
-//
-//        foreach ($lastProject as $project) {
-//            $lastProjectData[] = [
-//                'id' => $project->getId(),
-//                'name' => $project->getName(),
-//                'description' => $project->getDescription(),
-//
-//            ];
-//
-//        }
         return $companyProject;
     }
 
