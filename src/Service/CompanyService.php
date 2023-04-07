@@ -168,6 +168,28 @@ class CompanyService
 //
 //        return $lastCompanyData;
 //    }
+    public function getLastCompanydata(): array
+    {
+        $lastCompany = $this->companyRepository->findBy(array(), array('id' => 'DESC'), 1, 0);
+        $lastCompanyData = [];
+
+        foreach ($lastCompany as $company) {
+            $lastCompanyData[] = [
+                'id' => $company->getId(),
+                'name' => $company->getName(),
+                'phoneNr' => $company->getPhoneNr(),
+                'country' => $company->getCountry(),
+                'zipcode' => $company->getZipcode(),
+                'location' => $company->getLocation(),
+                'active' => $company->isActive(),
+                'invoiceAdress' => $company->getInvoiceAddress(),
+                'address' => $company->getAddress()
+            ];
+        }
+        return $lastCompanyData;
+    }
+
+
 
 
 

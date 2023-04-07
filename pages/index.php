@@ -95,6 +95,7 @@ include "../elements/footer.php";
 <!-- Main JS File's -->
 <script src="../assets/js/main.js"></script>
 <script src="../assets/js/UserManagement.js"></script>
+<script src="../assets/js/ProjectManagement.js"></script>
 <script src="../assets/js/CompanyManagement.js"></script>
 <script src="../assets/js/Hour-registration.js"></script>
 <script src="../assets/js/template.js"></script>

@@ -92,7 +92,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuleer</button>
-                  <button type="button" class="btn btn-primary" onclick="CreateUser();" data-bs-dismiss="modal">invoeren</button>
+                  <button type="button" id="btnNewUser" class="btn btn-primary" onclick="CreateUser();" data-bs-dismiss="modal">invoeren</button>
                 </div>
               </div>
             </div>

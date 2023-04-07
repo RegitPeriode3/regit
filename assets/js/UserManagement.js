@@ -2,6 +2,10 @@
 $(document).ready(function () {
     $('#UserManagementNav').on('click', GetUsers);
     $("#UserManageList").on("click", ' li', toggleUserList);
+    $("#btnNewUser").on("click", getLastUserData);
+    $("#UpdateCustomerBtn").on("click", getLastUserData);
+
+
 });
 
 var selectedUserId;
@@ -161,5 +165,27 @@ function clearForms()
     $("#changeUserForm")[0].reset();
     $("#newUserForm")[0].reset();
     $("#userForm")[0].reset();
+
+}
+
+
+function getLastUserData() {
+    axios.get('http://localhost/regit/public/user/lastUser')
+        .then(function (response) {
+            var lastCompanyData = response.data;
+            console.log(lastCompanyData)
+            $("#UserManageList li").removeClass("active");
+            $('#UserManageList li').last().addClass("active");
+
+            selectedUserData = $('#UserManageList li').last().data();
+
+            $.each(selectedUserData, function (k, v) {
+                $("input[name=" + k + "]").val(v);
+            });
+        })
+        .catch(function (error) {
+            //$.alert('error');
+            console.log(error)
+        });
 
 }

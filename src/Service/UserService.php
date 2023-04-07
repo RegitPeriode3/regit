@@ -93,7 +93,8 @@ class UserService
         $parameters['EmployeeId'] = 1;
         $user->setDisplayName($parameters['displayName']);
         $user->setUserName($parameters['UserName']);
-        $user->setPassword($parameters['password']);
+        $hashed_password = password_hash($parameters['password'], PASSWORD_DEFAULT);
+        $user->setPassword($hashed_password);
         $user->setEmployeeID($parameters['EmployeeId']);
         $user->setEmail($parameters['email']);
         $user->setPhoneNr($parameters['phoneNr']);
@@ -119,7 +120,8 @@ class UserService
         if (!empty($user)) {
             $user->setDisplayName($parameters['DisplayName']);
             $user->setUserName($parameters['UserName']);
-            $user->setPassword($parameters['Password']);
+            $hashed_password = password_hash($parameters['Password'], PASSWORD_DEFAULT);
+            $user->setPassword($hashed_password);
             $user->setEmail($parameters['Email']);
             $user->setPhoneNr($parameters['PhoneNr']);
             $user->setCountry($parameters['Country']);
@@ -150,4 +152,30 @@ class UserService
         }
         return 'Er is iets fout gegaan probeer opnieuw';
     }
+
+    public function getLastUserData(): array
+    {
+        $lastUser = $this->userRepository->findBy(array(), array('id' => 'DESC'), 1, 0);
+        $lastUserData = [];
+
+        foreach ($lastUser as $user) {
+            $userClearance = $user->getClearence();
+            $lastUserData[] = [
+                'id' => $user->getId(),
+                'displayName' => $user->getDisplayName(),
+                'userName' => $user->getUserName(),
+                'password' => $user->getPassword(),
+                'email' => $user->getEmail(),
+                'phoneNr' => $user->getPhoneNr(),
+                'country' => $user->getCountry(),
+                'location' => $user->getLocation(),
+                'zipcode' => $user->getZipcode(),
+                'address' => $user->getAddress(),
+                'active' => $user->isActive(),
+                'clearence' => $userClearance->getId()
+            ];
+        }
+        return $lastUserData;
+    }
+
 }

@@ -8,12 +8,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-if(!isset($_SERVER['HTTP_REFERER'])){
-    // redirect them to your desired location
-    header("Location: http://localhost/regit/pages/login.php");
-    exit;
-}
-else {
+//if(!isset($_SERVER['HTTP_REFERER'])){
+//    // redirect them to your desired location
+//    header("Location: http://localhost/regit/pages/login.php");
+//    exit;
+//}
+//else {
     #[Route('/company', name: 'app_company')]
     class CompanyController extends AbstractController
     {
@@ -47,12 +47,12 @@ else {
             return $this->json($companyService->UpdateCompany($parameters));
         }
 
-//        #[Route('/lastCompany', name: 'getLastCompanyData', methods: ['GET'])]
-//        public function getLastCompanyData(CompanyService $companyService): Response
-//        {
-//            return $this->json($companyService->getLastCompanydata());
-//        }
+        #[Route('/lastCompany', name: 'getLastCompanyData', methods: ['GET'])]
+        public function getLastCompanyData(CompanyService $companyService): Response
+        {
+            return $this->json($companyService->getLastCompanydata());
+        }
 
 
     }
-}
+//}
