@@ -2,14 +2,18 @@ $(document).ready(function () {
     $('#settingsNav').on('click', GetSettings);
     $("#activityList").on("click", ' li', toggleActivityList);
     $('#profile-tab').on('click', clearForms);
+    $('#btnNewActivity').on('click', getLastActivityData);
+    $("#btnEditActivity").on("click", ' li', getLastActivityData);
+
 });
+
 
 //settings- email
 
     function GetSettings() {
         axios.get('http://localhost/regit/public/settings/')
             .then(function (response) {
-                console.log(response.data);
+                console.log(response.data['id']);
 
                 let SettingInfo = response.data;
                 $.each(SettingInfo, function (k, v) { //put data in matching inputs
@@ -155,8 +159,30 @@ $(document).ready(function () {
     function clearForms() {
     $("#client-form")[0].reset();
     $("#newCompanyForm")[0].reset();
-    $("#changeUserForm")[0].reset();
+    // $("#changeUserForm")[0].reset();
     $("#newUserForm")[0].reset();
     $("#userForm")[0].reset();
     $("#activityForm")[0].reset();
     }
+
+function getLastActivityData() {
+
+    axios.get('http://localhost/regit/public/settings/GetLastActivity')
+        .then(function (response) {
+            var lastActivityData = response.data;
+            console.log(lastActivityData)
+            $("#activityList li").removeClass("active");
+
+
+            lastActivity = $('#activityList li').last().data();
+
+            $.each(lastActivity, function (k, v) {
+                $("input[name=" + k + "]").val(v);
+            });
+            $('#activityList li').last().addClass("active");
+        })
+        .catch(function (error) {
+            //$.alert('error');
+            console.log(error)
+        });
+}

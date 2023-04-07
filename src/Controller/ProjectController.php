@@ -38,7 +38,7 @@ class ProjectController extends AbstractController
         return $this->json($projectService->updateProject($parameters));
     }
 
-    #[Route('/deleteProject', name: 'deleteProject', methods: ['POST'])]
+    #[Route('/deleteProject', name: 'deleteProject', methods: ['put'])]
     public function deleteProject(ProjectService $projectService, Request $request): Response
     {
         $parameters = json_decode($request->getContent(), true);

@@ -58,5 +58,14 @@ if (!isset($_SERVER['HTTP_REFERER'])) {
             $parameters = json_decode($request->getContent(), true);
             return $this->json($SettingsService->DeleteActivity($parameters));
         }
+
+        #[Route('/GetLastActivity', name: 'GetLastActivity', methods: ['GET'])]
+        public function GetLastActivity(SettingsService $SettingsService, Request $request): Response
+        {
+            //$parameters = $request->query->get('id');
+            //$parameters = json_decode($request->getContent(), true);
+            return $this->json($SettingsService->GetLastActivity());
+        }
+
     }
 }

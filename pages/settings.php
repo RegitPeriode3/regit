@@ -107,7 +107,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuleer</button>
-                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="CreateActivity();">invoeren</button>
+                      <button id="btnNewActivity" type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="CreateActivity();">invoeren</button>
                     </div>
                   </div>
                 </div>
@@ -128,7 +128,7 @@
               <hr class="mt-5 mb-4">
               <div class="col-12 row mb-5">
                 <div class="col-5">
-                  <button type="button" class="btn btn-primary float-right" onclick="UpdateActivity();">aanpassingen opslaan</button>
+                  <button id="btnEditActivity" type="button" class="btn btn-primary float-right" onclick="UpdateActivity();">aanpassingen opslaan</button>
                 </div>
                 <div class="col-7">
                   <button type="button" class="btn btn-danger float-left" onclick="DeleteActivity();">geslecteerde activiteit verwijderen</button>

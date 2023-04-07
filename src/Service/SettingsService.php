@@ -116,4 +116,19 @@ class SettingsService
         return 'Er is iets fout gegaan';
     }
 
+    public function GetLastActivity(): array
+    {
+        $lastactivity =  $this->ActivityRepository->findBy(array(), array('id' => 'DESC'), 1, 0);
+
+        $lastActivityData = [];
+
+        foreach ($lastactivity as $activity) {
+            $lastActivityData[] = [
+                'id' => $activity->getId(),
+                'activityName' => $activity->getActivity(),
+                'activityDescr' => $activity->getInvoiceDescription(),
+            ];
+        }
+        return $lastActivityData;
+    }
 }

@@ -184,7 +184,7 @@ function clearForms()
     $("#newUserForm")[0].reset();
     $("#userForm")[0].reset();
 
-
+    $("#changeUserForm")[0].reset();
 }
 
 

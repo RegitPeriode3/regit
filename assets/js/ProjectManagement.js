@@ -3,9 +3,9 @@ $(document).ready(function () {
     $("#CompanyManageList").on("click", ' li', getProjectsByCompany);
     $("#projectManageList").on("click", ' li', toggleProjectList);
     $("#btnCreateProject").on("click", LoadProjectsByCompany);
-    $("#projecten-tab").on("click", clearForms);
-    $("#btnNewProject").on("click", clearForms);
-    $("#btnCreateProject").on("click", clearForms);
+    $("#projecten-tab").on("click", test);
+    $("#btnNewProject").on("click", test);
+    $("#btnCreateProject").on("click", test);
     $("#btnDeleteProject").on("click", deleteProject);
 
 
@@ -141,11 +141,11 @@ function CreateProject() {
 
 }
 
-async function Updateproject() {
+ function Updateproject() {
     if (selectedProject == null) {
         alert("er is geen project geselecteerd");
     } else {
-        var projectUpdated = await axios({
+        var projectUpdated =  axios({
             method: 'POST',
             url: 'http://localhost/regit/public/project/updateProject',
             headers: {},
@@ -168,7 +168,7 @@ async function Updateproject() {
         alert("er is geen project geselecteerd");
     } else {
         var projectDelete =  axios({
-            method: 'POST',
+            method: 'put',
             url: 'http://localhost/regit/public/project/deleteProject',
             headers: {},
             data: {
@@ -210,41 +210,7 @@ function toggleProjectList() {
     });
 }
 
-// function getLastProjectData() {
-//     axios.get('http://localhost/regit/public/project/LoadLastProject/', {
-//         params: {
-//             id: selectedCompanyId
-//         }
-//     })
-//         .then(function (response) {
-//             var Project = response.data;
-// console.log(Project)
-//             $('#projectManageList').empty();
-//             var list = $('#projectManageList');
-//             $.each(Project, function (k, v) {
-//
-//                 var entry = document.createElement('li');
-//                 entry.className = 'list-group-item';
-//                 entry.innerHTML = v['name'];
-//                 entry.id = v['id'];
-//
-//                 //console.log(entry.id);
-//                 list.append(entry);
-//                 $('#projectManageList li').last().data(v);
-//
-//             })
-//
-//             list.data(Project);
-//
-//         })
-//         .catch(function (error) {
-//             //$.alert('error');
-//             console.log(error)
-//         });
-//
-// }
-
-function clearForms()
+function test()
 {
     console.log("123")
     $("#client-form")[0].reset();

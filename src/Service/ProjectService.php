@@ -75,9 +75,11 @@ class ProjectService
 
     public function deleteProject($parameters): string
     {
+
         $project = $this->projectRepository->findOneBy(['id' => $parameters['id']]);
 
         if (!empty($project)) {
+
             $project->setDeleted(true);
 
             $this->em->persist($project);
