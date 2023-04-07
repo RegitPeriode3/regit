@@ -1,22 +1,42 @@
 $(document).ready(function () {
 
-    $("#projecten-tab").on("click", getProjects);
+    $("#CompanyManageList").on("click", ' li', getProjectsByCompany);
     $("#projectManageList").on("click", ' li', toggleProjectList);
+    $("#btnCreateProject").on("click", LoadProjectsByCompany);
+    $("#projecten-tab").on("click", clearForms);
+    $("#btnNewProject").on("click", clearForms);
+
 });
 
 var selectedProject;
-function getProjects() {
-    axios.get('http://localhost/regit/public/project/')
+var selectedCompanyId;
+
+
+function getProjectsByCompany() {
+
+    $("#CompanyManageList li").removeClass("active");
+    $(this).addClass("active");
+    selectedCompanyId = $(this).data()['id'];
+    //console.log(selectedCompanyId)
+
+
+    axios.get('http://localhost/regit/public/project/getproject/', {
+        params: {
+            id: selectedCompanyId
+        }
+    })
         .then(function (response) {
             var Project = response.data;
 
             $('#projectManageList').empty();
             var list = $('#projectManageList');
             $.each(Project, function (k, v) {
+
                 var entry = document.createElement('li');
                 entry.className = 'list-group-item';
                 entry.innerHTML = v['name'];
                 entry.id = v['id'];
+
                 //console.log(entry.id);
                 list.append(entry);
                 $('#projectManageList li').last().data(v);
@@ -30,7 +50,134 @@ function getProjects() {
             //$.alert('error');
             console.log(error)
         });
+
 }
+
+
+function LoadProjectsByCompany() {
+
+    axios.get('http://localhost/regit/public/project/LoadLastProject/', {
+        params: {
+            id: selectedCompanyId
+        }
+    })
+        .then(function (response) {
+            var Project = response.data;
+
+            $('#projectManageList').empty();
+            var list = $('#projectManageList');
+
+            $("#projectManageList li").removeClass("active");
+            $('#projectManageList li').last().addClass("active");
+            selectedUserData = $('#projectManageList li').last().data();
+            console.log(Project)
+            // $.each(Project, function (k, v) {
+            //
+            //     var entry = document.createElement('li');
+            //     entry.className = 'list-group-item';
+            //     entry.innerHTML = v['name'];
+            //     entry.id = v['id'];
+            //
+            //     //console.log(entry.id);
+            //     list.append(entry);
+            //     $('#projectManageList li').last().data(v);
+            //
+            // })
+
+            //list.data(Project);
+
+        })
+        .catch(function (error) {
+            //$.alert('error');
+            console.log(error)
+        });
+
+}
+
+
+function toggleCompanyList() {
+
+    $("#CompanyManageList li").removeClass("active");
+    $(this).addClass("active");
+    selectedCompanyId = $(this).data()['id'];
+    console.log(selectedCompanyId)
+    // //console.log($(this))
+    showCompanyInfo($(this));
+
+}
+
+
+
+
+
+function CreateProject() {
+
+
+    var projectNew = axios({
+        method: 'post',
+        url: 'http://localhost/regit/public/project/createProject',
+        headers: {},
+        data: {
+            id: selectedProject,
+            name: $('#newName').val(),
+            description: $('#newDescription').val(),
+            companyID: selectedCompanyId,
+
+        },
+
+    });
+
+    clearForms();
+    console.log("");
+    console.log(projectNew);
+    alert("Het nieuw project is aangemaakt");
+
+
+}
+
+async function Updateproject() {
+    if (selectedProject == null) {
+        alert("er is geen project geselecteerd");
+    } else {
+        var projectUpdated = await axios({
+            method: 'POST',
+            url: 'http://localhost/regit/public/project/updateProject',
+            headers: {},
+            data: {
+                id: selectedProject,
+                name: $('#Name').val(),
+                description: $('#Description').val(),
+            },
+        });
+        console.log(projectUpdated);
+        console.log(selectedProject);
+        clearForms();
+        alert("Het project is aangepast");
+        //getProjects();
+    }
+}
+
+async function deleteProject() {
+    if (selectedProject == null) {
+        alert("er is geen project geselecteerd");
+    } else {
+        var projectDelete = await axios({
+            method: 'POST',
+            url: 'http://localhost/regit/public/project/deleteProject',
+            headers: {},
+            data: {
+                id: selectedProject
+            },
+        });
+        clearForms();
+        console.log(projectDelete);
+        console.log(selectedProject);
+        alert("Het geselecteerde project is verwijderd");
+
+        //getProjects();
+    }
+}
+
 
 function showCompanyInfo($el) {
     //console.log($el);
@@ -53,9 +200,54 @@ function toggleProjectList() {
     selectedProject = projectInfo.id;
 
     $.each(projectInfo, function (k, v) {
-
         $("input[name=" + k + "]").val(v);
-       
-
     });
+}
+
+// function getLastProjectData() {
+//     axios.get('http://localhost/regit/public/project/LoadLastProject/', {
+//         params: {
+//             id: selectedCompanyId
+//         }
+//     })
+//         .then(function (response) {
+//             var Project = response.data;
+// console.log(Project)
+//             $('#projectManageList').empty();
+//             var list = $('#projectManageList');
+//             $.each(Project, function (k, v) {
+//
+//                 var entry = document.createElement('li');
+//                 entry.className = 'list-group-item';
+//                 entry.innerHTML = v['name'];
+//                 entry.id = v['id'];
+//
+//                 //console.log(entry.id);
+//                 list.append(entry);
+//                 $('#projectManageList li').last().data(v);
+//
+//             })
+//
+//             list.data(Project);
+//
+//         })
+//         .catch(function (error) {
+//             //$.alert('error');
+//             console.log(error)
+//         });
+//
+// }
+
+function clearForms()
+{
+    $("#client-form")[0].reset();
+    $("#newCompanyForm")[0].reset();
+    $("#projectForm")[0].reset();
+    $("#projectModal")[0].reset();
+    $("#projectFormModal")[0].reset();
+    $("#newUserForm")[0].reset();
+    $("#userForm")[0].reset();
+    $("#newClientModal")[0].reset();
+
+
 }

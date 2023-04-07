@@ -93,7 +93,8 @@ class UserService
         $parameters['EmployeeId'] = 1;
         $user->setDisplayName($parameters['displayName']);
         $user->setUserName($parameters['UserName']);
-        $user->setPassword($parameters['password']);
+        $hashed_password = password_hash($parameters['password'], PASSWORD_DEFAULT);
+        $user->setPassword($hashed_password);
         $user->setEmployeeID($parameters['EmployeeId']);
         $user->setEmail($parameters['email']);
         $user->setPhoneNr($parameters['phoneNr']);
@@ -119,7 +120,8 @@ class UserService
         if (!empty($user)) {
             $user->setDisplayName($parameters['DisplayName']);
             $user->setUserName($parameters['UserName']);
-            $user->setPassword($parameters['Password']);
+            $hashed_password = password_hash($parameters['Password'], PASSWORD_DEFAULT);
+            $user->setPassword($hashed_password);
             $user->setEmail($parameters['Email']);
             $user->setPhoneNr($parameters['PhoneNr']);
             $user->setCountry($parameters['Country']);

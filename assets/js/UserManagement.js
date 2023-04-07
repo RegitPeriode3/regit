@@ -188,14 +188,9 @@ function getLastUserData() {
 
             $.each(selectedUserData, function (k, v) {
 
-                $("input[name=" + k + "]").val(v);
-                $("textarea[name=" + k + "]").val(v);
+                $("#Name").val(lastProjectData[0]['name']);
+                $("#Description").val(lastProjectData[0]['description']);
 
-                if (selectedUserData['active'] === true) {
-                    $('#userActive').prop('checked', true);
-                } else {
-                    $('#userActive').prop('checked', false);
-                }
             });
         })
         .catch(function (error) {

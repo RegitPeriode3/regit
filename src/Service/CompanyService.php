@@ -53,7 +53,7 @@ class CompanyService
         return $allCompanies;
     }
 
-    public function CreateCompany($parameters)
+    public function CreateCompany($parameters): Response
     {
 
         $company = new Company();
@@ -130,6 +130,8 @@ class CompanyService
         }
         return $lastCompanyData;
     }
+
+
 
 
 

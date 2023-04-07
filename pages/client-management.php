@@ -82,8 +82,8 @@
           <li class="nav-item" role="presentation">
             <button class="nav-link" id="facturatie-tab" data-bs-toggle="tab" data-bs-target="#facturatie" type="button" role="tab" aria-controls="contact" aria-selected="false">facturatie</button>
           </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="projecten-tab" data-bs-toggle="tab" data-bs-target="#projecten" type="button" role="tab" aria-controls="projecten" aria-selected="false">projecten</button>
+          <li class="nav-item" role="presentation" onclick="clearForms()">
+            <button class="nav-link" id="projecten-tab"  data-bs-toggle="tab" data-bs-target="#projecten" type="button" role="tab" aria-controls="projecten" aria-selected="false">projecten</button>
           </li>
         </ul>
 
@@ -195,46 +195,50 @@
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
+
                           <span class="modal-title new-user-title">Nieuw project</span>
                           <button type="button"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body row">
+                            <form id="projectFormModal" class="row col-12 g-3 user-management-form">
                           <div class="col-md-6">
                             <label class="form-label">project naam</label>
-                            <input type="text" class="form-control">
+                            <input id="newName" type="text" class="form-control">
                           </div>
                           <div class="col-md-6">
                             <label class="form-label">omschrijving</label>
-                            <input type="text" class="form-control">
+                            <input id="newDescription" type="text" class="form-control">
                           </div>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuleer</button>
-                          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">invoeren</button>
+                          <button onclick="CreateProject()" id="btnCreateProject" type="button" class="btn btn-primary" data-bs-dismiss="modal">invoeren</button>
+                            </form>
                         </div>
                       </div>
                     </div>
+
                   </div><!-- End Modal-->
 
                 </div>
 
                 <!-- Form -->
-                <form id="changeUserForm" class="row col-12 g-3 user-management-form">
+                <form id="projectForm" class="row col-12 g-3 user-management-form">
                   <div class="col-md-6">
                     <label class="form-label">project naam</label>
-                    <input type="text" class="form-control">
+                    <input id="Name" name="name" type="text" class="form-control">
                   </div>
                   <div class="col-md-6">
                     <label class="form-label">omschrijving</label>
-                    <input type="text" class="form-control">
+                    <input id="Description" name="description" type="text" class="form-control">
                   </div>
                   <hr class="mt-5 mb-4">
                   <div class="col-12 row">
                     <div class="col-5">
-                      <button type="submit" id="btnEditProject" class="btn btn-primary float-right">Aanpassingen opslaan</button>
+                      <button type="submit" id="btnEditProject" onclick="Updateproject()" class="btn btn-primary float-right">Aanpassingen opslaan</button>
                     </div>
                     <div class="col-7">
-                      <button type="submit" id="btnDeleteProject" class="btn btn-danger float-left">Geslecteerd project verwijderen</button>
+                      <button type="submit" id="btnDeleteProject" onclick="deleteProject()" class="btn btn-danger float-left">Geslecteerd project verwijderen</button>
                     </div>
                   </div>
                 </form><!-- End activity Form -->

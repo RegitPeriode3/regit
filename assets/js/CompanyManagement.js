@@ -2,6 +2,7 @@ $(document).ready(function () {
     $('#CompanyManagementNav').on('click', GetCompanies);
     $("#CompanyManageList").on("click", ' li', toggleCompanyList);
     $("#btnCreateCompany").on("click", getLastCompanyData);
+    $("#CompanyManageList").on("click", ' li', clearForms);
     //$("#UpdateCustomerBtn").on("click", getLastCompanyData);
 
 
@@ -41,7 +42,8 @@ function GetCompanies() {
 function toggleCompanyList() {
     $("#CompanyManageList li").removeClass("active");
     $(this).addClass("active");
-    selectedCompanyId = $(this).data()['Id'];
+    selectedCompanyId = $(this).data()['id'];
+    console.log(selectedCompanyId)
     // //console.log($(this))
     showCompanyInfo($(this));
 }
@@ -145,9 +147,10 @@ function clearForms()
 {
     $("#client-form")[0].reset();
     $("#newCompanyForm")[0].reset();
-    $("#changeUserForm")[0].reset();
+    $("#projectForm")[0].reset();
     $("#newUserForm")[0].reset();
     $("#userForm")[0].reset();
+
 
 }
 
