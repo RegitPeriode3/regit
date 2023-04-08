@@ -1,10 +1,13 @@
 <?php
-//session_start();
+if(session_status() === PHP_SESSION_NONE) session_start();
 
 include '../pages/loginTest.php';
 
 $username = $_SESSION['username'];
-
+//$id2 = $_SESSION['userID'];
+//$employeeID = $_SESSION['employeeID'];
+//$userDisplayName = $_SESSION['userDisplayName'];
+//$companyID = $_SESSION['companyID'];
 
 ?>
 
