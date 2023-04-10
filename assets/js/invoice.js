@@ -1,6 +1,7 @@
 $(document).ready(function() {
     SetCompaniesInvoice();
     $("#clientListInvoice").on("click", ' li', toggleClientList);
+    $("#mail").on("click",Mailprompt);
 });
 
 var selectedCompanyId;
@@ -94,7 +95,9 @@ async function toggleFactureren(row){
     });
 }
 
-async function MakeInvoice(){
+async function MakeInvoice($mail){
+    //$mail = Mailprompt();
+
     var InvoiceRowIds = [];
 
     $("#tblInvoiceRowCompany tr").each(function(k,v) {
@@ -109,9 +112,37 @@ async function MakeInvoice(){
         headers: {},
         data: {
             invoiceRowIds: InvoiceRowIds,
+            mail: $mail,
         },
     });
-
+    //Mailprompt();
     result = result.data;
+
     showInvoiceRows(result, true);
+}
+
+function Mailprompt()
+{
+    $.confirm({
+        title: 'Mail',
+        content: 'Wilt u de factuur als mail naar de klant versturen?',
+        buttons: {
+            ja: function () {
+                // var result = axios({
+                //     method: 'post',
+                //     url: 'http://localhost/regit/public/invoice/sendMail',
+                //     headers: {},
+                //     data:
+                // });
+                //return true;
+                //$.alert('Mail is verzonden');
+                MakeInvoice(true);
+            },
+            nee: function () {
+                MakeInvoice(false);
+                //$.alert('Mail is niet verzonden');
+            }
+
+        }
+    });
 }

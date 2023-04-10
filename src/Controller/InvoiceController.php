@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Service\invoiceService;
+use App\Service\mailService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,6 +39,13 @@ class InvoiceController extends AbstractController
     {
         $parameters = json_decode($request->getContent(), true);
         return $this->json($invoiceService->createInvoice($parameters));
+    }
+
+    #[Route('/sendMail', name: 'sendMail', methods: ['POST'])]
+    public function sendMail(mailService $mailService, Request $request): Response
+    {
+//        $parameters = json_decode($request->getContent(), true);
+        return $this->json($mailService->email());
     }
 
 }
