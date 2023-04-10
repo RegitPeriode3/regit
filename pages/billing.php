@@ -50,7 +50,7 @@ else {
         <hr>
         <div class="col-10 row">
           <div class="col-2"><button class="btn btn-primary" onclick="Mailprompt()">Maak factuur</button></div>
-          <div class="col-2"><button id="mail" class="btn btn-primary">Mailtest</button></div>
+<!--          <div class="col-2"><button id="mail" class="btn btn-primary">Mailtest</button></div>-->
         </div>
       </div><!--end menu-->
       <!--table-->
