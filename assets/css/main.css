@@ -47,7 +47,6 @@ html {
 
 .user-management-form {
     padding-left: 50px;
-    padding-top: 12px;
     padding-right: 50px;
 }
 
@@ -78,6 +77,10 @@ html {
 
 
 /* settings */
+.settings-title {
+    padding-top: 1%;
+}
+
 .settings-card {
     width: 75%;
     margin-left: 12%;
@@ -94,7 +97,7 @@ html {
 }
 
 .activity-scroll {
-    max-height: 52vh;
+    max-height: 48vh;
     overflow-y: scroll;
 }
 
