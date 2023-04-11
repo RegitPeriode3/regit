@@ -1,6 +1,6 @@
 <!-- ======= Sidebar ======= -->
 <aside id="sidebar" class="sidebar">
-  <script src="../assets/js/CompanyManagement.js"></script>
+<!--  <script src="../assets/js/CompanyManagement.js"></script>-->
   <ul class="sidebar-nav" id="sidebar-nav">
 
     <?php

@@ -100,7 +100,6 @@ function LoadProjectsByCompany() {
 
 }
 
-
 function toggleCompanyList() {
 
     $("#CompanyManageList li").removeClass("active");
@@ -111,10 +110,6 @@ function toggleCompanyList() {
     showCompanyInfo($(this));
 
 }
-
-
-
-
 
 function CreateProject() {
 
@@ -183,7 +178,6 @@ function CreateProject() {
         //LoadProjectsByCompany();
     }
 }
-
 
 function showCompanyInfo($el) {
     //console.log($el);

@@ -4,9 +4,8 @@ $(document).ready(function () {
     $("#InvoiceList").on("click", ' li', toggleInvoiceList);
     // $("#CompanyManagementNav").on("click", ' li', getLastCompanyData);
     $("#btnCreateCompany").on("click", getLastCompanyData);
-    $("#CompanyManageList").on("click", ' li', clearForms);
+    //$("#CompanyManageList").on("click", ' li', clearForms);
     //$("#UpdateCustomerBtn").on("click", getLastCompanyData);
-
 
 });
 
@@ -24,8 +23,8 @@ function GetCompanies() {
             $.each(CompanyItem, function (k, v) {
                 var entry = document.createElement('li');
                 entry.className = 'list-group-item';
-                entry.innerHTML = v['name'];
-                entry.id = v['id'];
+                entry.innerHTML = v['companyName'];
+                entry.id = v['companyId'];
                 //console.log(entry.id);
                 list.append(entry);
                 $('#CompanyManageList li').last().data(v);
@@ -42,9 +41,9 @@ function GetCompanies() {
 }
 
 function FillInvoiceList(companyData){
-    $('#InvoiceList').empty();
     var list = $('#InvoiceList');
     $.each(companyData['Inovices'], function (k, v) {
+        console.log(v);
         var entry = document.createElement('li');
         entry.className = 'list-group-item';
         entry.innerHTML = v['invoiceNumber'];
@@ -57,6 +56,7 @@ function FillInvoiceList(companyData){
 }
 
 function toggleCompanyList() {
+    clearForms();
     $("#CompanyManageList li").removeClass("active");
     $(this).addClass("active");
     selectedCompanyId = $(this).data()['id'];
@@ -68,12 +68,11 @@ function toggleCompanyList() {
 }
 
 function showCompanyInfo($el) {
-    //console.log($el);
+    //console.log($el.data());
     var companyInfo = $el.data();
     selectedCompanyId = companyInfo.id;
 
     $.each(companyInfo, function (k, v) {
-
         $("input[name=" + k + "]").val(v);
         $("textarea[name=" + k + "]").val(v);
 
@@ -89,7 +88,7 @@ function showCompanyInfo($el) {
 function toggleInvoiceList() {
     $("#InvoiceList li").removeClass("active");
     $(this).addClass("active");
-    selectedInvoiceId = $(this).data()['id'];
+    selectedInvoiceId = $(this).data()['companyId'];
     // //console.log($(this))
     LoadInvoiceIframe($(this).data()['link']);
 }
