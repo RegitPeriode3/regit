@@ -11,6 +11,10 @@ html {
     float: left;
 }
 
+.flex-end {
+    align-self: flex-end;
+}
+
 .list-scroll {
     overflow-y: scroll;
     max-height: 70vh;
@@ -33,6 +37,15 @@ html {
     .invisi-nav {
         display: none;
     }
+}
+
+/* hour registration */
+
+.hour-regi-table {
+    max-height: 67vh;
+    overflow-y: scroll;
+    max-width: 102vh;
+    overflow-x: scroll;
 }
 
 
@@ -75,6 +88,18 @@ html {
     margin-top: 2.4%;
 }
 
+.billing-table {
+    max-height: 52vh;
+    overflow-y: scroll;
+    max-width: 127vh;
+    overflow-x: scroll;
+}
+
+.billing-scroll {
+    max-height: 64vh;
+    overflow-y: scroll;
+}
+
 
 /* settings */
 .settings-title {
@@ -104,7 +129,7 @@ html {
 
 /*company management*/
 .clientlist-scroll {
-    max-height: 61vh;
+    max-height: 57vh;
     overflow-y: scroll;
 }
 
