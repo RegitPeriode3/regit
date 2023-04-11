@@ -81,7 +81,7 @@
 
             <div class="row mt-3">
               <div class="col-8">
-                <h5 class="user-management-title">Activiteiten toevoegen / aanpassen</h5>
+                <h5 class="user-management-title settings-title">Activiteiten toevoegen / aanpassen</h5>
               </div>
               <div class="col-4">
                 <button type="button" data-bs-toggle="modal" data-bs-target="#activityModal" class="btn btn-primary float-right"><i class="bi bi-plus"></i> nieuwe activiteit</button>
@@ -114,9 +114,9 @@
               </div><!-- End Modal-->
 
             </div>
-
+            <hr class="mt-3 mb-3">
             <!-- Form -->
-            <form class="row col-12 g-3 user-management-form" id="activityForm">
+            <form class="row col-12 g-3 mt-4 mb-4 user-management-form" id="activityForm">
               <div class="col-md-6">
                 <label class="form-label">activiteit naam</label>
                 <input type="text" name="activityName" id="activityName" class="form-control">
@@ -127,11 +127,11 @@
               </div>
               <hr class="mt-5 mb-4">
               <div class="col-12 row mb-5">
-                <div class="col-5">
+                <div class="col-6">
                   <button id="btnEditActivity" type="button" class="btn btn-primary float-right" onclick="UpdateActivity();">aanpassingen opslaan</button>
                 </div>
-                <div class="col-7">
-                  <button type="button" class="btn btn-danger float-left" onclick="DeleteActivity();">geslecteerde activiteit verwijderen</button>
+                <div class="col-6">
+                  <button type="button" class="btn btn-danger float-left" onclick="DeleteActivity();">activiteit verwijderen</button>
                 </div>
               </div>
             </form><!-- End activity Form -->

@@ -111,7 +111,7 @@ class invoiceService
     }
 
 
-    public function createInvoice($ids):array{
+    public function createInvoice($parameters):array{
         $invoice = new Invoice();
 
         //get max fact nr +1 als nieuwe factnr
@@ -133,19 +133,21 @@ class invoiceService
         $invoiceCreated = $invoice;
 
         //sets the new invoice id to the corresponding invoice rows
-        return  $this->AssignInvoiceRows($ids, $invoiceId, $invoiceNr);
+        return  $this->AssignInvoiceRows($parameters['invoiceRowIds'], $invoiceId, $invoiceNr,$parameters['mail']);
     }
 
-    private function AssignInvoiceRows($ids, $invoiceId, $invoiceNr):array{
+    private function AssignInvoiceRows($ids, $invoiceId, $invoiceNr,$mail):array{
+
         //turns the array into a string seperated by ,
-        $idString = implode(',', $ids['invoiceRowIds']);
+        $idString = implode(',', $ids);
 
         //updates the invoice rows with the invoice id
         $connection = $this->em->getConnection();
         $connection->executeQuery("UPDATE hour_registration SET invoice_id = " . $invoiceId . " WHERE id IN ($idString) AND deleted = 0 AND add_to_Invoice = 1 AND invoice_id IS NULL");
 
-        $companyId = $this->hourRegistrationRepository->findOneBy(["id" => $ids['invoiceRowIds'][0]])->getCompany()->getId();
-        $this->pdfService->CreatePdf($ids, $invoiceNr);
+        $companyId = $this->hourRegistrationRepository->findOneBy(["id" => $ids[0]])->getCompany()->getId();
+
+        $this->pdfService->CreatePdf($ids, $invoiceNr,$mail);
 
         return $this->GetCompanyInvoiceRows($companyId, $this->dateFrom, $this->dateTill);
     }

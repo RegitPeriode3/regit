@@ -15,7 +15,8 @@ class PdfService
 {
     public function __construct(
         private readonly InvoiceRepository $invoiceRepository,
-        private readonly EntityManagerInterface $em
+        private readonly EntityManagerInterface $em,
+         private readonly mailService $mailService
     ) {
     }
 
@@ -24,7 +25,7 @@ class PdfService
         return [];
     }
 
-    public function CreatePdf($ids, $invoiceNr)
+    public function CreatePdf($ids, $invoiceNr,$mail)
     {
         //creates pdf and returns save location (doclink)
         $doclink = $this->CreateContent($this->GetInvoiceData($ids), $invoiceNr);
@@ -35,6 +36,11 @@ class PdfService
         $this->em->persist($invoice);
         $this->em->flush();
 //        $this->FillContent();
+        if($mail == 'true')
+        {
+            $this->mailService->email($doclink);
+        }
+
     }
 
     public function SavePdf()
@@ -44,7 +50,7 @@ class PdfService
 
     private function getinvoicedata($ids): array
     {
-        $test = implode(',', $ids['invoiceRowIds']);
+        $test = implode(',', $ids);
         $connection = $this->em->getconnection();
 
         $invoicerowinfo = $connection->executequery(
@@ -151,7 +157,7 @@ class PdfService
         $pdf->allow_charset_conversion = true;
 
         //achtegrond afbeelding instellen
-        $image = "C:/wamp64/www/regit/assets/img/CoppenInvoiceBackground.png";
+        $image = "../assets/img/CoppenInvoiceBackground.png";
         $pdf->SetDefaultBodyCSS('background', "url('$image')");
         $pdf->SetDefaultBodyCSS('background-image-resize', 6);
 
@@ -160,7 +166,8 @@ class PdfService
 
         //pad voor locale opslag
         $filename = "factuur-" . $invoiceNr;
-        $savepath = "C:/wamp64/www/regit/temp/Invoices/". $filename . ".pdf";//path hardcoded needs change
+        //$savepath = "C:/wamp64/www/regit/temp/Invoices/". $filename . ".pdf";//path hardcoded needs change
+        $savepath = "../temp/Invoices/". $filename . ".pdf";//path hardcoded needs change
         //$savepath = $_SERVER['DOCUMENT_ROOT'] . "/temp/Factuur/" . $filename . ".pdf";
 
         //schrijf de pdf naar de aangegeven locatie

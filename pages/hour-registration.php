@@ -79,7 +79,7 @@
           <div class="card-body">
             <h5 class="card-title">Gemaakte uren</h5>
 
-            <table class="table table-striped" id="tblInvoiceRow">
+            <table class="table table-striped hour-regi-table" id="tblInvoiceRow">
               <thead>
                 <tr>
                   <th scope="col">Datum</th>

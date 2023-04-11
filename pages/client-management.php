@@ -83,7 +83,7 @@
             <button class="nav-link" id="facturatie-tab" data-bs-toggle="tab" data-bs-target="#facturatie" type="button" role="tab" aria-controls="contact" aria-selected="false">facturatie</button>
           </li>
           <li class="nav-item" role="presentation" onclick="clearForms()">
-            <button class="nav-link" id="projecten-tab"  data-bs-toggle="tab" data-bs-target="#projecten" type="button" role="tab" aria-controls="projecten" aria-selected="false">projecten</button>
+            <button class="nav-link" id="projecten-tab" data-bs-toggle="tab" data-bs-target="#projecten" type="button" role="tab" aria-controls="projecten" aria-selected="false">projecten</button>
           </li>
         </ul>
 
@@ -133,10 +133,10 @@
               <hr>
               <div class="col-12 row">
                 <div class="col-6 mb-3">
-                  <button type="button" id="UpdateCustomerBtn" onclick="UpdateCompany();" class="btn btn-primary float-right">Aanpassingen opslaan</button>
+                  <button type="button" id="UpdateCustomerBtn" onclick="UpdateCompany();" class="btn btn-primary float-right">aanpassingen opslaan</button>
                 </div>
                 <div class="col-6">
-                  <button type="button" id="DeleteCustomerBtn" onclick="deleteCompany();" class="btn btn-danger float-left">Geslecteerde klant verwijderen</button>
+                  <button type="button" id="DeleteCustomerBtn" onclick="deleteCompany();" class="btn btn-danger float-left">klant verwijderen</button>
                 </div>
               </div>
             </form><!-- End Form -->
@@ -155,7 +155,7 @@
                   <input type="text" class="form-control" placeholder="filter.." onkeyup="FilterNextUlParent($(this));">
                 </div>
                 <ul class="list-group activity-scroll card" id="InvoiceList">
-=
+                  =
                 </ul>
               </div>
               <!--end invoice list-->
@@ -178,7 +178,7 @@
                 <div class="filter mb-3">
                   <input type="text" class="form-control" placeholder="filter.." onkeyup="FilterNextUlParent($(this));">
                 </div>
-                <ul id="projectManageList"   class="list-group activity-scroll card">
+                <ul id="projectManageList" class="list-group activity-scroll card">
 
                 </ul>
               </div>
@@ -189,7 +189,7 @@
 
                 <div class="row mt-3">
                   <div class="col-8">
-                    <h5 class="user-management-title">Projecten toevoegen / aanpassen</h5>
+                    <h5 class="user-management-title settings-title">Projecten toevoegen / aanpassen</h5>
                   </div>
                   <div class="col-4">
                     <button type="button" id="btnNewProject" data-bs-toggle="modal" data-bs-target="#projectModal" class="btn btn-primary float-right"><i class="bi bi-plus"></i> nieuw project</button>
@@ -202,23 +202,23 @@
                         <div class="modal-header">
 
                           <span class="modal-title new-user-title">Nieuw project</span>
-                          <button type="button"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body row">
-                            <form id="projectFormModal" class="row col-12 g-3 user-management-form">
-                          <div class="col-md-6">
-                            <label class="form-label">project naam</label>
-                            <input id="newName" type="text" class="form-control">
-                          </div>
-                          <div class="col-md-6">
-                            <label class="form-label">omschrijving</label>
-                            <input id="newDescription" type="text" class="form-control">
-                          </div>
+                          <form id="projectFormModal" class="row col-12 g-3 user-management-form">
+                            <div class="col-md-6">
+                              <label class="form-label">project naam</label>
+                              <input id="newName" type="text" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">omschrijving</label>
+                              <input id="newDescription" type="text" class="form-control">
+                            </div>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuleer</button>
                           <button onclick="CreateProject()" id="btnCreateProject" type="button" class="btn btn-primary" data-bs-dismiss="modal">invoeren</button>
-                            </form>
+                          </form>
                         </div>
                       </div>
                     </div>
@@ -226,6 +226,7 @@
                   </div><!-- End Modal-->
 
                 </div>
+                <hr class="mt-3 mb-5">
 
                 <!-- Form -->
                 <form id="projectForm" class="row col-12 g-3 user-management-form">
@@ -238,12 +239,12 @@
                     <input id="Description" name="description" type="text" class="form-control">
                   </div>
                   <hr class="mt-5 mb-4">
-                  <div class="col-12 row">
-                    <div class="col-5">
-                      <button type="submit" id="btnEditProject" onclick="Updateproject()" class="btn btn-primary float-right">Aanpassingen opslaan</button>
+                  <div class="col-12 row mb-4">
+                    <div class="col-6">
+                      <button type="submit" id="btnEditProject" onclick="Updateproject()" class="btn btn-primary float-right">aanpassingen opslaan</button>
                     </div>
-                    <div class="col-7">
-                      <button type="submit" id="btnDeleteProject" class="btn btn-danger float-left">Geslecteerd project verwijderen</button>
+                    <div class="col-6">
+                      <button type="submit" id="btnDeleteProject" class="btn btn-danger float-left">project verwijderen</button>
                     </div>
                   </div>
                 </form><!-- End activity Form -->

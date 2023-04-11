@@ -26,7 +26,7 @@
       <div class="col-8 mt-2 user-card card user-right">
 
         <div class="row mt-3">
-          <div class="col-9">
+          <div class="col-9 mb-4">
             <h5 class="user-management-title">Bekijk / wijzig gebruikers</h5>
           </div>
 
@@ -155,12 +155,12 @@
             <input type="text" name="zipcode" id="UserZipcode" class="form-control">
           </div>
           <hr>
-          <div class="col-12 row">
+          <div class="col-12 row mt-1 mb-2">
             <div class="col-6 mb-3">
-              <button type="button" id="SaveUserChanges" onclick="UpdateUser();" class="btn btn-primary float-right">Aanpassingen opslaan</button>
+              <button type="button" id="SaveUserChanges" onclick="UpdateUser();" class="btn btn-primary float-right">aanpassingen opslaan</button>
             </div>
             <div class="col-6">
-              <button type="button" class="btn btn-danger float-left" onclick="DeleteUser();">Geslecteerde gebruiker verwijderen</button>
+              <button type="button" class="btn btn-danger float-left" onclick="DeleteUser();">gebruiker verwijderen</button>
             </div>
           </div>
         </form><!-- End Form -->

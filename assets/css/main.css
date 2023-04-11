@@ -11,6 +11,10 @@ html {
     float: left;
 }
 
+.flex-end {
+    align-self: flex-end;
+}
+
 .list-scroll {
     overflow-y: scroll;
     max-height: 70vh;
@@ -35,6 +39,15 @@ html {
     }
 }
 
+/* hour registration */
+
+.hour-regi-table {
+    max-height: 67vh;
+    overflow-y: scroll;
+    max-width: 102vh;
+    overflow-x: scroll;
+}
+
 
 /* user management */
 .user-management-title {
@@ -47,7 +60,6 @@ html {
 
 .user-management-form {
     padding-left: 50px;
-    padding-top: 12px;
     padding-right: 50px;
 }
 
@@ -76,8 +88,24 @@ html {
     margin-top: 2.4%;
 }
 
+.billing-table {
+    max-height: 52vh;
+    overflow-y: scroll;
+    max-width: 127vh;
+    overflow-x: scroll;
+}
+
+.billing-scroll {
+    max-height: 64vh;
+    overflow-y: scroll;
+}
+
 
 /* settings */
+.settings-title {
+    padding-top: 1%;
+}
+
 .settings-card {
     width: 75%;
     margin-left: 12%;
@@ -94,14 +122,14 @@ html {
 }
 
 .activity-scroll {
-    max-height: 52vh;
+    max-height: 48vh;
     overflow-y: scroll;
 }
 
 
 /*company management*/
 .clientlist-scroll {
-    max-height: 61vh;
+    max-height: 57vh;
     overflow-y: scroll;
 }
 
