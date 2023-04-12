@@ -50,7 +50,7 @@
             </div>
             <div class="col-md-6">
               <label class="form-label">wachtwoord</label>
-              <input type="text" id="SettingsPassword" name="SettingsPassword" class="form-control">
+              <input type="password" id="SettingsPassword" name="SettingsPassword" class="form-control">
             </div>
 
             <hr class="mt-5">

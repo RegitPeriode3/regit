@@ -23,7 +23,7 @@
       </div>
 
       <!-- user form -->
-      <div class="col-8 mt-2 user-card card user-right width-100-resp">
+      <div class="col-8 mt-2 user-card card user-right max-height-user width-100-resp">
 
         <div class="row mt-3">
           <div class="col-9 mb-4">
@@ -62,7 +62,7 @@
                       <input type="password" id="NewUserPassword" class="form-control">
                     </div>
 
-                    <hr>
+                    <!-- <hr>
                     <div class="col-md-6">
                       <label class="form-label">E-mail adres</label>
                       <input type="text" id="NewUserMail" class="form-control">
@@ -86,7 +86,7 @@
                     <div class="col-md-6">
                       <label class="form-label">Postcode</label>
                       <input type="text" id="NewUserZipcode" class="form-control">
-                    </div>
+                    </div> -->
 
                   </form><!-- End Form -->
                 </div>
@@ -129,8 +129,8 @@
             <input type="password" name="password" id="UserPassword" class="form-control">
           </div>
 
-          <hr>
-          <div class="col-md-6">
+          <!-- <hr> -->
+          <!-- <div class="col-md-6">
             <label class="form-label">E-mail adres</label>
             <input type="text" name="email" id="UserMail" class="form-control">
           </div>
@@ -153,7 +153,7 @@
           <div class="col-md-6">
             <label class="form-label">Postcode</label>
             <input type="text" name="zipcode" id="UserZipcode" class="form-control">
-          </div>
+          </div> -->
           <hr>
           <div class="col-12 row mt-1 mb-2">
             <div class="col-6 mb-3">

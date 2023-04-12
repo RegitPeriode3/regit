@@ -99,6 +99,16 @@ html {
     margin-left: 3%;
 }
 
+.max-height-user {
+    max-height: 41vh;
+}
+
+@media only screen and (max-width: 800px) {
+    .max-height-user {
+        max-height: unset;
+    }
+}
+
 
 /* billing */
 .billing-field {
