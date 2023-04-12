@@ -101,16 +101,18 @@ function LoadProjectsByCompany() {
 }
 
 
-function toggleCompanyList() {
-
-    $("#CompanyManageList li").removeClass("active");
-    $(this).addClass("active");
-    selectedCompanyId = $(this).data()['id'];
-    console.log(selectedCompanyId)
-    // //console.log($(this))
-    showCompanyInfo($(this));
-
-}
+// function toggleCompanyList() {
+//     clearForms();
+//     $("#CompanyManageList li").removeClass("active");
+//     $(this).addClass("active");
+//     selectedCompanyId = $(this).data()['id'];
+//     console.log(selectedCompanyId)
+//     // //console.log($(this))
+//     $("#invoicePdf").attr("src", "")
+//     FillInvoiceList($(this).data());
+//     showCompanyInfo($(this));
+//
+// }
 
 
 
@@ -210,17 +212,17 @@ function toggleProjectList() {
     });
 }
 
-function test()
-{
-    console.log("123")
-    $("#client-form")[0].reset();
-    $("#newCompanyForm")[0].reset();
-    $("#projectForm")[0].reset();
-    $("#projectModal")[0].reset();
-    $("#projectFormModal")[0].reset();
-    $("#newUserForm")[0].reset();
-    $("#userForm")[0].reset();
-    $("#newClientModal")[0].reset();
-
-
-}
+// function test()
+// {
+//     console.log("123")
+//     $("#client-form")[0].reset();
+//     $("#newCompanyForm")[0].reset();
+//     $("#projectForm")[0].reset();
+//     $("#projectModal")[0].reset();
+//     $("#projectFormModal")[0].reset();
+//     $("#newUserForm")[0].reset();
+//     $("#userForm")[0].reset();
+//     $("#newClientModal")[0].reset();
+//
+//
+// }

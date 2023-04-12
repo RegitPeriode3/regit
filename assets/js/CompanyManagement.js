@@ -4,7 +4,7 @@ $(document).ready(function () {
     $("#InvoiceList").on("click", ' li', toggleInvoiceList);
     // $("#CompanyManagementNav").on("click", ' li', getLastCompanyData);
     $("#btnCreateCompany").on("click", getLastCompanyData);
-    $("#CompanyManageList").on("click", ' li', clearForms);
+    //$("#CompanyManageList").on("click", ' li', clearForms);
     //$("#UpdateCustomerBtn").on("click", getLastCompanyData);
 
 
@@ -57,6 +57,7 @@ function FillInvoiceList(companyData){
 }
 
 function toggleCompanyList() {
+    clearForms();
     $("#CompanyManageList li").removeClass("active");
     $(this).addClass("active");
     selectedCompanyId = $(this).data()['id'];
@@ -178,6 +179,7 @@ async function deleteCompany() {
 
 function clearForms()
 {
+
     $("#client-form")[0].reset();
     $("#newCompanyForm")[0].reset();
     $("#projectForm")[0].reset();
