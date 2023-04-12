@@ -177,6 +177,7 @@ async function deleteCompany() {
 
 function clearForms()
 {
+
     $("#client-form")[0].reset();
     $("#newCompanyForm")[0].reset();
     $("#projectForm")[0].reset();
