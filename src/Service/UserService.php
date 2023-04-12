@@ -35,12 +35,12 @@ class UserService
                 'displayName' => $user->getDisplayName(),
                 'userName' => $user->getUserName(),
                 'password' => $user->getPassword(),
-                'email' => $user->getEmail(),
-                'phoneNr' => $user->getPhoneNr(),
-                'country' => $user->getCountry(),
-                'location' => $user->getLocation(),
-                'zipcode' => $user->getZipcode(),
-                'address' => $user->getAddress(),
+//                'email' => $user->getEmail(),
+//                'phoneNr' => $user->getPhoneNr(),
+//                'country' => $user->getCountry(),
+//                'location' => $user->getLocation(),
+//                'zipcode' => $user->getZipcode(),
+//                'address' => $user->getAddress(),
                 'active' => $user->isActive(),
                 'clearence' => $userClearance->getId()
             ];
@@ -58,12 +58,12 @@ class UserService
                 'displayName' => $user->getDisplayName(),
                 'userName' => $user->getUserName(),
                 'password' => $user->getPassword(),
-                'email' => $user->getEmail(),
-                'phoneNr' => $user->getPhoneNr(),
-                'country' => $user->getCountry(),
-                'location' => $user->getLocation(),
-                'zipcode' => $user->getZipcode(),
-                'address' => $user->getAddress(),
+//                'email' => $user->getEmail(),
+//                'phoneNr' => $user->getPhoneNr(),
+//                'country' => $user->getCountry(),
+//                'location' => $user->getLocation(),
+//                'zipcode' => $user->getZipcode(),
+//                'address' => $user->getAddress(),
                 'active' => $user->isActive(),
                 'clearence' => $userClearance->getId()
             ];
@@ -96,12 +96,12 @@ class UserService
         $hashed_password = password_hash($parameters['password'], PASSWORD_DEFAULT);
         $user->setPassword($hashed_password);
         $user->setEmployeeID($parameters['EmployeeId']);
-        $user->setEmail($parameters['email']);
-        $user->setPhoneNr($parameters['phoneNr']);
-        $user->setCountry($parameters['country']);
-        $user->setLocation($parameters['location']);
-        $user->setZipcode($parameters['zipcode']);
-        $user->setAddress($parameters['address']);
+//        $user->setEmail($parameters['email']);
+//        $user->setPhoneNr($parameters['phoneNr']);
+//        $user->setCountry($parameters['country']);
+//        $user->setLocation($parameters['location']);
+//        $user->setZipcode($parameters['zipcode']);
+//        $user->setAddress($parameters['address']);
         $user->setActive(True);
         $user->setDeleted(False);
         $user->setClearence($Clearance);
@@ -122,12 +122,12 @@ class UserService
             $user->setUserName($parameters['UserName']);
             $hashed_password = password_hash($parameters['Password'], PASSWORD_DEFAULT);
             $user->setPassword($hashed_password);
-            $user->setEmail($parameters['Email']);
-            $user->setPhoneNr($parameters['PhoneNr']);
-            $user->setCountry($parameters['Country']);
-            $user->setLocation($parameters['Location']);
-            $user->setZipcode($parameters['Zipcode']);
-            $user->setAddress($parameters['Address']);
+//            $user->setEmail($parameters['Email']);
+//            $user->setPhoneNr($parameters['PhoneNr']);
+//            $user->setCountry($parameters['Country']);
+//            $user->setLocation($parameters['Location']);
+//            $user->setZipcode($parameters['Zipcode']);
+//            $user->setAddress($parameters['Address']);
             $user->setClearence($Clearance);
             $user->setActive($parameters['active']);
 
@@ -165,12 +165,12 @@ class UserService
                 'displayName' => $user->getDisplayName(),
                 'userName' => $user->getUserName(),
                 'password' => $user->getPassword(),
-                'email' => $user->getEmail(),
-                'phoneNr' => $user->getPhoneNr(),
-                'country' => $user->getCountry(),
-                'location' => $user->getLocation(),
-                'zipcode' => $user->getZipcode(),
-                'address' => $user->getAddress(),
+//                'email' => $user->getEmail(),
+//                'phoneNr' => $user->getPhoneNr(),
+//                'country' => $user->getCountry(),
+//                'location' => $user->getLocation(),
+//                'zipcode' => $user->getZipcode(),
+//                'address' => $user->getAddress(),
                 'active' => $user->isActive(),
                 'clearence' => $userClearance->getId()
             ];
