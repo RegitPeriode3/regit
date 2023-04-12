@@ -35,24 +35,21 @@ if (!isset($_SERVER['HTTP_REFERER'])) {
         <div class="col-10 row card-body card billing-menu">
           <div class="col-12 row mb-3 mt-4">
 
-            <div class="col-md-2">
+            <div class="col-md-3">
               <label class="form-label">van</label>
               <input type="date" id="dateFromInvoice" onchange="showInvoiceRows();" class="form-control" value="<?php echo date("Y-m-d", strtotime(date("Y-m-d") . ' - 14 days')); ?>">
             </div>
 
-            <div class="col-md-2 width-100-resp">
+            <div class="col-md-3 width-100-resp">
               <label class="form-label">tot</label>
               <input type="date" id="dateTillInvoice" onchange="showInvoiceRows();" class="form-control" value="<?php echo date("Y-m-d"); ?>">
             </div>
 
             <div class="filter col-md-3 flex-end">
-              <select class="form-select" aria-label="selecteer per project">
-                <option value="1">One</option>
-                <option value="2">Two</option>
-              </select>
-            </div>
-            <div class="filter col-md-3 flex-end width-100-resp">
               <input type="text" class="form-control billing-search" placeholder="zoeken.." onkeyup="FilterNextUlParent($(this));">
+            </div>
+            <div class="filter col-md-1 flex-end width-100-resp">
+
             </div>
             <div class="col-2 flex-end width-100-resp">
               <button class="btn btn-primary" onclick="Mailprompt()">Maak factuur</button>
