@@ -161,6 +161,6 @@ html {
 }
 
 .invoice-iframe {
-    width: 97%;
-    padding-left: 3%;
+    width: 95vh;
+    height: 100vh;
 }
