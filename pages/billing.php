@@ -62,7 +62,7 @@ if (!isset($_SERVER['HTTP_REFERER'])) {
 
         </div><!--end menu-->
         <!--table-->
-        <div class="col-10 row card-body card">
+        <div class="col-10 row card-body card responsive-table">
           <table class="table table-striped billing-table" id="tblInvoiceRowCompany">
             <thead>
               <tr>

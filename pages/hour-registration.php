@@ -76,7 +76,7 @@
       <!-- hour registration table -->
       <div class="col-lg-8">
         <div class="card">
-          <div class="card-body">
+          <div class="card-body responsive-table">
             <h5 class="card-title">Gemaakte uren</h5>
 
             <table class="table table-striped hour-regi-table" id="tblInvoiceRow">
