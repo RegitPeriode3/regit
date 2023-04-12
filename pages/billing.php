@@ -12,9 +12,9 @@ if (!isset($_SERVER['HTTP_REFERER'])) {
   <div id="Billing" class="content">
 
     <section class="section row">
-      <div class="col-2 mt-2">
+      <div class="col-2 mt-2 width-100-resp">
         <div class="pagetitle">
-          <h1>Facturatie</h1>
+          <h1 class="responsive-title">Facturatie</h1>
         </div><!-- End Page Title -->
         <!--filter-->
         <div class="filter mb-3">
@@ -30,7 +30,7 @@ if (!isset($_SERVER['HTTP_REFERER'])) {
         </ul>
       </div><!--end select list-->
 
-      <div class="col-10 row billing-field">
+      <div class="col-10 row billing-field width-100-resp">
         <!--menu-->
         <div class="col-10 row card-body card billing-menu">
           <div class="col-12 row mb-3 mt-4">
@@ -40,7 +40,7 @@ if (!isset($_SERVER['HTTP_REFERER'])) {
               <input type="date" id="dateFromInvoice" onchange="showInvoiceRows();" class="form-control" value="<?php echo date("Y-m-d", strtotime(date("Y-m-d") . ' - 14 days')); ?>">
             </div>
 
-            <div class="col-md-2">
+            <div class="col-md-2 width-100-resp">
               <label class="form-label">tot</label>
               <input type="date" id="dateTillInvoice" onchange="showInvoiceRows();" class="form-control" value="<?php echo date("Y-m-d"); ?>">
             </div>
@@ -51,10 +51,10 @@ if (!isset($_SERVER['HTTP_REFERER'])) {
                 <option value="2">Two</option>
               </select>
             </div>
-            <div class="filter col-md-3 flex-end">
+            <div class="filter col-md-3 flex-end width-100-resp">
               <input type="text" class="form-control billing-search" placeholder="zoeken.." onkeyup="FilterNextUlParent($(this));">
             </div>
-            <div class="col-2 flex-end">
+            <div class="col-2 flex-end width-100-resp">
               <button class="btn btn-primary" onclick="Mailprompt()">Maak factuur</button>
             </div>
             <!--<div class="col-2"><button id="mail" class="btn btn-primary">Mailtest</button></div>-->

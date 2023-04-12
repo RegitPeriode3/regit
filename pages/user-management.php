@@ -2,13 +2,13 @@
 <div id="UserManagement" class="content">
 
   <div class="pagetitle">
-    <h1>Gebruikerbeheer</h1>
+    <h1 class="responsive-title">Gebruikerbeheer</h1>
   </div><!-- End Page Title -->
 
   <section class="section">
     <div class="row">
       <!-- select user list -->
-      <div class="col-2 user-list mt-2">
+      <div class="col-2 user-list mt-2 width-100-resp">
         <!--filter-->
         <div class="filter mb-3">
           <input type="text" class="form-control" placeholder="filter.." onkeyup="FilterNextUlParent($(this));">
@@ -23,7 +23,7 @@
       </div>
 
       <!-- user form -->
-      <div class="col-8 mt-2 user-card card user-right">
+      <div class="col-8 mt-2 user-card card user-right width-100-resp">
 
         <div class="row mt-3">
           <div class="col-9 mb-4">

@@ -33,11 +33,26 @@ html {
     overflow-y: scroll;
 }
 
-@media only screen and (max-width: 1300px) {
+/* @media only screen and (max-width: 1300px) {
     .invisi-nav {
         display: none;
     }
+} */
+
+@media only screen and (max-width: 800px) {
+    .width-100-resp {
+        width: 99% !important;
+        margin-left: 0 !important;
+        margin-bottom: 5%;
+    }
 }
+
+@media only screen and (max-width: 800px) {
+    .responsive-title {
+        margin-top: 6%;
+    }
+}
+
 
 /* hour registration */
 

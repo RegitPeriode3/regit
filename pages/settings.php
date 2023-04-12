@@ -2,7 +2,7 @@
 <div id="Settings" class="content">
 
   <div class="pagetitle">
-    <h1>Instellingen</h1>
+    <h1 class="responsive-title">Instellingen</h1>
   </div><!-- End Page Title -->
 
   <section class="section">
@@ -20,7 +20,7 @@
 
       <!--email-->
       <div class="tab-pane fade show active" id="email" role="tabpanel" aria-labelledby="home-tab">
-        <div class="col-12 row card card-body mt-4 settings-card">
+        <div class="col-12 row card card-body mt-4 settings-card width-100-resp">
           <h5 class="user-management-title mt-3">Email instellingen</h5>
           <!-- Form -->
           <form class="row col-12 g-3 user-management-form">
@@ -64,9 +64,9 @@
 
       <!--activity-->
       <div class="tab-pane fade" id="activiteit" role="tabpanel" aria-labelledby="profile-tab">
-        <div class="col-12 row mt-4 settings-white-card settings-card">
+        <div class="col-12 row mt-4 settings-white-card settings-card width-100-resp">
 
-          <div class="col-3">
+          <div class="col-3 width-100-resp">
             <!--filter-->
             <div class="filter mb-3">
               <input type="text" class="form-control" placeholder="filter.." onkeyup="FilterNextUlParent($(this));">
@@ -77,7 +77,7 @@
           </div>
 
           <!-- activity form -->
-          <div class="col-9">
+          <div class="col-9 width-100-resp">
 
             <div class="row mt-3">
               <div class="col-8">

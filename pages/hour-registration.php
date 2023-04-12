@@ -2,7 +2,7 @@
 <div id="HourRegistration" class="content">
 
   <div class="pagetitle">
-    <h1>Uren registratie</h1>
+    <h1 class="responsive-title">Uren registratie</h1>
   </div><!-- End Page Title -->
 
   <section class="section">

@@ -2,13 +2,13 @@
 <div id="ClientManagement" class="content">
 
   <div class="pagetitle">
-    <h1>Klantbeheer</h1>
+    <h1 class="responsive-title">Klantbeheer</h1>
   </div><!-- End Page Title -->
 
   <section class="section">
     <div class="col-12 row">
       <!-- select client list -->
-      <div class="col-2 mt-2">
+      <div class="col-2 mt-2 width-100-resp">
         <!--filter-->
         <div class="filter mb-3">
           <input type="text" class="form-control" placeholder="filter.." onkeyup="FilterNextUlParent($(this));">
@@ -74,7 +74,7 @@
       </div><!-- End new client Modal-->
 
       <!--client tabs-->
-      <div class="col-10 client-field-right">
+      <div class="col-10 client-field-right width-100-resp">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item" role="presentation">
             <button class="nav-link active" id="algemeen-tab" data-bs-toggle="tab" data-bs-target="#algemeen" type="button" role="tab" aria-controls="algemeen" aria-selected="true">bedrijfs gegevens</button>
@@ -88,7 +88,7 @@
         </ul>
 
         <div class="tab-content pt-2 field-client-data" id="myTabContent">
-          <div class="tab-pane fade show active card-body card row client-algemeen" id="algemeen" role="tabpanel" aria-labelledby="algemeen-tab">
+          <div class="tab-pane fade show active card-body card row client-algemeen width-100-resp" id="algemeen" role="tabpanel" aria-labelledby="algemeen-tab">
             <div class="pagetitle client-titles">
               <h5 class="client-management-title mt-3">bedrijfs gegevens</h5>
             </div><!-- End Page Title -->
@@ -149,7 +149,7 @@
             </div><!-- End Page Title -->
             <div class="row col-12 g-3 client-form">
               <!--invoice list-->
-              <div class="col-3">
+              <div class="col-3 width-100-resp">
                 <!--filter-->
                 <div class="filter mb-3">
                   <input type="text" class="form-control" placeholder="filter.." onkeyup="FilterNextUlParent($(this));">
@@ -160,7 +160,7 @@
               </div>
               <!--end invoice list-->
 
-              <div class="col-9 client-invoice">
+              <div class="col-9 client-invoice width-100-resp">
                 <iframe class="invoice-iframe" id="invoicePdf"></iframe>
               </div>
 
@@ -173,7 +173,7 @@
             <div class="col-12 row mt-4 settings-white-card">
 
               <!--activity list-->
-              <div class="col-3">
+              <div class="col-3 width-100-resp">
                 <!--filter-->
                 <div class="filter mb-3">
                   <input type="text" class="form-control" placeholder="filter.." onkeyup="FilterNextUlParent($(this));">
@@ -185,7 +185,7 @@
               <!--end activity list-->
 
               <!-- activity form -->
-              <div class="col-9">
+              <div class="col-9 width-100-resp">
 
                 <div class="row mt-3">
                   <div class="col-8">

@@ -5,7 +5,7 @@ $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'root';
 $DATABASE_PASS = '';
 $DATABASE_NAME = 'regit';
-$port = 3308;
+$port = 3306;
 // Try and connect to DB.
 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME, $port);
 if ( mysqli_connect_errno() ) {
