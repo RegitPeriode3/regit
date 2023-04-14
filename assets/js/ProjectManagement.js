@@ -3,10 +3,13 @@ $(document).ready(function () {
     $("#CompanyManageList").on("click", ' li', getProjectsByCompany);
     $("#projectManageList").on("click", ' li', toggleProjectList);
     $("#btnCreateProject").on("click", LoadProjectsByCompany);
-    $("#projecten-tab").on("click", test);
-    $("#btnNewProject").on("click", test);
-    $("#btnCreateProject").on("click", test);
+    // $("#projecten-tab").on("click", test);
+    // $("#btnNewProject").on("click", test);
+    // $("#btnCreateProject").on("click", test);
     $("#btnDeleteProject").on("click", deleteProject);
+    $("#btnDeleteProject").on("click", LoadProjectsByCompany);
+    $("#btnEditProject").on("click", Updateproject);
+    $("#btnEditProject").on("click", LoadProjectsByCompany);
 
 
 

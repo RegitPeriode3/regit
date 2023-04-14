@@ -83,6 +83,7 @@ class CompanyService
 
     public function UpdateCompany($parameters): string
     {
+
         $company = $this->companyRepository->findOneBy(['id' => $parameters['id']]);
 
         //$Clearance = $this->clearenceRepository->findOneBy(['id' => $parameters['clearence']]);
