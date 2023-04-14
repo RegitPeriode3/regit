@@ -133,10 +133,10 @@
               <hr>
               <div class="col-12 row">
                 <div class="col-6 mb-3">
-                  <button type="button" id="UpdateCustomerBtn" onclick="UpdateCompany();" class="btn btn-primary float-right">aanpassingen opslaan</button>
+                  <button type="button" id="UpdateCustomerBtn" class="btn btn-primary float-right">aanpassingen opslaan</button>
                 </div>
                 <div class="col-6">
-                  <button type="button" id="DeleteCustomerBtn" onclick="deleteCompany();" class="btn btn-danger float-left">klant verwijderen</button>
+                  <button type="button" id="DeleteCustomerBtn" class="btn btn-danger float-left">klant verwijderen</button>
                 </div>
               </div>
             </form><!-- End Form -->

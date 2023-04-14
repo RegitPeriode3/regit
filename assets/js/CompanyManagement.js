@@ -6,6 +6,9 @@ $(document).ready(function () {
     $("#btnCreateCompany").on("click", getLastCompanyData);
     //$("#CompanyManageList").on("click", ' li', clearForms);
     //$("#UpdateCustomerBtn").on("click", getLastCompanyData);
+    $("#DeleteCustomerBtn").on("click", deleteCompany);
+    $("#UpdateCustomerBtn").on("click", UpdateCompany);
+
 
 
 });
@@ -152,7 +155,7 @@ async function UpdateCompany() {
         });
         console.log(companyUpdated);
 
-        alert("De klant is aanepast");
+        alert("De klant is aangepast");
         GetCompanies();
     }
 }
