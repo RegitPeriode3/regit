@@ -33,16 +33,15 @@ class CompanyService
         foreach ($companies as $company) {
 
             $allCompanies[] = [
-                'id' => $company->getId(),
-                'name' => $company->getName(),
-                'phoneNr' => $company->getPhoneNr(),
-                'country' => $company->getCountry(),
-                'zipcode' => $company->getZipcode(),
-                'location' => $company->getLocation(),
-                'active' => $company->isActive(),
-                'invoiceAdress' => $company->getInvoiceAddress(),
-                'address' => $company->getAddress(),
-                'Inovices' => $this->GetCompanyInvoices($company)
+                'companyId' => $company->getId(),
+                'companyName' => $company->getName(),
+                'companyPhoneNr' => $company->getPhoneNr(),
+                'companyCountry' => $company->getCountry(),
+                'companyZipcode' => $company->getZipcode(),
+                'companyLocation' => $company->getLocation(),
+                'companyActive' => $company->isActive(),
+                'companyInvoiceAdress' => $company->getInvoiceAddress(),
+                'companyAddress' => $company->getAddress(),
             ];
         }
         return $allCompanies;

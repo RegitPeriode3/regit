@@ -24,7 +24,7 @@ function getProjectsByCompany() {
 
     $("#CompanyManageList li").removeClass("active");
     $(this).addClass("active");
-    selectedCompanyId = $(this).data()['id'];
+    selectedCompanyId = $(this).data()['companyId'];
     //console.log(selectedCompanyId)
 
 
@@ -80,7 +80,7 @@ function LoadProjectsByCompany() {
             selectedUserData = $('#projectManageList li').last().data();
 
             $.each(Project, function (k, v) {
-                console.log(k);
+
 
                 var entry = document.createElement('li');
                 entry.className = 'list-group-item';
@@ -187,7 +187,7 @@ function CreateProject() {
         console.log(selectedProject);
         alert("Het geselecteerde project is verwijderd");
 
-        //LoadProjectsByCompany();
+        LoadProjectsByCompany();
     }
 }
 

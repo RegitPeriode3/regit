@@ -96,39 +96,39 @@
             <form id="client-form" class="row col-12 g-3 client-form">
               <div class="col-md-5">
                 <label class="form-label">bedrijfsnaam</label>
-                <input type="text" name="name" id="CompanyName" class="form-control">
+                <input type="text" name="companyName" id="CompanyName" class="form-control">
               </div>
               <div class="col-md-4">
                 <label class="form-label">tel nr.</label>
-                <input type="text" name="phoneNr" id="phoneNr" class="form-control">
+                <input type="text" name="companyPhoneNr" id="phoneNr" class="form-control">
               </div>
               <div class="col-md-3">
                 <div class="form-check form-check-inline user-actief-label">
-                  <input class="form-check-input" type="checkbox" id="CompanyActive">
+                  <input class="form-check-input" type="checkbox" name="companyActive" id="CompanyActive">
                   <label class="form-check-label">actief</label>
                 </div>
               </div>
               <hr>
               <div class="col-md-6">
                 <label class="form-label">Land</label>
-                <input type="text" name="country" id="CustomerCountry" class="form-control">
+                <input type="text" name="companyCountry" id="CustomerCountry" class="form-control">
               </div>
               <div class="col-md-6">
                 <label class="form-label">Plaats</label>
-                <input type="text" name="location" id="CustomerLocation" class="form-control">
+                <input type="text" name="companyLocation" id="CustomerLocation" class="form-control">
               </div>
               <div class="col-md-6">
                 <label class="form-label">Adres</label>
-                <input type="text" name="address" id="CustomerAddress" class="form-control">
+                <input type="text" name="companyAddress" id="CustomerAddress" class="form-control">
               </div>
               <div class="col-md-6">
                 <label class="form-label">Postcode</label>
-                <input type="text" name="zipcode" id="CustomerZipcode" class="form-control">
+                <input type="text" name="companyZipcode" id="CustomerZipcode" class="form-control">
               </div>
               <hr>
               <div class="col-md-6">
                 <label class="form-label">factuur adress</label>
-                <textarea class="form-control" name="invoiceAdress" id="CustomerInvoiceAdress" rows="2"></textarea>
+                <textarea class="form-control" name="companyInvoiceAdress" id="CustomerInvoiceAdress" rows="2"></textarea>
               </div>
               <hr>
               <div class="col-12 row">

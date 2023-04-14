@@ -35,9 +35,9 @@ class ProjectService
 
     public function getProjectDataByCompany($parameters): array
     {
-         $connection = $this->em->getConnection();
-         $companyProject= $connection->executeQuery("SELECT project.id,project.name,project.description FROM `project` inner join company on  project.company_id = company.id where project.deleted = 0 and company_id = $parameters");
-         $companyProject = $companyProject->fetchAll();
+        $connection = $this->em->getConnection();
+        $companyProject= $connection->executeQuery("SELECT project.id,project.name,project.description FROM `project` inner join company on  project.company_id = company.id where project.deleted = 0 and company_id = $parameters");
+        $companyProject = $companyProject->fetchAll();
 
         return $companyProject;
     }
