@@ -3,10 +3,14 @@ $(document).ready(function () {
     $("#CompanyManageList").on("click", ' li', getProjectsByCompany);
     $("#projectManageList").on("click", ' li', toggleProjectList);
     $("#btnCreateProject").on("click", LoadProjectsByCompany);
+    $("#projecten-tab").on("click", clearAllForms);
+    $("#btnNewProject").on("click", clearAllForms);
+    $("#btnCreateProject").on("click", clearAllForms);
     $("#btnDeleteProject").on("click", deleteProject);
     $("#btnDeleteProject").on("click", LoadProjectsByCompany);
     $("#btnEditProject").on("click", Updateproject);
     $("#btnEditProject").on("click", LoadProjectsByCompany);
+    $("#CompanyManageList").on("click", ' li', clearAllForms);
 
 
 });
@@ -19,7 +23,7 @@ function getProjectsByCompany() {
 
     $("#CompanyManageList li").removeClass("active");
     $(this).addClass("active");
-    selectedCompanyId = $(this).data()['id'];
+    selectedCompanyId = $(this).data()['companyId'];
     //console.log(selectedCompanyId)
 
 
@@ -76,6 +80,7 @@ function LoadProjectsByCompany() {
 
             $.each(Project, function (k, v) {
 
+
                 var entry = document.createElement('li');
                 entry.className = 'list-group-item';
                 entry.innerHTML = v['name'];
@@ -98,20 +103,6 @@ function LoadProjectsByCompany() {
         });
 
 }
-
-
-// function toggleCompanyList() {
-//     clearForms();
-//     $("#CompanyManageList li").removeClass("active");
-//     $(this).addClass("active");
-//     selectedCompanyId = $(this).data()['id'];
-//     console.log(selectedCompanyId)
-//     // //console.log($(this))
-//     $("#invoicePdf").attr("src", "")
-//     FillInvoiceList($(this).data());
-//     showCompanyInfo($(this));
-//
-// }
 
 function CreateProject() {
 
@@ -156,7 +147,7 @@ function CreateProject() {
         console.log(selectedProject);
         clearForms();
         alert("Het project is aangepast");
-        //getProjects();
+
     }
 }
 
@@ -177,7 +168,6 @@ function CreateProject() {
         console.log(selectedProject);
         alert("Het geselecteerde project is verwijderd");
 
-        //LoadProjectsByCompany();
     }
 }
 
@@ -206,17 +196,16 @@ function toggleProjectList() {
     });
 }
 
-// function test()
-// {
-//     console.log("123")
-//     $("#client-form")[0].reset();
-//     $("#newCompanyForm")[0].reset();
-//     $("#projectForm")[0].reset();
-//     $("#projectModal")[0].reset();
-//     $("#projectFormModal")[0].reset();
-//     $("#newUserForm")[0].reset();
-//     $("#userForm")[0].reset();
-//     $("#newClientModal")[0].reset();
-//
-//
-// }
+function clearAllForms()
+{
+
+    $('#client-form').trigger("reset");
+    $('#newCompanyForm').trigger("reset");
+    $('#projectForm').trigger("reset");
+    $('#projectModal').trigger("reset");
+    $('#projectFormModal').trigger("reset");
+    $('#newUserForm').trigger("reset");
+    $('#userForm').trigger("reset");
+    $('#newClientModal').trigger("reset");
+
+}

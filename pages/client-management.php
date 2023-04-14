@@ -104,7 +104,7 @@
               </div>
               <div class="col-md-3">
                 <div class="form-check form-check-inline user-actief-label">
-                  <input class="form-check-input" type="checkbox" id="CompanyActive">
+                  <input class="form-check-input" type="checkbox" name="companyActive" id="CompanyActive">
                   <label class="form-check-label">actief</label>
                 </div>
               </div>
@@ -133,10 +133,10 @@
               <hr>
               <div class="col-12 row">
                 <div class="col-6 mb-3">
-                  <button type="button" id="UpdateCustomerBtn" onclick="UpdateCompany();" class="btn btn-primary float-right">aanpassingen opslaan</button>
+                  <button type="button" id="UpdateCustomerBtn" class="btn btn-primary float-right">aanpassingen opslaan</button>
                 </div>
                 <div class="col-6">
-                  <button type="button" id="DeleteCustomerBtn" onclick="deleteCompany();" class="btn btn-danger float-left">klant verwijderen</button>
+                  <button type="button" id="DeleteCustomerBtn" class="btn btn-danger float-left">klant verwijderen</button>
                 </div>
               </div>
             </form><!-- End Form -->
@@ -208,11 +208,11 @@
                           <form id="projectFormModal" class="row col-12 g-3 user-management-form">
                             <div class="col-md-6">
                               <label class="form-label">project naam</label>
-                              <input id="newName" type="text" class="form-control">
+                              <input id="newName" name="newName" type="text" class="form-control">
                             </div>
                             <div class="col-md-6">
                               <label class="form-label">omschrijving</label>
-                              <input id="newDescription" type="text" class="form-control">
+                              <input id="newDescription" name="newDescription" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="modal-footer">

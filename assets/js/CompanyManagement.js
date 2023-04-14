@@ -6,10 +6,20 @@ $(document).ready(function () {
     $("#btnCreateCompany").on("click", getLastCompanyData);
     //$("#CompanyManageList").on("click", ' li', clearForms);
     //$("#UpdateCustomerBtn").on("click", getLastCompanyData);
+    $("#DeleteCustomerBtn").on("click", deleteCompany);
+    $("#UpdateCustomerBtn").on("click", UpdateCompany);
+    $("#CompanyManageList").on("click", ' li', getSelectedCompanyId);
 
 });
+function getSelectedCompanyId()
+{
+    $("#CompanyManageList li").removeClass("active");
+    $(this).addClass("active");
+    selectedCompanyId = $(this).data()['companyId'];
+    console.log(selectedCompanyId)
+}
+var selectedCompanyId = getSelectedCompanyId();
 
-var selectedCompanyId;
 
 function GetCompanies() {
     axios.get('http://localhost/regit/public/company/')
@@ -51,7 +61,7 @@ function FillInvoiceList(companyData){
         //console.log(entry.id);
         list.append(entry);
         $('#InvoiceList li').last().data(v);
-
+        clearForms();
     })
 }
 
@@ -59,8 +69,8 @@ function toggleCompanyList() {
     clearForms();
     $("#CompanyManageList li").removeClass("active");
     $(this).addClass("active");
-    selectedCompanyId = $(this).data()['id'];
-    console.log(selectedCompanyId)
+    selectedCompanyId = $(this).data()['companyId'];
+    //console.log(selectedCompanyId)
     // //console.log($(this))
     $("#invoicePdf").attr("src", "")//cleared iframe
     FillInvoiceList($(this).data());
@@ -90,6 +100,7 @@ function toggleInvoiceList() {
     $(this).addClass("active");
     selectedInvoiceId = $(this).data()['companyId'];
     // //console.log($(this))
+
     LoadInvoiceIframe($(this).data()['link']);
 }
 
@@ -128,8 +139,9 @@ console.log("");
 }
 
 async function UpdateCompany() {
-    if (selectedUserId == null) {
-        alert("er is geen gebruiker geselecteerd");
+
+    if (selectedCompanyId == null || selectedCompanyId == "") {
+        alert("er is geen bedrijf geselecteerd");
     } else {
         console.log($('#CustomerInvoiceAdress').text());
         var companyUpdated = await axios({
@@ -146,18 +158,20 @@ async function UpdateCompany() {
                 location: $('#CustomerLocation').val(),
                 address: $('#CustomerAddress').val(),
                 invoiceAddress: $('#CustomerInvoiceAdress').val(),
+
             },
         });
+
         console.log(companyUpdated);
 
-        alert("De klant is aanepast");
+        alert("De klant is aangepast");
         GetCompanies();
     }
 }
 
 async function deleteCompany() {
-    if (selectedUserId == null) {
-        alert("er is geen gebruiker geselecteerd");
+    if (selectedCompanyId == null || selectedCompanyId == "") {
+        alert("er is geen bedrijf geselecteerd");
     } else {
         var companyDelete = await axios({
             method: 'post',
