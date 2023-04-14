@@ -241,10 +241,10 @@
                   <hr class="mt-5 mb-4">
                   <div class="col-12 row mb-4">
                     <div class="col-6">
-                      <button type="button" id="btnEditProject" class="btn btn-primary float-right">aanpassingen opslaan</button>
+                      <button type="submit" id="btnEditProject" onclick="Updateproject()" class="btn btn-primary float-right">aanpassingen opslaan</button>
                     </div>
                     <div class="col-6">
-                      <button type="button" id="btnDeleteProject" class="btn btn-danger float-left">project verwijderen</button>
+                      <button type="submit" id="btnDeleteProject" class="btn btn-danger float-left">project verwijderen</button>
                     </div>
                   </div>
                 </form><!-- End activity Form -->

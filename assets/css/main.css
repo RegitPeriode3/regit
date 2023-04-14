@@ -132,9 +132,6 @@ html {
     overflow-y: scroll;
 }
 
-.max-height-user{
-    max-height: 41vh;
-}
 
 /* settings */
 .settings-title {
@@ -196,6 +193,6 @@ html {
 }
 
 .invoice-iframe {
-    width: 95vh;
-    height: 100vh;
+    width: 97%;
+    padding-left: 3%;
 }
