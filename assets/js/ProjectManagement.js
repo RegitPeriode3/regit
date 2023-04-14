@@ -105,24 +105,6 @@ function LoadProjectsByCompany() {
 
 }
 
-
-// function toggleCompanyList() {
-//     clearForms();
-//     $("#CompanyManageList li").removeClass("active");
-//     $(this).addClass("active");
-//     selectedCompanyId = $(this).data()['id'];
-//     console.log(selectedCompanyId)
-//     // //console.log($(this))
-//     $("#invoicePdf").attr("src", "")
-//     FillInvoiceList($(this).data());
-//     showCompanyInfo($(this));
-//
-// }
-
-
-
-
-
 function CreateProject() {
 
 
@@ -166,7 +148,7 @@ function CreateProject() {
         console.log(selectedProject);
         clearForms();
         alert("Het project is aangepast");
-        //getProjects();
+
     }
 }
 
@@ -187,7 +169,6 @@ function CreateProject() {
         console.log(selectedProject);
         alert("Het geselecteerde project is verwijderd");
 
-        LoadProjectsByCompany();
     }
 }
 
