@@ -3,13 +3,14 @@ $(document).ready(function () {
     $("#CompanyManageList").on("click", ' li', getProjectsByCompany);
     $("#projectManageList").on("click", ' li', toggleProjectList);
     $("#btnCreateProject").on("click", LoadProjectsByCompany);
-    // $("#projecten-tab").on("click", test);
-    // $("#btnNewProject").on("click", test);
-    // $("#btnCreateProject").on("click", test);
+    $("#projecten-tab").on("click", clearAllForms);
+    $("#btnNewProject").on("click", clearAllForms);
+    $("#btnCreateProject").on("click", clearAllForms);
     $("#btnDeleteProject").on("click", deleteProject);
     $("#btnDeleteProject").on("click", LoadProjectsByCompany);
     $("#btnEditProject").on("click", Updateproject);
     $("#btnEditProject").on("click", LoadProjectsByCompany);
+    $("#CompanyManageList").on("click", ' li', clearAllForms);
 
 
 
@@ -79,6 +80,7 @@ function LoadProjectsByCompany() {
             selectedUserData = $('#projectManageList li').last().data();
 
             $.each(Project, function (k, v) {
+                console.log(k);
 
                 var entry = document.createElement('li');
                 entry.className = 'list-group-item';
@@ -215,17 +217,16 @@ function toggleProjectList() {
     });
 }
 
-// function test()
-// {
-//     console.log("123")
-//     $("#client-form")[0].reset();
-//     $("#newCompanyForm")[0].reset();
-//     $("#projectForm")[0].reset();
-//     $("#projectModal")[0].reset();
-//     $("#projectFormModal")[0].reset();
-//     $("#newUserForm")[0].reset();
-//     $("#userForm")[0].reset();
-//     $("#newClientModal")[0].reset();
-//
-//
-// }
+function clearAllForms()
+{
+
+    $('#client-form').trigger("reset");
+    $('#newCompanyForm').trigger("reset");
+    $('#projectForm').trigger("reset");
+    $('#projectModal').trigger("reset");
+    $('#projectFormModal').trigger("reset");
+    $('#newUserForm').trigger("reset");
+    $('#userForm').trigger("reset");
+    $('#newClientModal').trigger("reset");
+
+}

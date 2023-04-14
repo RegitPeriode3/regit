@@ -208,11 +208,11 @@
                           <form id="projectFormModal" class="row col-12 g-3 user-management-form">
                             <div class="col-md-6">
                               <label class="form-label">project naam</label>
-                              <input id="newName" type="text" class="form-control">
+                              <input id="newName" name="newName" type="text" class="form-control">
                             </div>
                             <div class="col-md-6">
                               <label class="form-label">omschrijving</label>
-                              <input id="newDescription" type="text" class="form-control">
+                              <input id="newDescription" name="newDescription" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="modal-footer">
