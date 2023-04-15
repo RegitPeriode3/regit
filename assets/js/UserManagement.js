@@ -9,7 +9,7 @@ $(document).ready(function () {
 });
 
 var selectedUserId;
-
+//retrieve all users, and create li element for all users
 function GetUsers() {
 
     axios.get('http://localhost/regit/public/user/')
@@ -70,7 +70,7 @@ function showUserInfo($el) {
         }
     });
 }
-
+//create user
 function CreateUser() {
 
     var userNew = axios({
@@ -100,7 +100,7 @@ function CreateUser() {
     GetUsers();
 }
 
-
+//delete user
 function DeleteUser() {
 
     if (selectedUserId == null) {
@@ -121,7 +121,7 @@ function DeleteUser() {
         GetUsers();
     }
 }
-
+//update user
 function UpdateUser() {
 
     if ($('#userActive').is(":checked")) {
@@ -157,7 +157,7 @@ function UpdateUser() {
         GetUsers();
     }
 }
-
+//clear all input from the form
 function clearForms()
 {
     $("#client-form")[0].reset();

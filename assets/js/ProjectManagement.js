@@ -18,7 +18,7 @@ $(document).ready(function () {
 var selectedProject;
 var selectedCompanyId;
 
-
+//load all companies
 function getProjectsByCompany() {
 
     $("#CompanyManageList li").removeClass("active");
@@ -60,7 +60,7 @@ function getProjectsByCompany() {
 
 }
 
-
+//after adding a project, automatically select the latest project from the list and show the data in the form
 function LoadProjectsByCompany() {
 
     axios.get('http://localhost/regit/public/project/LoadLastProject/', {
@@ -103,7 +103,7 @@ function LoadProjectsByCompany() {
         });
 
 }
-
+//create project
 function CreateProject() {
 
 
@@ -128,7 +128,7 @@ function CreateProject() {
 
 
 }
-
+//update selected project information
  function Updateproject() {
     if (selectedProject == null) {
         alert("er is geen project geselecteerd");
@@ -151,6 +151,7 @@ function CreateProject() {
     }
 }
 
+//delete selected project
  function deleteProject() {
     if (selectedProject == null) {
         alert("er is geen project geselecteerd");
@@ -196,6 +197,7 @@ function toggleProjectList() {
     });
 }
 
+//clear all input from the form
 function clearAllForms()
 {
 

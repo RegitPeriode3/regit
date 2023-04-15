@@ -20,7 +20,7 @@ function getSelectedCompanyId()
 }
 var selectedCompanyId = getSelectedCompanyId();
 
-
+//retrieve all the companies
 function GetCompanies() {
     axios.get('http://localhost/regit/public/company/')
         .then(function (response) {
@@ -111,6 +111,7 @@ function LoadInvoiceIframe(filename){
     $("#invoicePdf").attr("src",link);
 }
 
+//create a company
 function CreateCompany() {
 
     var companyNew = axios({
@@ -138,6 +139,7 @@ console.log("");
 
 }
 
+//update the selected company information
 async function UpdateCompany() {
 
     if (selectedCompanyId == null || selectedCompanyId == "") {
@@ -169,6 +171,7 @@ async function UpdateCompany() {
     }
 }
 
+//delete the selected company
 async function deleteCompany() {
     if (selectedCompanyId == null || selectedCompanyId == "") {
         alert("er is geen bedrijf geselecteerd");
@@ -202,6 +205,7 @@ function clearForms()
 }
 
 
+//after adding a company, automatically select the latest company from the list and show the data in the form
 function getLastCompanyData() {
     axios.get('http://localhost/regit/public/company/lastCompany')
         .then(function (response) {
@@ -210,10 +214,10 @@ function getLastCompanyData() {
             $("#CompanyManageList li").removeClass("active");
             $('#CompanyManageList li').last().addClass("active");
 
-            selectedCompanyData = $('#CompanyManageList li').last().data();
+            selectedCompanyData = $('#CompanyManageList li').last().data(); //get list item data from last company in list
             //console.log(selectedCompanyData)
             $.each(selectedCompanyData, function (k, v) {
-
+                //loop trough data and fill the input with data
                 $("input[name=" + k + "]").val(v);
                 $("textarea[name=" + k + "]").val(v);
 
